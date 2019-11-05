@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to OKAERI!</title>
+    <?php include('css.php');?>
+    <link rel="stylesheet" href="css/">
+    <style>
+        a:hover{
+            color:#ffc107 !important;
+        }
+        header{
+            border-bottom: 2px solid #ffc107 !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <?php include('nav.php');?>
+        <div id="my-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
+                <li data-target="#my-carousel" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="image/banner1.png" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/banner2.png" alt="">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#my-carousel" data-slide="prev" role="button">
+                <span class="carousel-control-prev-icon bg-dark p-3" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#my-carousel" data-slide="next" role="button">
+                <span class="carousel-control-next-icon bg-dark p-3" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </header>
+    <section>
+
+    </section>
+
+    <!-- SCRIPT -->
+    <?php include('script.php');?>
+</body>
+</html>
