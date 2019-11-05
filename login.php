@@ -1,3 +1,25 @@
+<?php
+session_start();
+$loginError = "";
+if($_SERVER ["REQUEST_METHOD"] == "POST"){
+
+    include('connection.php');
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+//write query
+    $sql = "SELECT * FROM useraccounts WHERE userEmail='$email' && userPassword='$password'";
+    $result = mysqli_query($connection,$sql);
+    $row = mysqli_fetch_array($result);
+    if($row['userEmail']==$email && $row['userPassword']==$password){
+        $_SESSION['userID'] = $row['userID'];
+        $_SESSION['userPassword'] = $row['userPassword'];
+        echo "<script>window.location.href= 'user';</script>";
+    }else{
+        $loginError = "email or password Incorrect!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +39,10 @@
             <div class="jumbotron d-block text-center bg-transparent">
                 <h1 class="display-4">Title</h1>
                 <hr class="my-4">
-                <form action="">
-                    <input type="text" class="form-control mt-5 mb-3" id="exampleFormControlInput1" placeholder="Username">
-                    <input type="password" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Password">
-                    <button class="btn btn-warning w-25 text-dark">Log In</button>
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
+                    <input type="text" class="form-control mt-5 mb-3" id="exampleFormControlInput1" placeholder="Username" name="email">
+                    <input type="password" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Password" name="password">
+                    <button class="btn btn-warning w-25 text-dark" type="submit">Log In</button>
                 </form>
             </div>
         </div>
