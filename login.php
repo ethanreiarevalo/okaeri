@@ -11,7 +11,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $sql = "SELECT * FROM useraccounts WHERE userEmail='$email' && userPassword='$password'";
     $result = mysqli_query($connection,$sql);
     $row = mysqli_fetch_array($result);
-    if($row['email']==$email && $row['userPassword']==$password){
+    if($row['userEmail']==$email && $row['userPassword']==$password){
         $_SESSION['userID'] = $row['userID'];
         $_SESSION['userPassword'] = $row['userPassword'];
         echo "<script>window.location.href= 'user';</script>";
