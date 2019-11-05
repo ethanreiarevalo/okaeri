@@ -8,6 +8,9 @@
     <?php include('css.php');?>
     <link rel="stylesheet" href="css/">
     <style>
+        html,body{
+            overflow-x:hidden;
+        }
         a:hover{
             color:#ffc107 !important;
         }
@@ -42,8 +45,63 @@
             </a>
         </div>
     </header>
-    <section>
-
+    <section id="newrelease">
+        <div class="row">
+            
+            <div id="my-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
+                    <li data-target="#my-carousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container d-flex">
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container d-flex">
+                        <div class="card">
+                            <img class="card-img-top" src="product_image/saintyoungmen.jpg" alt="">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Komi-San</h5>
+                                <p class="card-text">Price: 100</p>
+                            </div> 
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#my-carousel" data-slide="prev" role="button">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#my-carousel" data-slide="next" role="button">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            
+        </div>
     </section>
 
     <!-- SCRIPT -->
