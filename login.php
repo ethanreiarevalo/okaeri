@@ -36,7 +36,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         <?php include('nav.php');?>
     </header>
     <section>
-        <div id="log_container" class="py-4 d-block col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-10 bg-dark">
+        <div id="log_container" class=" d-block col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-10 bg-dark">
             <div class="jumbotron d-block text-center bg-transparent">
                 <h1 class="display-4">Login Now!</h1>
                 <span class="error text-danger"><?php echo $loginError; ?></span><br><hr class="my-4">
