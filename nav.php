@@ -15,7 +15,7 @@
                 <a class="nav-link text-white-50" href="#">Light Novels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="#">Login</a>
+                <a class="nav-link text-white-50" href="login.php">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="#">Sign Up!</a>
