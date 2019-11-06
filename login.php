@@ -35,14 +35,14 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         <?php include('nav.php');?>
     </header>
     <section>
-        <div id="log_container" class="py-4 d-block bg-white col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-10 bg-white">
-            <div class="jumbotron d-block text-center bg-transparent">
-                <h1 class="display-4">Title</h1>
-                <hr class="my-4">
+        <div id="log_container" class="py-4 d-block col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-10">
+            <div class="jumbotron d-block text-center bg-dark text-white">
+                <h1 class="display-4">Login Now!</h1>
+                <hr class="my-4 bg-white">
                 <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
-                    <input type="text" class="form-control mt-5 mb-3" id="exampleFormControlInput1" placeholder="Username" name="email">
-                    <input type="password" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Password" name="password">
-                    <button class="btn btn-warning w-25 text-dark" type="submit">Log In</button>
+                    <input type="text" class="form-control mt-5 mb-3 text-center" id="exampleFormControlInput1" placeholder="Username" name="email">
+                    <input type="password" class="form-control mb-3 text-center" id="exampleFormControlInput1" placeholder="Password" name="password">
+                    <button class="btn btn-warning w-50 text-dark" type="submit">Log In</button>
                 </form>
             </div>
         </div>
