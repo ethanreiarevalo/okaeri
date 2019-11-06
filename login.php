@@ -38,8 +38,9 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <section>
         <div id="log_container" class=" d-block col-xl-3 col-lg-4 col-md-6 col-sm-10 col-xs-10 bg-dark">
             <div class="jumbotron d-block text-center bg-transparent">
-                <h1 class="display-4">Login Now!</h1>
-                <span class="error text-danger"><?php echo $loginError; ?></span><br><hr class="my-4">
+                <h1 class="text-white">Login Now!</h1>
+                <span class="error text-danger"><?php echo $loginError; ?></span><br>
+                <hr class="my-4 bg-white">
                 <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
                     <input type="text" class="form-control mt-5 mb-3 text-center" id="exampleFormControlInput1" placeholder="Username" name="email">
                     <input type="password" class="form-control mb-3 text-center" id="exampleFormControlInput1" placeholder="Password" name="password">
