@@ -13,30 +13,28 @@ if(isset($_SESSION ["userID"])){
     $dReceived = $_POST['dReceived'];
     $stock = $_POST['stock'];
     $price = $_POST['price'];
-    $image = $_POST['image'];
+    $image = $_FILES['fileToUpload']['name'];
 
     if(mysqli_query($connection,"INSERT INTO products VALUES (null, '$title', '$author', '$publisher', '$type',
     '$language', '$dReceived', '$dPublished', null, 'product_image/".$image."', '$stock', '$price')")){
       echo "uploaded to database";
 
-      $target_dir = "C:/xampp/htdocs/www.okaeri.com/product_images/";
-      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+      $target_dir = "C:/xampp/htdocs/www.okaeri.com/product_image/";
+      $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);  
       $uploadOk = 1;
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
       
       // Check if image file is a actual image or fake image
-      if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if($check !== false) {
-          echo "File is an image - " . $check["mime"] . ".";
-          $uploadOk = 1;
-        } else {
-          echo "File is not an image.";
-          $uploadOk = 0;
-        }
-      }else{
-        echo 'error in uploading';
+
+      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+      if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+      } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
       }
+      
       
       // Check if file already exists
       if (file_exists($target_file)) {
@@ -62,12 +60,12 @@ if(isset($_SESSION ["userID"])){
         echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
       } else {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-          echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+          echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
           $message = 'File Successfully Added';
           echo "<script type='text/javascript'>alert('$message');</script>";
                 
-          header("location:admin");
+          echo "<script>window.location.href='../admin';</script>";
         } else {
           echo "Sorry, there was an error uploading your file.";
         }
@@ -75,6 +73,8 @@ if(isset($_SESSION ["userID"])){
 
 
 
+
+    } else {
 
     }
   }
@@ -106,7 +106,8 @@ if(isset($_SESSION ["userID"])){
     <section class="row">
         <div id="fields" class="bg-dark col-xl-4">
             <div class="jumbotron d-block text-center text-white bg-transparent">
-              <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
+              <!-- you need to encrypt the form to submit an image -->
+              <form action="<?php htmlspecialchars("PHP_SELF"); ?>" enctype="multipart/form-data" method="post"> 
                 <p class="lead">Add Item</p>
                 <hr class="my-2 bg-white">
                 <input type="text" class="form-control mb-1" placeholder="Title" name="title">
@@ -140,7 +141,7 @@ if(isset($_SESSION ["userID"])){
                 </div>
                 <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
                 <input type="text" class="form-control mb-1" placeholder="Price" name="price">
-                <input type="file" class="form-control-file" placeholder="Upload Photo" accept="product_image/*" id="image" name="image">
+                <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file" placeholder="Upload Photo" accept="image/*">
                 <button class="btn btn-warning" type="submit">Submit</button>
               </form>
             </div>
