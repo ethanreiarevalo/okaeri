@@ -56,27 +56,24 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="container d-flex">
+                            <?php
+                            include('connection.php');
+                            $getItems = "SELECT * FROM products";
+                            $result = mysqli_query($connection, $getItems);
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+
+                            ?>
                             <div class="card">
-                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
+                                <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">Komi-San</h5>
-                                    <p class="card-text">Price: 100</p>
+                                    <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
+                                    <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
                                 </div> 
                             </div>
-                            <div class="card">
-                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Komi-San</h5>
-                                    <p class="card-text">Price: 100</p>
-                                </div> 
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Komi-San</h5>
-                                    <p class="card-text">Price: 100</p>
-                                </div> 
-                            </div>
+                            <?php 
+                                }}
+                            ?>
                         </div>
                     </div>
                     <div class="carousel-item">
