@@ -28,7 +28,7 @@
                 <a class="nav-link text-white-50" href="login.php">Welcome!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="register.php">Sign out</a>
+                <a class="nav-link text-white-50" href="../logout.php">Sign out</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
