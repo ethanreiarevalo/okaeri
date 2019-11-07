@@ -55,11 +55,11 @@
         <div class="container mt-3 position-relative">
             <h4>NEW RELEASES</h4>
             <div class="row justify-content-between">
-                <a id="npbtn" class="bg-dark col-xl-1" href="#my-carousel2" data-slide="prev" role="button">
+                <a id="npbtn" class="bg-dark col-xl-1 text-center" href="#my-carousel2" data-slide="prev" role="button">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a id="npbtn" class="bg-dark col-xl-1" href="#my-carousel2" data-slide="next" role="button">
+                <a id="npbtn" class="bg-dark col-xl-1 text-center" href="#my-carousel2" data-slide="next" role="button">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
