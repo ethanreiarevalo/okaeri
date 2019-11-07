@@ -11,11 +11,15 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $sql = "SELECT * FROM useraccounts WHERE userEmail='$email' && userPassword='$password'"; 
     $result = mysqli_query($connection,$sql);
     $row = mysqli_fetch_array($result);
-    if($row['userEmail']==$email && $row['userPassword']==$password){
+    if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="user"){
         //register the userID in session
         $_SESSION['userID'] = $row['userID'];
         $_SESSION['userPassword'] = $row['userPassword'];
         echo "<script>window.location.href= 'user';</script>";
+    }else if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="Admin"){
+        $_SESSION['userID'] = $row['userID'];
+        $_SESSION['userPassword'] = $row['userPassword'];
+        echo "<script>window.location.href= 'admin';</script>";
     }else{
         $loginError = "email or password Incorrect!";
     }
