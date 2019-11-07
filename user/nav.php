@@ -1,3 +1,4 @@
+
 <head>
     <style>
         a:hover{
@@ -15,20 +16,24 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-white">
 
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="#">Add Item<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white-50" href="#">Manga<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="accounts.php">Accounts</a>
+                <a class="nav-link text-white-50" href="#">Light Novels</a>
+            </li>
+                <a class="nav-link text-white-50" href="#"><i class="fa fa-shopping-cart"></i></a>
+            <li>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="sales.php">Sales</a>
-            </li>
-            <li class="nav-item disabled">
-                <a class="nav-link text-white-50">Welcome! </a>
+                <a class="nav-link text-white-50" href="login.php">Welcome!</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="../logout.php">Logout</a>
+                <a class="nav-link text-white-50" href="register.php">Sign out</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
 </nav>
