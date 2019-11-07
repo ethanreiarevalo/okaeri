@@ -21,6 +21,7 @@
             width:200px !important;
             height:300px !important;
         }
+        
     </style>
 </head>
 <body>
@@ -50,59 +51,65 @@
         </div>
     </header>
     <section id="newrelease">
-        <div class="container">
-        <div class="row">
-            
-            <div id="my-carousel2" class="carousel slide w-100" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
-                    <li data-target="#my-carousel" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container d-flex">
-                            <?php
-                            include('connection.php');
-                            $getItems = "SELECT * FROM products";
-                            $result = mysqli_query($connection, $getItems);
-                            if(mysqli_num_rows($result) > 0){
-                                while($row = mysqli_fetch_array($result)){
-
-                            ?>
-                            <div class="card mx-2 border border-warning">
-                                <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
-                                    <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                                </div> 
-                            </div>
-                            <?php 
-                                }}
-                            ?>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container d-flex">
-                        <div class="card">
-                            <img class="card-img-top" src="product_image/saintyoungmen.jpg" alt="">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Komi-San</h5>
-                                <p class="card-text">Price: 100</p>
-                            </div> 
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#my-carousel2" data-slide="prev" role="button">
+        
+        <div class="container mt-3 position-relative">
+            <h4>NEW RELEASES</h4>
+            <div class="row justify-content-between">
+                <a id="npbtn" class="bg-dark col-xl-1" href="#my-carousel2" data-slide="prev" role="button">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#my-carousel2" data-slide="next" role="button">
+                <a id="npbtn" class="bg-dark col-xl-1" href="#my-carousel2" data-slide="next" role="button">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+            </div>    
+            <div class="row position-relative">
+                <div id="my-carousel2" class="carousel slide w-100 col-xl-10" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
+                        <li data-target="#my-carousel" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container d-flex">
+                                <?php
+                                include('connection.php');
+                                $getItems = "SELECT * FROM products";
+                                $result = mysqli_query($connection, $getItems);
+                                if(mysqli_num_rows($result) > 0){
+                                    while($row = mysqli_fetch_array($result)){
+
+                                ?>
+                                <div class="card mx-2 border border-warning">
+                                    <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                                    <div class="card-body text-center">
+                                        <p class="card-title"><?php echo $row['productTitle']; ?></p>
+                                        <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
+                                        <button class="btn btn-warning">Add to cart</button>
+                                    </div> 
+                                </div>
+                                <?php 
+                                    }}
+                                ?>
+                                
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="container d-flex">
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/saintyoungmen.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
