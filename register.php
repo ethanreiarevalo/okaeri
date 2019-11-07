@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
    
-    <title>Document</title>
+    <title>OKAERI | Join Now!</title>
     <style>
         html, body{
             padding: 0%;
