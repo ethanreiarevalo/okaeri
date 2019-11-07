@@ -61,7 +61,7 @@
                     <div class="carousel-item active">
                         <div class="container d-flex">
                             <?php
-                            include('connection.php');
+                            include('../connection.php');
                             $getItems = "SELECT * FROM products";
                             $result = mysqli_query($connection, $getItems);
                             if(mysqli_num_rows($result) > 0){
@@ -69,7 +69,7 @@
 
                             ?>
                             <div class="card">
-                                <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                                <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
                                 <div class="card-body text-center">
                                     <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
                                     <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
