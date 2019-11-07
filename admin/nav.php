@@ -18,13 +18,13 @@
                 <a class="nav-link text-white-50" href="#">Add Item<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="#">Accounts</a>
+                <a class="nav-link text-white-50" href="accounts.php">Accounts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="login.php">Sales</a>
+                <a class="nav-link text-white-50" href="sales.php">Sales</a>
             </li>
             <li class="nav-item disabled">
-                <a class="nav-link text-white-50" href="login.php">Welcome! </a>
+                <a class="nav-link text-white-50">Welcome! </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="register.php">Logout</a>
