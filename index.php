@@ -17,6 +17,10 @@
         header{
             border-bottom: 2px solid #ffc107 !important;
         }
+        img.card-img-top{
+            width:200px !important;
+            height:300px !important;
+        }
     </style>
 </head>
 <body>
@@ -46,9 +50,10 @@
         </div>
     </header>
     <section id="newrelease">
+        <div class="container">
         <div class="row">
             
-            <div id="my-carousel2" class="carousel slide" data-ride="carousel">
+            <div id="my-carousel2" class="carousel slide w-100" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
                     <li data-target="#my-carousel" data-slide-to="1"></li>
@@ -64,7 +69,7 @@
                                 while($row = mysqli_fetch_array($result)){
 
                             ?>
-                            <div class="card">
+                            <div class="card mx-2 border border-warning">
                                 <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                                 <div class="card-body text-center">
                                     <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
@@ -97,7 +102,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            
+        </div>
         </div>
     </section>
 
