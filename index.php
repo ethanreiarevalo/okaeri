@@ -48,7 +48,7 @@
     <section id="newrelease">
         <div class="row">
             
-            <div id="my-carousel" class="carousel slide" data-ride="carousel">
+            <div id="my-carousel2" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
                     <li data-target="#my-carousel" data-slide-to="1"></li>
@@ -88,11 +88,11 @@
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#my-carousel" data-slide="prev" role="button">
+                <a class="carousel-control-prev" href="#my-carousel2" data-slide="prev" role="button">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#my-carousel" data-slide="next" role="button">
+                <a class="carousel-control-next" href="#my-carousel2" data-slide="next" role="button">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
