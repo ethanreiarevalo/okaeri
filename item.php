@@ -1,4 +1,23 @@
 <!-- Item description and add to cart page here -->
+<?php
+    include('connection.php');
+    
+    $productID = $_POST['productID'];
+    $sql = mysqli_query($connection, "SELECT * FROM products where productID = '$productID'");
+    $row = mysqli_fetch_array($sql);
+    if($row['productID'] == $productID){
+        $productTitle = $row['productTitle'];
+        $productAuthor = $row['productAuthor'];
+        $productPublisher = $row['productPublisher'];
+        $productType = $row['productType'];
+        $productLanguage = $row['productLanguage'];
+        $productDatePublished = $row['productDatePublished'];
+        $productGenre = $row['productGenre'];
+        $productImage = $row['productImage'];
+        $productStock = $row['productStock'];
+        $productPrice = $row['productPrice'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
-    <title><!--Name of the Item here--></title>
+    <title><?php echo $productTitle; ?></title>
     <style>
         html,body{
             overflow-x: hidden;
@@ -24,16 +43,16 @@
         <div class="row">
             <div class="container col-xl-1 mt-5">
                 <center>
-                    <img src="product_image/Komi-san.jpg" alt="">
+                    <img src="<?php echo $productImage; ?>" alt="">
                 </center>
             </div>
             <div class="container col-xl-8">
                 <div class="jumbotron bg-transparent">
-                    <h1 class="display-4">ITEM NAME</h1>
-                    <p class="lead">Type: Manga - paperback</p>
+                    <h1 class="display-4"><?php echo $productTitle; ?></h1>
+                    <p class="lead">Type: <?php echo $productType; ?></p>
                     <hr class="my-4">
                     <p>ITEM SUMMARY</p>
-                    <b>Stock Available: </b>
+                    <b>Stock Available: <?php echo $productStock; ?></b>
                     <hr class="my-4">
                     <div class="row">
                         <div class="col-xl-5 d-flex">

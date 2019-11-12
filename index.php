@@ -81,16 +81,19 @@
                                     while($row = mysqli_fetch_array($result)){
 
                                 ?>
-                                <a href="item.php">
+                                <!-- <a href="item.php"> -->
                                     <div class="card mx-2 border border-warning">
                                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                                         <div class="card-body text-center">
                                             <p class="card-title"><?php echo $row['productTitle']; ?></p>
                                             <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                                            <button class="btn btn-warning">Add to cart</button>
+                                            <form action="item.php" method="post">
+                                                <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
+                                                <button class="btn btn-warning">Add to cart</button>
+                                            </form>
                                         </div> 
                                     </div>
-                                </a>
+                                <!-- </a> -->
                                 <?php 
                                     }}
                                 ?>
