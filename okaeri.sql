@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2019 at 07:51 AM
+-- Generation Time: Nov 12, 2019 at 06:27 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `products` (
   `productID` int(11) NOT NULL,
-  `productTitle` varchar(20) NOT NULL,
+  `productTitle` varchar(50) NOT NULL,
   `productAuthor` varchar(20) NOT NULL,
   `productPublisher` varchar(30) NOT NULL,
   `productType` varchar(10) NOT NULL,
   `productLanguage` varchar(20) NOT NULL,
   `productDateReceived` date NOT NULL,
   `productDatePublished` date NOT NULL,
-  `productGenre` varchar(100) NOT NULL,
+  `productGenre` varchar(100) DEFAULT NULL,
   `productImage` varchar(50) NOT NULL,
   `productStock` int(3) NOT NULL,
   `productPrice` double(11,2) NOT NULL
@@ -48,8 +48,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPublisher`, `productType`, `productLanguage`, `productDateReceived`, `productDatePublished`, `productGenre`, `productImage`, `productStock`, `productPrice`) VALUES
-(1, 'Komi Can\'t Communica', 'Tomohito Oda', 'Viz Media', 'Manga', 'English', '0000-00-00', '0000-00-00', 'School Life, Romance, Comdey', 'product_image/Komi-san.jpg', 10, 100.00),
-(2, 'Saint Young Men', 'Hikaru Nakamura', 'Kodansha', 'Manga', 'English', '0000-00-00', '0000-00-00', 'Comedy', 'product_image/saintyoungmen.jpg', 20, 100.00);
+(1, 'Komi Can\'t Communicate', 'Tomohito Oda', 'Viz Media', 'Manga', 'English', '0000-00-00', '0000-00-00', 'School Life, Romance, Comdey', 'product_image/Komi-san.jpg', 10, 100.00),
+(2, 'Saint Young Men', 'Hikaru Nakamura', 'Kodansha', 'Manga', 'English', '0000-00-00', '0000-00-00', 'Comedy', 'product_image/saintyoungmen.jpg', 20, 100.00),
+(16, 'Kono Subarashii Sekai ni Shukufuku wo! Volume 10', 'Natsume Akatsuki', 'Yen Press', '2', '2', '2019-11-07', '2019-11-01', NULL, 'product_image/v10cover.jpg', 50, 300.00);
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,7 @@ ALTER TABLE `useraccounts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `useraccounts`
