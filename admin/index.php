@@ -145,7 +145,7 @@ if(isset($_SESSION ["userID"])){
                   <div class="container custom-control custom-checkbox col-xl-1">
                     <input type="checkbox" class="custom-control-input" id="adventure">
                     <label class="custom-control-label" for="adventure">Adventure</label>
-                    <input type="checkbox" class="custom-control-input" id=romance>
+                    <input type="checkbox" class="custom-control-input" id="romance">
                     <label class="custom-control-label" for="romance">Romance</label>
                     <input type="checkbox" class="custom-control-input" id="sliceoflife">
                     <label class="custom-control-label" for="sliceoflife">Slice of Life</label>
