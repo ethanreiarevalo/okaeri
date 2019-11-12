@@ -81,14 +81,16 @@
                                     while($row = mysqli_fetch_array($result)){
 
                                 ?>
-                                <div class="card mx-2 border border-warning">
-                                    <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                                    <div class="card-body text-center">
-                                        <p class="card-title"><?php echo $row['productTitle']; ?></p>
-                                        <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                                        <button class="btn btn-warning">Add to cart</button>
-                                    </div> 
-                                </div>
+                                <a href="item.php">
+                                    <div class="card mx-2 border border-warning">
+                                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                                        <div class="card-body text-center">
+                                            <p class="card-title"><?php echo $row['productTitle']; ?></p>
+                                            <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
+                                            <button class="btn btn-warning">Add to cart</button>
+                                        </div> 
+                                    </div>
+                                </a>
                                 <?php 
                                     }}
                                 ?>
