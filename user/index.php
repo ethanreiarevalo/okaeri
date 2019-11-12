@@ -68,13 +68,15 @@
                                 while($row = mysqli_fetch_array($result)){
 
                             ?>
-                            <div class="card">
-                                <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
-                                    <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                                </div> 
-                            </div>
+                            <a href="item.php">
+                                <div class="card">
+                                    <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title"><?php echo $row['productTitle']; ?></h5>
+                                        <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
+                                    </div> 
+                                </div>
+                            </a>
                             <?php 
                                 }}
                             ?>
