@@ -141,6 +141,17 @@ if(isset($_SESSION ["userID"])){
                 </div>
                 <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
                 <input type="text" class="form-control mb-1" placeholder="Price" name="price">
+                <div class="row">
+                  <div class="container custom-control custom-checkbox col-xl-1">
+                    <input type="checkbox" class="custom-control-input" id="adventure">
+                    <label class="custom-control-label" for="adventure">Adventure</label>
+                  </div>
+                  <div class="container custom-control custom-checkbox col-xl-1">
+                    <input type="checkbox" class="custom-control-input" id="action">
+                    <label class="custom-control-label" for="action">Action</label>
+                  </div>
+                </div>
+                <textarea name="summary" id="summary" class="form-control" cols="30" rows="10" placeholder="Enter Product Summary here"></textarea>
                 <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file" placeholder="Upload Photo" accept="image/*">
                 <button class="btn btn-warning" type="submit">Submit</button>
               </form>
