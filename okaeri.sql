@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 06:27 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Nov 12, 2019 at 07:28 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,19 +38,10 @@ CREATE TABLE `products` (
   `productDateReceived` date NOT NULL,
   `productDatePublished` date NOT NULL,
   `productGenre` varchar(100) DEFAULT NULL,
-  `productImage` varchar(50) NOT NULL,
+  `productImage` varchar(150) NOT NULL,
   `productStock` int(3) NOT NULL,
   `productPrice` double(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPublisher`, `productType`, `productLanguage`, `productDateReceived`, `productDatePublished`, `productGenre`, `productImage`, `productStock`, `productPrice`) VALUES
-(1, 'Komi Can\'t Communicate', 'Tomohito Oda', 'Viz Media', 'Manga', 'English', '0000-00-00', '0000-00-00', 'School Life, Romance, Comdey', 'product_image/Komi-san.jpg', 10, 100.00),
-(2, 'Saint Young Men', 'Hikaru Nakamura', 'Kodansha', 'Manga', 'English', '0000-00-00', '0000-00-00', 'Comedy', 'product_image/saintyoungmen.jpg', 20, 100.00),
-(16, 'Kono Subarashii Sekai ni Shukufuku wo! Volume 10', 'Natsume Akatsuki', 'Yen Press', '2', '2', '2019-11-07', '2019-11-01', NULL, 'product_image/v10cover.jpg', 50, 300.00);
 
 -- --------------------------------------------------------
 
