@@ -62,7 +62,7 @@
                         <div class="container d-flex">
                             <?php
                             include('../connection.php');
-                            $getItems = "SELECT * FROM products";
+                            $getItems = "SELECT * FROM products order by productDateReceived desc";
                             $result = mysqli_query($connection, $getItems);
                             if(mysqli_num_rows($result) > 0){
                                 while($row = mysqli_fetch_array($result)){
