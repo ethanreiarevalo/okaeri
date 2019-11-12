@@ -17,10 +17,7 @@
         header{
             border-bottom: 2px solid #ffc107 !important;
         }
-        img.card-img-top{
-            width:200px !important;
-            height:300px !important;
-        }
+        
         
     </style>
 </head>
@@ -81,7 +78,6 @@
                                     while($row = mysqli_fetch_array($result)){
 
                                 ?>
-                                <!-- <a href="item.php"> -->
                                     <div class="card mx-2 border border-warning">
                                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                                         <div class="card-body text-center">
@@ -93,7 +89,6 @@
                                             </form>
                                         </div> 
                                     </div>
-                                <!-- </a> -->
                                 <?php 
                                     }}
                                 ?>
