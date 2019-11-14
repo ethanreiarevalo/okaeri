@@ -46,7 +46,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                 <span class="error text-danger"><?php echo $loginError; ?></span><br>
                 <hr class="my-4 bg-white">
                 <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
-                    <input type="text" class="form-control mt-5 mb-3 text-center" id="exampleFormControlInput1" placeholder="Username" name="email">
+                    <input type="text" class="form-control mt-5 mb-3 text-center" id="exampleFormControlInput1" placeholder="Email" name="email">
                     <input type="password" class="form-control mb-3 text-center" id="exampleFormControlInput1" placeholder="Password" name="password">
                     <button class="btn btn-warning w-50 text-dark" type="submit">Log In</button>
                 </form>

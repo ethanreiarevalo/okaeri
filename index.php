@@ -50,34 +50,36 @@
     <section id="newrelease">
         
         <div class="container mt-3 position-relative">
-            <h4>NEW RELEASES</h4>
-            
-            <div class="row position-relative">
-                <div class="container d-flex">
-                    <?php
-                    include('connection.php');
-                    $getItems = "SELECT * FROM products order by productDateReceived desc";
-                    $result = mysqli_query($connection, $getItems);
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_array($result)){
-
-                    ?>
-                        <div class="card mx-2 border border-warning" style="width:200px; height:500px;">
-                            <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                            <div class="card-body text-center">
-                                <p class="card-title"><?php echo $row['productTitle']; ?></p>
-                                <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                                <form action="item.php" method="post">
-                                    <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
-                                    <button class="btn btn-warning">Add to cart</button>
-                                </form>
-                            </div> 
-                        </div>
-                    <?php 
-                        }}
-                    ?> 
-                </div>
+            <div class="row justify-content-between">
+                <h4>NEW RELEASES</h4>
+                <a href="">View More >></a>
             </div>
+            
+            <div id="card" class="">
+            <div class="row justify-content-center">
+            <?php
+                include('connection.php');
+                $getItems = "SELECT * FROM products order by productDateReceived desc";
+                $result = mysqli_query($connection, $getItems);
+                if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result)){
+                ?>
+                    <div class="card m-2 border border-warning" style="width:220px; height:500px;">
+                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                        <div class="card-body text-center">
+                            <p class="card-title"><?php echo $row['productTitle']; ?></p>
+                            <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
+                            <form action="item.php" method="post">
+                                <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
+                                <button class="btn btn-warning">Add to cart</button>
+                            </form>
+                        </div> 
+                    </div>
+                <?php 
+                    }}
+                ?> 
+            </div>
+        </div>
         </div>
     </section>
 
