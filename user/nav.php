@@ -21,11 +21,11 @@
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="lnlist.php">Light Novels</a>
             </li>
-                <a class="nav-link text-white-50" href="#"><i class="fa fa-shopping-cart"></i></a>
+                <a class="nav-link text-white-50" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
             <li>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="login.php">Welcome!</a>
+                <a class="nav-link text-white-50" href="#">Welcome!</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="../logout.php">Sign out</a>
