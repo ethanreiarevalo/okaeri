@@ -54,16 +54,16 @@
                     <p>ITEM SUMMARY</p>
                     <b>Stock Available: <?php echo $productStock; ?></b>
                     <hr class="my-4">
-                    <div class="row">
-                        <div class="col-xl-5 d-flex">
-                            <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
-                            <input type="text" class="form-control mx-1" id="integer_value">
-                            <button id="plus-button" class="btn btn-primary mx-1" onclick="plusValue()">+</button>
+                    <form action="cart.php" method="post">
+                        <div class="row">
+                            <div class="col-xl-5 d-flex">
+                                <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
+                                <input type="text" class="form-control mx-1" id="integer_value">
+                                <button id="plus-button" class="btn btn-primary mx-1" onclick="plusValue()">+</button>
+                            </div>   
+                            <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
                         </div>
-                       <form action="cart.php" method="post">
-                           <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
-                       </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
