@@ -11,6 +11,8 @@
         $address = $_POST['address'];
         $contact = $_POST['contact'];
         $sex = $_POST['sex'];
+        $fullname = $fname.$lname;
+        $userID = '';
 
         $sql = "SELECT * FROM useraccounts WHERE userEmail='$email' && userPassword='$password'"; 
         $result = mysqli_query($connection,$sql);
@@ -23,6 +25,25 @@
             $signup = mysqli_query($connection, "INSERT INTO useraccounts VALUES (null, '$email', '$password', 'user')");
             //insert account details
             $accntDetails = mysqli_query($connection, "INSERT INTO userdetails VALUES ('$email','$fname','$lname','$address','$contact','$date','$sex')");
+            
+            //select userID
+            $selectSql = "SELECT * FROM useraccounts WHERE userEmail='$email' && userPassword='$password'"; 
+            $selectSqlResult = mysqli_query($connection, $selectSql);
+            $sqlRow = mysqli_fetch_array($selectSqlResult);
+            if(!empty($sqlRow['userID'])){
+                $userID = $sqlRow['userID'];
+            }else{
+                echo '$sqlResult is empty';
+            }
+            
+            //create table for cart
+            $createCartSql = "CREATE TABLE ".$userID."cart (productID INT(10), amount INT(10))";
+            $createCart = mysqli_query($connection, $createCartSql);
+            //create table for purchases records
+            $createPurchasesSql = "CREATE TABLE ".$userID."purchases (productID INT(10), amount INT(10), datePurchase DATE, salesID int(10))";
+            $createPurchases = mysqli_query($connection, $createPurchasesSql);
+
+
             echo "<script>window.location.href='login.php';</script>";
         }
     }
