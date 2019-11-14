@@ -127,15 +127,15 @@ if(isset($_SESSION ["userID"])){
                 <div class="input-group mb-1">
                     <select class="custom-select" id="inputGroupSelect01" name="language">
                       <option selected>Language</option>
-                      <option value="1">Japanese</option>
-                      <option value="2">English</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="English">English</option>
                     </select>
                 </div>
                 <div class="input-group mb-1">
                     <select class="custom-select" id="inputGroupSelect02" name="type">
                       <option selected>Type of Product</option>
-                      <option value="1">Manga</option>
-                      <option value="2">Light Novel</option>
+                      <option value="Manga">Manga</option>
+                      <option value="Light Novel">Light Novel</option>
                     </select>
                 </div>
                 <div class="input-group mb-1">
@@ -202,6 +202,23 @@ if(isset($_SESSION ["userID"])){
                     <th>Date Published</th>
                     <th>Price</th>
                 </tr>
+                <?php
+                  $sql = "SELECT productTitle, productAuthor, productPublisher,
+                    productLanguage, productType, productDateReceived, productDatePublished, productPrice FROM products";
+                  $result = mysqli_query($connection,$sql);
+                  if($result->num_rows >0){
+                    while($row = $result->fetch_assoc()){
+                      echo '<tr><td><center>' .$row["productTitle"]. '</center></td>
+                      <td><center>' .$row["productAuthor"]. '</div></center></td>
+                      <td><center>' .$row["productPublisher"]. '</div> </center></td>
+                      <td><center>' .$row["productLanguage"]. '</center></td>
+                      <td><center>' .$row["productType"]. '</div> </center></td>
+                      <td><center>' .$row["productDateReceived"]. '</center></td>
+                      <td><center>' .$row["productDatePublished"]. '</div> </center></td>
+                      <td><center>' .$row["productPrice"]. '</div> </center></td><tr>';
+                    }
+                  }
+                ?>
             </table>
         </div>
     </section>
