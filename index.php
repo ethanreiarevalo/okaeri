@@ -69,7 +69,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <div class="row">
+                            <div class="container d-flex">
                                 <?php
                                 include('connection.php');
                                 $getItems = "SELECT * FROM products order by productDateReceived desc";
@@ -78,8 +78,8 @@
                                     while($row = mysqli_fetch_array($result)){
                                         $productImage = $row['productImage'];
                                 ?>
-                                    <div class="card mx-2 border border-warning">
-                                        <img class="card-img-top img-fluid" src="<?php echo $productImage; ?>" alt="">
+                                    <div class="card mx-2 border border-warning" style="width:200px; height:500px;">
+                                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                                         <div class="card-body text-center">
                                             <p class="card-title"><?php echo $row['productTitle']; ?></p>
                                             <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
