@@ -76,10 +76,10 @@
                                 $result = mysqli_query($connection, $getItems);
                                 if(mysqli_num_rows($result) > 0){
                                     while($row = mysqli_fetch_array($result)){
-
+                                        $productImage = $row['productImage'];
                                 ?>
                                     <div class="card mx-2 border border-warning">
-                                        <img class="card-img-top img-fluid" src="<?php echo $row['productImage']; ?>" alt="">
+                                        <img class="card-img-top img-fluid" src="<?php echo $productImage; ?>" alt="">
                                         <div class="card-body text-center">
                                             <p class="card-title"><?php echo $row['productTitle']; ?></p>
                                             <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
