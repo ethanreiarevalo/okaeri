@@ -16,6 +16,7 @@
         $productImage = $row['productImage'];
         $productStock = $row['productStock'];
         $productPrice = $row['productPrice'];
+        $productDescription = $row['productDescription'];
     }
 ?>
 <!DOCTYPE html>
@@ -51,7 +52,7 @@
                     <h1 class="display-4"><?php echo $productTitle; ?></h1>
                     <p class="lead">Type: <?php echo $productType; ?></p>
                     <hr class="my-4">
-                    <p>ITEM SUMMARY</p>
+                    <p>ITEM SUMMARY </br> <?php echo $productDescription;?></p>
                     <b>Stock Available: <?php echo $productStock; ?></b>
                     <hr class="my-4">
                     <div class="row">
