@@ -60,7 +60,9 @@
                             <input type="text" class="form-control mx-1" id="integer_value">
                             <button id="plus-button" class="btn btn-primary mx-1" onclick="plusValue()">+</button>
                         </div>
-                        <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
+                       <form action="cart.php" method="post">
+                           <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
+                       </form>
                     </div>
                 </div>
             </div>
