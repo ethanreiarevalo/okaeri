@@ -62,7 +62,7 @@
                         while($row = mysqli_fetch_array($result)){
 
                     ?>
-                        <div class="card mx-2 border border-warning" style="width:200px; height:500px;">
+                        <div class="card mx-2 border border-warning" style="width:220px; height:500px;">
                             <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                             <div class="card-body text-center">
                                 <p class="card-title"><?php echo $row['productTitle']; ?></p>
