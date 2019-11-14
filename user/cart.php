@@ -52,7 +52,7 @@
             <h5>Total Amount: <span>&#8369;</span> </h5>
             <hr class="my-4 bg-dark">
             <button class="btn btn-primary" onclick="popup()">Checkout as Debit</button>
-            <button class="btn btn-success">Checkout as COD</button>
+            <button class="btn btn-success" onclick="popup_two()">Checkout as COD</button>
         </div>
     </section>
 
@@ -124,17 +124,52 @@
         </div>
     </div>
 
+    <div id="modal2" class="popup">
+        <div class="row w-100 justify-content-center">
+            <div class="jumbotron bg-dark text-white">
+                <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_two()">x</div>
+                <h4>Please Confirm the information below</h4>
+                <p for="">Addressed to: </p>
+                <p for="">Delivery Address: </p>
+                <p for="">Delivered by: Ninja Van</p>
+                <div class="container">
+                    <div class="row align-content-center">
+                        <label for="deliveramount">Delivery Amount:</label>
+                        <input type="text" id="deliveramount" class="form-control col-xl-2" disabled value="50">
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row align-content-center">
+                        <label for="promo">Delivery Amount:</label>
+                        <input type="text" id="promo" class="form-control col-xl-8" placeholder="Enter promo/voucher code">
+                    </div>
+                </div>
+                <hr class="my-2 bg-warning">
+                <button class="btn btn-danger w-100">Checkout</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- DO NOT CHANGE THIS -->
     <script>
         var t = document.getElementById("modal1");
-
+        var h = document.getElementById("modal2");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
             }
             else{
                 t.className = "popup";
+            }
+        }
+
+        function popup_two(){
+            if (h.className === "popup"){
+                h.className = "pop";
+            }
+            else{
+                h.className = "popup";
             }
         }
     </script>
