@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 04:42 PM
+-- Generation Time: Nov 14, 2019 at 05:05 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -61,7 +61,7 @@ CREATE TABLE `10purchases` (
 
 CREATE TABLE `products` (
   `productID` int(11) NOT NULL,
-  `productTitle` varchar(50) NOT NULL,
+  `productTitle` varchar(100) NOT NULL,
   `productAuthor` varchar(20) NOT NULL,
   `productPublisher` varchar(30) NOT NULL,
   `productType` varchar(11) NOT NULL,
@@ -80,7 +80,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPublisher`, `productType`, `productLanguage`, `productDateReceived`, `productDatePublished`, `productGenre`, `productImage`, `productStock`, `productPrice`, `productDescription`) VALUES
-(1, 'Kono Subarashii Sekai ni Shukufuku wo! Volume 10', 'Natsume Akatsuki', 'Yen Press', '2', '2', '2019-11-07', '2016-11-01', 'on, on, on', 'product_image/v10cover.jpg', 50, 300.00, 'After Belzerg\'s financial support is cut off, Iris is forced into an arranged marriage with Elroad\'s crown prince in an attempt to regain the funding Belzerg so desperately needs to continue repelling the Demon King\'s invasion. With even this maneuver not guaranteed to succeed, Iris calls for help from the one person which common sense never seems to apply to.');
+(1, 'Kono Subarashii Sekai ni Shukufuku wo! Volume 10', 'Natsume Akatsuki', 'Yen Press', '2', '2', '2019-11-07', '2016-11-01', 'on, on, on', 'product_image/v10cover.jpg', 50, 300.00, 'After Belzerg\'s financial support is cut off, Iris is forced into an arranged marriage with Elroad\'s crown prince in an attempt to regain the funding Belzerg so desperately needs to continue repelling the Demon King\'s invasion. With even this maneuver not guaranteed to succeed, Iris calls for help from the one person which common sense never seems to apply to.'),
+(2, 'Dungeon ni Deai o Motomeru no wa Machigatteiru Darou ka Volume 8', 'Fujino Omori', 'SB Creative', 'Light Novel', 'Japanese', '2019-11-14', '2015-06-15', 'on, on, on, on', 'product_image/DanMachi_Light_Novel_Volume_8_Cover.png', 20, 300.00, 'The royal army led by the War God Ares. The number of the army heading to Orario numbers 30,000. Against the sound of the incoming army, Orario - didn\'t change.\r\nWhile the invaders outside let out cries of despair against the too strong adventurers, Orario spent peaceful days.\r\nThe Pallum\'s marriage proposal, the lovely bodyguard, the town girl\'s secret, the love songs to the Gods - and the love song that a Goddess spins.\r\nA daily life part that Gods and children give!');
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,7 @@ ALTER TABLE `useraccounts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sales`
