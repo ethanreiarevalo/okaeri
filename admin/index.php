@@ -201,6 +201,22 @@ if(isset($_SESSION ["userID"])){
                     <th>Date Published</th>
                     <th>Price</th>
                 </tr>
+                <?php
+                  $sql = "SELECT productTitle, productAuthor, productPublisher,
+                    productLanguage, productType, productDateReceived, productDatePublished, productPrice FROM products";
+                  $result = mysqli_query($conn,$sql);
+                  if($result->num_rows >0){
+                    while($row = $result->fetch_assoc()){
+                      echo '<tr><td><center>' .$row["productCode"]. '</center></td>
+                      <td><center>' .$row["productName"]. '</center></td>
+                      <td><center>' .$row["productAuthor"]. '</div></center></td>
+                      <td><center>' .$row["productPublisher"]. '</div> </center></td>
+                      <td><center>' .$row["productLanguage"]. '</center></td>
+                      <td><center>' .$row["productType"]. '</div> </center></td>
+                      <td><center>' .$row["productDateReceived"]. '</center></td><tr>';
+                    }
+                  }
+                ?>
             </table>
         </div>
     </section>
