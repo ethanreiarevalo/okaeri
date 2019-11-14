@@ -153,7 +153,7 @@ if(isset($_SESSION ["userID"])){
                 <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
                 <input type="text" class="form-control mb-1" placeholder="Price" name="price">
                 <div class="row">
-                  <div class="container col-xl-5">
+                  <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure">
                       <label class="custom-control-label" for="adventure">Adventure</label>
@@ -168,7 +168,7 @@ if(isset($_SESSION ["userID"])){
                     </div>
                   </div>
 
-                  <div class="container col-xl-5">
+                  <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
                       <label class="custom-control-label" for="action">Action</label>
@@ -183,14 +183,15 @@ if(isset($_SESSION ["userID"])){
                     </div>
                   </div>
                 </div>
-                <textarea name="summary" id="summary" class="form-control" cols="30" rows="10" placeholder="Enter Product Summary here"></textarea>
-                <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file" placeholder="Upload Photo" accept="image/*">
+                <textarea name="summary" id="summary" class="form-control mb-1" cols="30" rows="10" placeholder="Enter Product Summary here"></textarea>
+                <label for="fileToUpload" class="float-left">Upload a cover image (200x300)</label>
+                <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file mb-1" placeholder="Upload Photo" accept="image/*">
                 <button class="btn btn-warning" type="submit">Submit</button>
               </form>
             </div>
         </div>
-        <div id="tables" class="col-xl-8">
-            <table class="table">
+        <div id="tables" class="table table-responsive col-xl-8">
+            <table class="table text-center">
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
