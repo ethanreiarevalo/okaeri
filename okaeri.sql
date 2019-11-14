@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 03:24 AM
+-- Generation Time: Nov 14, 2019 at 04:42 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -25,6 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `10cart`
+--
+
+CREATE TABLE `10cart` (
+  `productID` int(10) DEFAULT NULL,
+  `amount` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `10cart`
+--
+
+INSERT INTO `10cart` (`productID`, `amount`) VALUES
+(1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `10purchases`
+--
+
+CREATE TABLE `10purchases` (
+  `productID` int(10) DEFAULT NULL,
+  `amount` int(10) DEFAULT NULL,
+  `datePurchase` date DEFAULT NULL,
+  `salesID` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -33,7 +64,7 @@ CREATE TABLE `products` (
   `productTitle` varchar(50) NOT NULL,
   `productAuthor` varchar(20) NOT NULL,
   `productPublisher` varchar(30) NOT NULL,
-  `productType` varchar(10) NOT NULL,
+  `productType` varchar(11) NOT NULL,
   `productLanguage` varchar(20) NOT NULL,
   `productDateReceived` date NOT NULL,
   `productDatePublished` date NOT NULL,
@@ -54,6 +85,19 @@ INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `salesID` int(20) NOT NULL,
+  `amount` int(7) NOT NULL,
+  `date` date NOT NULL,
+  `invoice` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `useraccounts`
 --
 
@@ -70,7 +114,8 @@ CREATE TABLE `useraccounts` (
 
 INSERT INTO `useraccounts` (`userID`, `userEmail`, `userPassword`, `userType`) VALUES
 (1, 'Admin', 'Admin', 'Admin'),
-(2, 'carloangeles342@gmail.com', 'asdfjklh', 'user');
+(2, 'carloangeles342@gmail.com', 'asdfjklh', 'user'),
+(10, 'ethanreiarevalo@gmail.com', 'hanirokyu', 'user');
 
 -- --------------------------------------------------------
 
@@ -83,7 +128,7 @@ CREATE TABLE `userdetails` (
   `fName` varchar(50) NOT NULL,
   `lName` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `contactNo` int(11) NOT NULL,
+  `contactNo` varchar(12) NOT NULL,
   `birthdate` date NOT NULL,
   `sex` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
@@ -93,7 +138,8 @@ CREATE TABLE `userdetails` (
 --
 
 INSERT INTO `userdetails` (`email`, `fName`, `lName`, `address`, `contactNo`, `birthdate`, `sex`) VALUES
-('carloangeles342@gmail.com', 'Carlo', 'Angeles', 'Alfonso, Cavite', 2147483647, '1996-11-01', 'Male');
+('carloangeles342@gmail.com', 'Carlo', 'Angeles', 'Alfonso, Cavite', '2147483647', '1996-11-01', 'Male'),
+('ethanreiarevalo@gmail.com', 'Ethan Rei', 'Arevalo', 'Regina Ville 2000', '2147483647', '1996-08-09', 'Female');
 
 --
 -- Indexes for dumped tables
@@ -104,6 +150,12 @@ INSERT INTO `userdetails` (`email`, `fName`, `lName`, `address`, `contactNo`, `b
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`productID`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`salesID`);
 
 --
 -- Indexes for table `useraccounts`
@@ -122,10 +174,16 @@ ALTER TABLE `products`
   MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `salesID` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `useraccounts`
 --
 ALTER TABLE `useraccounts`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
