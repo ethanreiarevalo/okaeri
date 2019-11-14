@@ -1,4 +1,10 @@
-
+<head>
+    <style>
+        a:hover{
+            color:#ffc107 !important;
+        }
+    </style>
+</head>
 <nav class="navbar navbar-expand-sm navbar-light bg-dark text-white">
     <a href="index.php"><img src="image/OKAERI.png" alt=""></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
