@@ -151,7 +151,7 @@ if(isset($_SESSION ["userID"])){
                 <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
                 <input type="text" class="form-control mb-1" placeholder="Price" name="price">
                 <div class="row">
-                  <div class="container col-xl-4">
+                  <div class="container col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure">
                       <label class="custom-control-label" for="adventure">Adventure</label>
@@ -166,7 +166,7 @@ if(isset($_SESSION ["userID"])){
                     </div>
                   </div>
 
-                  <div class="container col-xl-4">
+                  <div class="container col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
                       <label class="custom-control-label" for="action">Action</label>
