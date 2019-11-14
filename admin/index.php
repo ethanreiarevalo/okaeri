@@ -188,8 +188,8 @@ if(isset($_SESSION ["userID"])){
               </form>
             </div>
         </div>
-        <div id="tables" class="col-xl-8">
-            <table class="table">
+        <div id="tables" class="table table-responsive col-xl-8">
+            <table class="table text-center">
                 <tr>
                     <th>Title</th>
                     <th>Author</th>

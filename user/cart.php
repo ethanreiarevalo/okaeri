@@ -30,6 +30,7 @@
             </thead>
             <tr>
                 <td>
+                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     <img src="" alt="">
                 </td>
                 <td>
@@ -37,7 +38,7 @@
                 </td>
                 <td>
                     2
-                    <button>edit</button>
+                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
                 </td>
                 <td>
                     200
@@ -48,9 +49,10 @@
     </section>
     <section id="checkout" class="col-xl-4 position-fixed">
         <div class="jumbotron border border-dark">
-            <h5>Total Amount: </h5>
+            <h5>Total Amount: <span>&#8369;</span> </h5>
             <hr class="my-4 bg-dark">
-            
+            <button class="btn btn-primary">Checkout as Debit</button>
+            <button class="btn btn-success">Checkout as COD</button>
         </div>
     </section>
     <?php include('script.php');?>
