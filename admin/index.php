@@ -4,7 +4,7 @@ include('../connection.php');
 if(isset($_SESSION ["userID"])){
   if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $genre = $_POST['genre'];
-    $title = $_POST['title'];
+    $title = addslashes($_POST['title']);
     $author = $_POST['author'];
     $publisher = $_POST['publisher'];
     $language = $_POST['language'];
