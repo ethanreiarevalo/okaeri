@@ -15,6 +15,8 @@ if(isset($_SESSION ["userID"])){
     $price = $_POST['price'];
     $image = $_FILES['fileToUpload']['name'];
     $productGenre = '';
+    $summary = addslashes($_POST['summary']);
+
 
     foreach($genre as $pgenre){
       if($productGenre == ''){
@@ -25,7 +27,7 @@ if(isset($_SESSION ["userID"])){
     }
 
     if(mysqli_query($connection,"INSERT INTO products VALUES (null, '$title', '$author', '$publisher', '$type',
-    '$language', '$dReceived', '$dPublished', $productGenre, 'product_image/".$image."', '$stock', '$price', null)")){
+    '$language', '$dReceived', '$dPublished', '$productGenre', 'product_image/".$image."', '$stock', '$price', '$summary')")){
       echo "uploaded to database";
 
       $target_dir = "C:/xampp/htdocs/www.okaeri.com/product_image/";
@@ -84,7 +86,7 @@ if(isset($_SESSION ["userID"])){
 
 
     } else {
-
+      echo "upload failed!!!".mysqli_error($connection);
     }
   }
     
