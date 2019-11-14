@@ -60,7 +60,7 @@
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){
-                            
+
                     ?>
                         <div class="card mx-2 border border-warning" style="width:200px; height:500px;">
                             <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
