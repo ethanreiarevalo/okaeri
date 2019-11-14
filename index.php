@@ -67,9 +67,9 @@
                         <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
                         <li data-target="#my-carousel" data-slide-to="1"></li>
                     </ol>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <div class="container d-flex">
+                            <div class="row">
                                 <?php
                                 include('connection.php');
                                 $getItems = "SELECT * FROM products order by productDateReceived desc";
@@ -79,7 +79,7 @@
 
                                 ?>
                                     <div class="card mx-2 border border-warning">
-                                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                                        <img class="card-img-top img-fluid" src="<?php echo $row['productImage']; ?>" alt="">
                                         <div class="card-body text-center">
                                             <p class="card-title"><?php echo $row['productTitle']; ?></p>
                                             <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
@@ -98,7 +98,21 @@
                         <div class="carousel-item">
                             <div class="container d-flex">
                             <div class="card">
-                                <img class="card-img-top" src="product_image/saintyoungmen.jpg" alt="">
+                                <img class="card-img-top" src="product_image/Komi-san.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/v10cover.jpg" alt="">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Komi-San</h5>
+                                    <p class="card-text">Price: 100</p>
+                                </div> 
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="product_image/DBallv1.png" alt="">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Komi-San</h5>
                                     <p class="card-text">Price: 100</p>
