@@ -142,33 +142,33 @@ if(isset($_SESSION ["userID"])){
                 <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
                 <input type="text" class="form-control mb-1" placeholder="Price" name="price">
                 <div class="row">
-                  <div class="container col-xl-4">
+                  <div class="container col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="adventure">
-                      <label class="custom-control-label" for="adventure">Adventure</label>
+                      <label class="custom-control-label float-left" for="adventure">Adventure</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="romance">
-                      <label class="custom-control-label" for="romance">Romance</label>
+                      <label class="custom-control-label float-left" for="romance">Romance</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="sliceoflife">
-                      <label class="custom-control-label" for="sliceoflife">Slice of Life</label>
+                      <label class="custom-control-label float-left" for="sliceoflife">Slice of Life</label>
                     </div>
                   </div>
 
-                  <div class="container col-xl-4">
+                  <div class="container col-xl-5">
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="action">
-                      <label class="custom-control-label" for="action">Action</label>
+                      <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="horror">
-                      <label class="custom-control-label" for="horror">Horror</label>
+                      <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="fantasy">
-                      <label class="custom-control-label" for="fantasy">Fantasy</label>
+                      <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                   </div>
                 </div>
