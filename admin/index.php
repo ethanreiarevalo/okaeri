@@ -4,7 +4,7 @@ include('../connection.php');
 if(isset($_SESSION ["userID"])){
   if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $genre = $_POST['genre'];
-    $title = $_POST['title'];
+    $title = addslashes($_POST['title']);
     $author = $_POST['author'];
     $publisher = $_POST['publisher'];
     $language = $_POST['language'];
@@ -15,6 +15,8 @@ if(isset($_SESSION ["userID"])){
     $price = $_POST['price'];
     $image = $_FILES['fileToUpload']['name'];
     $productGenre = '';
+    $summary = addslashes($_POST['summary']);
+
 
     foreach($genre as $pgenre){
       if($productGenre == ''){
@@ -25,7 +27,7 @@ if(isset($_SESSION ["userID"])){
     }
 
     if(mysqli_query($connection,"INSERT INTO products VALUES (null, '$title', '$author', '$publisher', '$type',
-    '$language', '$dReceived', '$dPublished', $productGenre, 'product_image/".$image."', '$stock', '$price', null)")){
+    '$language', '$dReceived', '$dPublished', '$productGenre', 'product_image/".$image."', '$stock', '$price', '$summary')")){
       echo "uploaded to database";
 
       $target_dir = "C:/xampp/htdocs/www.okaeri.com/product_image/";
@@ -84,7 +86,7 @@ if(isset($_SESSION ["userID"])){
 
 
     } else {
-
+      echo "upload failed!!!".mysqli_error($connection);
     }
   }
     
@@ -153,31 +155,31 @@ if(isset($_SESSION ["userID"])){
                 <div class="row">
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="adventure">
-                      <label class="custom-control-label float-left" for="adventure">Adventure</label>
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure">
+                      <label class="custom-control-label" for="adventure">Adventure</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="romance">
-                      <label class="custom-control-label float-left" for="romance">Romance</label>
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="romance">
+                      <label class="custom-control-label" for="romance">Romance</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="sliceoflife">
-                      <label class="custom-control-label float-left" for="sliceoflife">Slice of Life</label>
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="sliceoflife">
+                      <label class="custom-control-label" for="sliceoflife">Slice of Life</label>
                     </div>
                   </div>
 
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="action">
-                      <label class="custom-control-label float-left" for="action">Action</label>
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <label class="custom-control-label" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="horror">
-                      <label class="custom-control-label float-left" for="horror">Horror</label>
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <label class="custom-control-label" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="fantasy">
-                      <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                      <label class="custom-control-label" for="fantasy">Fantasy</label>
                     </div>
                   </div>
                 </div>
