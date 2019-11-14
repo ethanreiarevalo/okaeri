@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
     <title>OKAERI | </title>
+    <style>
+        #checkout{
+            position:fixed;
+            bottom: 0;
+            right:0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -39,8 +46,12 @@
 
         </table>
     </section>
-    <section id="checkout">
-
+    <section id="checkout" class="col-xl-4 position-fixed">
+        <div class="jumbotron border border-dark">
+            <h5>Total Amount: </h5>
+            <hr class="my-4 bg-dark">
+            
+        </div>
     </section>
     <?php include('script.php');?>
 </body>
