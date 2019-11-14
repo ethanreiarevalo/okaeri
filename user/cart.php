@@ -1,4 +1,13 @@
 <?php
+include('../connection.php');
+session_start();
+
+$userID = $_SESSION['userID'];
+$cartName = $userID."cart";
+// $productID = $_SESSION['productID'];
+// $itemQuantity = $_SESSION['itemQuantity'];
+
+
 
 
 ?>
@@ -32,28 +41,53 @@
                     <th>Price</th>
                 </tr>
             </thead>
-            <tr>
-                <td>
-                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                    <img src="" alt="">
-                </td>
-                <td>
-                    Komi-san
-                </td>
-                <td>
-                    2
-                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                </td>
-                <td>
-                    200
-                </td>
-            </tr>
-
+            <?php
+                $totalPrice = 0;
+                $cartSql = "SELECT * FROM `$cartName`";
+                $cartQuery = mysqli_query($connection,$cartSql);
+                if($cartQuery->num_rows > 0 ){
+                    while($row = $cartQuery->fetch_assoc()){
+                        $productQuantity = $row['amount'];
+                        $productID = $row['productID'];
+                        $productDetails = "SELECT * FROM products WHERE productID = '$productID'";
+                        $productDetailsQuery = mysqli_query($connection,$productDetails);
+                        $productRow = mysqli_fetch_array($productDetailsQuery);
+                        if($productRow['productID'] == $productID){
+                            
+                            $productTitle = $productRow['productTitle'];
+                            $productImage = $productRow['productImage'];
+                            $productPrice = $productRow['productPrice'];
+                            $productTPrice = $productQuantity * $productPrice;
+                            $totalPrice = $totalPrice + $productTPrice; 
+                                // echo $productTitle." ".$productImage." ".$productPrice;
+                            ?>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <img src="../<?php echo $productImage;?>" alt="">
+                                </td>
+                                <td>
+                                    <?php echo $productTitle; ?>
+                                </td>
+                                <td>
+                                    <?php echo $productQuantity; ?>
+                                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                </td>
+                                <td>
+                                    <?php echo $productTPrice; ?>
+                                </td>
+                            </tr>
+                            <?php  
+                        }
+                    }
+                }
+            ?>
+            
         </table>
     </section>
     <section id="checkout" class="col-xl-4 position-fixed">
         <div class="jumbotron border border-dark">
-            <h5>Total Amount: <span>&#8369;</span> </h5>
+            <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
             <button class="btn btn-primary" onclick="popup()">Checkout as Debit</button>
             <button class="btn btn-success" onclick="popup_two()">Checkout as COD</button>

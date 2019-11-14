@@ -1,7 +1,8 @@
 <!-- Item description and add to cart page here -->
 <?php
     include('../connection.php');
-    
+    session_start();
+    // $itemQuantity = '';
     $productID = $_POST['productID'];
     $sql = mysqli_query($connection, "SELECT * FROM products where productID = '$productID'");
     $row = mysqli_fetch_array($sql);
@@ -17,6 +18,20 @@
         $productStock = $row['productStock'];
         $productPrice = $row['productPrice'];
     }
+    if(!empty($_POST['itemQuantity'])){
+        $productID = $_POST['productID'];
+        $itemQuantity = $_POST['itemQuantity'];
+        $userID = $_SESSION['userID'];
+        $cartname = $userID."cart";
+        // $_SESSION['productID'] = $productID;
+        // $_SESSION['itemQuantity'] = $itemQuantity;
+
+        $sql = mysqli_query($connection,"INSERT INTO `$cartname` VALUES ('$productID','$itemQuantity')");
+        
+        echo "<script>window.location.href='cart.php';</script>";
+    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,16 +69,18 @@
                     <p>ITEM SUMMARY</p>
                     <b>Stock Available: <?php echo $productStock; ?></b>
                     <hr class="my-4">
-                    <form action="cart.php" method="post">
                         <div class="row">
                             <div class="col-xl-5 d-flex">
                                 <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
-                                <input type="text" class="form-control mx-1" id="integer_value" name="itemQuantity">
                                 <button id="plus-button" class="btn btn-primary mx-1" onclick="plusValue()">+</button>
+                                <form action="<?php htmlspecialchars("SELF_PHP");?>" method="post">
+                                <input type="text" class="form-control mx-1" id="integer_value" name="itemQuantity">
+                                <input type="hidden" id="productID" name="productID" value="<?php echo $productID; ?>">
                             </div>   
                             <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
-                        </div>
+                        
                     </form>
+                        </div>
                 </div>
             </div>
         </div>
