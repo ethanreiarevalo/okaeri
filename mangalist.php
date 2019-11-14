@@ -20,18 +20,14 @@
     <section class="row">
         <div id="options" class="col-xl-3">
             <div class="jumbotron bg-transparent">
-                <a href="">
-                <div class="p-3 text-center">
-                    <p>English</p>
-                </div>
-                </a>
+                
             </div>
         </div>
         <div id="card" class="mt-5">
             <div class="row justify-content-center">
             <?php
                 include('connection.php');
-                $getItems = "SELECT * FROM products order by productDateReceived desc";
+                $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
                 $result = mysqli_query($connection, $getItems);
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
