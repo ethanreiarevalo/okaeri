@@ -127,15 +127,15 @@ if(isset($_SESSION ["userID"])){
                 <div class="input-group mb-1">
                     <select class="custom-select" id="inputGroupSelect01" name="language">
                       <option selected>Language</option>
-                      <option value="1">Japanese</option>
-                      <option value="2">English</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="English">English</option>
                     </select>
                 </div>
                 <div class="input-group mb-1">
                     <select class="custom-select" id="inputGroupSelect02" name="type">
                       <option selected>Type of Product</option>
-                      <option value="1">Manga</option>
-                      <option value="2">Light Novel</option>
+                      <option value="Manga">Manga</option>
+                      <option value="Light Novel">Light Novel</option>
                     </select>
                 </div>
                 <div class="input-group mb-1">
@@ -155,30 +155,30 @@ if(isset($_SESSION ["userID"])){
                 <div class="row">
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure" value="Adventure">
                       <label class="custom-control-label" for="adventure">Adventure</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="romance">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="romance" value="Romance">
                       <label class="custom-control-label" for="romance">Romance</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="sliceoflife">
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="sliceoflife" value="Slice Of Life">
                       <label class="custom-control-label" for="sliceoflife">Slice of Life</label>
                     </div>
                   </div>
 
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action" value="Action">
                       <label class="custom-control-label" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror" value="Horror">
                       <label class="custom-control-label" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy" value="Fantasy">
                       <label class="custom-control-label" for="fantasy">Fantasy</label>
                     </div>
                   </div>
@@ -205,16 +205,17 @@ if(isset($_SESSION ["userID"])){
                 <?php
                   $sql = "SELECT productTitle, productAuthor, productPublisher,
                     productLanguage, productType, productDateReceived, productDatePublished, productPrice FROM products";
-                  $result = mysqli_query($conn,$sql);
+                  $result = mysqli_query($connection,$sql);
                   if($result->num_rows >0){
                     while($row = $result->fetch_assoc()){
-                      echo '<tr><td><center>' .$row["productCode"]. '</center></td>
-                      <td><center>' .$row["productName"]. '</center></td>
+                      echo '<tr><td><center>' .$row["productTitle"]. '</center></td>
                       <td><center>' .$row["productAuthor"]. '</div></center></td>
                       <td><center>' .$row["productPublisher"]. '</div> </center></td>
                       <td><center>' .$row["productLanguage"]. '</center></td>
                       <td><center>' .$row["productType"]. '</div> </center></td>
-                      <td><center>' .$row["productDateReceived"]. '</center></td><tr>';
+                      <td><center>' .$row["productDateReceived"]. '</center></td>
+                      <td><center>' .$row["productDatePublished"]. '</div> </center></td>
+                      <td><center>' .$row["productPrice"]. '</div> </center></td><tr>';
                     }
                   }
                 ?>
