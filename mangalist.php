@@ -1,3 +1,15 @@
+<?php
+session_start();
+$getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
+
+
+
+
+
+?>
+
+
+
 <!-- MANGA LIST WHEN MANGA LINK IS CLICKED -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,15 +37,15 @@
                 <form action="" method="">
                     <h5>Language</h5>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="All" name="example1" value="All">
+                      <input type="radio" class="custom-control-input" id="All" name="language[]" value="All">
                       <label class="custom-control-label" for="All">All</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="Japanese" name="example1" value="Japanese">
+                      <input type="radio" class="custom-control-input" id="Japanese" name="language[]" value="Japanese">
                       <label class="custom-control-label" for="Japanese">Japanese</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="English" name="example1" value="English">
+                      <input type="radio" class="custom-control-input" id="English" name="language[]" value="English">
                       <label class="custom-control-label" for="English">English</label>
                     </div>
                     <hr class="my-3 bg-warning">
@@ -57,7 +69,7 @@
             <div class="row justify-content-center">
             <?php
                 include('connection.php');
-                $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
+                
                 $result = mysqli_query($connection, $getItems);
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){

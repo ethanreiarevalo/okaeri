@@ -1,3 +1,21 @@
+<?php
+session_start();
+include('connection.php');
+$count = '';
+$search = '%'.$_POST['search'].'%';
+$getItemCount = "SELECT count(productTitle) as counted FROM products where productTitle LIKE '$search' order by productDateReceived desc";
+  $resulta = mysqli_query($connection, $getItemCount);
+  if(mysqli_num_rows($resulta) > 0){
+    while($arow = mysqli_fetch_array($resulta)){
+      $count = $arow['counted'];
+    }
+  }
+
+
+?>
+
+
+
 <!-- sEARCH LIST WHEN MANGA LINK IS CLICKED -->
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +39,7 @@
         <div id="options" class="col-xl-3">
             <div class="jumbotron bg-transparent">
                 <h3>Search Result</h3>
-                <p class="mb-3">Results Found Based on your Keyword: Put number or results here</p>
+                <p class="mb-3"><?php echo $count; ?> Results found.</p>
                 <p class="mb-3">Sort By</p>
                 <form action="" method="">
                     <h5>Type</h5>
@@ -71,10 +89,10 @@
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
 
             <!-- CARDS SHOW HERE DEPENDING ON SEARCH UNCOMMENT IF YOU WILL USE -->
-            <!-- <div class="row justify-content-center">
+            <div class="row justify-content-center">
             <?php
-                include('connection.php');
-                $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+                // include('connection.php');
+                $getItems = "SELECT * FROM products where productTitle LIKE '$search' order by productDateReceived desc";
                 $result = mysqli_query($connection, $getItems);
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
@@ -91,9 +109,11 @@
                         </div> 
                     </div>
                 <?php 
-                    }}
+                    }}else{
+                      echo "nothing found";
+                    }
                 ?> 
-            </div> -->
+            </div>
 
         </div>
     </section>
