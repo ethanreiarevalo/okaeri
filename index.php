@@ -47,7 +47,7 @@
             </a>
         </div>
     </header>
-    <section id="newrelease">
+    <section id="newrelease" class="overflow-hidden">
         
         <div class="container mt-3 position-relative">
             <div class="row justify-content-between">

@@ -53,7 +53,7 @@
                 </form>
             </div>
         </div>
-        <div id="card" class="mt-5">
+        <div id="card" class="col-xl-9 mt-5 overflow-hidden">
             <div class="row justify-content-center">
             <?php
                 include('../connection.php');
