@@ -36,6 +36,9 @@
                 <div class="carousel-item">
                     <img class="d-block w-100" src="../image/banner2.png" alt="">
                 </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="../image/banner3.png" alt="">
+                </div>
             </div>
             <a class="carousel-control-prev" href="#my-carousel" data-slide="prev" role="button">
                 <span class="carousel-control-prev-icon bg-dark p-3" aria-hidden="true"></span>
