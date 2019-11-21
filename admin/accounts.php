@@ -28,7 +28,7 @@
                         Contact Number
                     </th>
                     <th>
-                        Edit
+                        Status
                     </th>
                 </tr>
                 <tr>
