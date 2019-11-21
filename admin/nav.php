@@ -15,7 +15,7 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-white">
 
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="#">Add Item<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white-50" href="index.php">Add Item<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="accounts.php">Accounts</a>
