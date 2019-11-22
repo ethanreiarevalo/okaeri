@@ -14,6 +14,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="user" && $row['status']=="Active"){
         //register the userID in session
         $_SESSION['userID'] = $row['userID'];
+        $_SESSION['userEmail'] = $row['userEmail'];
         $_SESSION['userPassword'] = $row['userPassword'];
         echo "<script>window.location.href= 'user';</script>";
     }else if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="user" && $row['status']=="Inactive"){
@@ -21,6 +22,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         $loginError = "Email has been Deactivated!";
     }else if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="Admin"){
         $_SESSION['userID'] = $row['userID'];
+        $_SESSION['userEmail'] = $row['userEmail'];
         $_SESSION['userPassword'] = $row['userPassword'];
         echo "<script>window.location.href= 'admin';</script>";
     }else{
