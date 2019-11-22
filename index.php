@@ -68,7 +68,7 @@
                     <div class="card col-lg-2 col-md-3 col-5 m-2 px-0 shadow border border-warning">
                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                         <div class="card-body text-center px-2">
-                            <h6 class="card-title" style= "height: 10vh;"><?php echo $row['productTitle']; ?></h6>
+                            <h6 class="card-title" style= "height: 12vh;"><?php echo $row['productTitle']; ?></h6>
                             <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
                             <form action="item.php" method="post">
                                 <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
@@ -103,7 +103,7 @@
                     <div class="card col-lg-2 col-md-3 col-5 m-2 px-0 shadow border border-warning">
                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                         <div class="card-body text-center px-2">
-                            <h6 class="card-title" style= "height: 10vh;"><?php echo $row['productTitle']; ?></h6>
+                            <h6 class="card-title" style= "height: 12vh;"><?php echo $row['productTitle']; ?></h6>
                             <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
                             <form action="item.php" method="post">
                                 <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
