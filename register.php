@@ -22,7 +22,7 @@
             $signupError = "Email Already Exist";
         }else{
             //insert account
-            $signup = mysqli_query($connection, "INSERT INTO useraccounts VALUES (null, '$email', '$password', 'user')");
+            $signup = mysqli_query($connection, "INSERT INTO useraccounts VALUES (null, '$email', '$password', 'user', 'Active')");
             //insert account details
             $accntDetails = mysqli_query($connection, "INSERT INTO userdetails VALUES ('$email','$fname','$lname','$address','$contact','$date','$sex')");
             
@@ -40,7 +40,7 @@
             $createCartSql = "CREATE TABLE ".$userID."cart (productID INT(10), amount INT(10))";
             $createCart = mysqli_query($connection, $createCartSql);
             //create table for purchases records
-            $createPurchasesSql = "CREATE TABLE ".$userID."purchases (productID INT(10), amount INT(10), datePurchase DATE, salesID int(10))";
+            $createPurchasesSql = "CREATE TABLE ".$userID."purchases (productID INT(10), amount INT(10), datePurchase DATE, salesID int(10), paymentMethod VARCHAR(16), orderStatus VARCHAR(15))";
             $createPurchases = mysqli_query($connection, $createPurchasesSql);
 
 

@@ -1,3 +1,14 @@
+<?php
+session_start();
+include('../connection.php');
+$userEmail = $_SESSION['userEmail'];
+$userID = $_SESSION['userID'];
+$sql = "SELECT * FROM ".$userID."purchases INNER JOIN products ON ".$userID."purchases.productID = products.productID";
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +65,15 @@
                             <th>Price</th>
                             <th>Status</th>
                         </tr>
+                        <?php 
+                            $result = mysqli_query($connection,$sql);
+                            $row = mysqli_fetch_array($result);
+                            if(!empty($row['productID'])){
+                                echo "success";
+                            }else{
+                                echo "No Purchases Yet!";
+                            }
+                        ?>
                     </table>
                 </div>
             </div>

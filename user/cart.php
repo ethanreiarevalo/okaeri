@@ -4,11 +4,32 @@ session_start();
 
 $userID = $_SESSION['userID'];
 $cartName = $userID."cart";
+$userEmail = $_SESSION['userEmail'];
 // $productID = $_SESSION['productID'];
 // $itemQuantity = $_SESSION['itemQuantity'];
 
+$sql = "SELECT * FROM userdetails where email = '$userEmail'";
+$result = mysqli_query($connection,$sql);
+$row = mysqli_fetch_array($result);
+if($row['email']==$userEmail){
+    $name = $row['fName']." ".$row['lName'];
+    $birthday = $row['birthdate'];
+    $address = $row['address'];
+    $contact = $row['contactNo']; 
+    $sex = $row['sex'];
+    $email = $row['email'];
+}
 
+if($_SERVER ["REQUEST_METHOD"] == "POST"){
+    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userID."puchases VALUES (null, '$email', '$password', 'user', 'Active')");
+    $cartSQL = "SELECT * FROM ".$userID."cart";
+    $cartresult = mysqli_query($connection,$cartSQL);
+    $cartrow = mysqli_fetch_array($cartresult);
+    if(!empty($cartrow['productID'])){
+    
+    }
 
+}
 
 ?>
 <!DOCTYPE html>
@@ -135,8 +156,8 @@ $cartName = $userID."cart";
             <div class="jumbotron bg-dark text-white">
                 <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
                 <h4>Please Confirm the information below</h4>
-                <p for="">Addressed to: </p>
-                <p for="">Delivery Address: </p>
+                <p for="">Addressed to: <?php echo $name; ?></p>
+                <p for="">Delivery Address: <?php echo $address; ?></p>
                 <p for="">Delivered by: Ninja Van</p>
                 <div class="container">
                     <div class="row align-content-center">
@@ -177,8 +198,8 @@ $cartName = $userID."cart";
             <div class="jumbotron bg-dark text-white">
                 <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_two()">x</div>
                 <h4>Please Confirm the information below</h4>
-                <p for="">Addressed to: </p>
-                <p for="">Delivery Address: </p>
+                <p for="">Addressed to: <?php echo $name; ?></p>
+                <p for="">Delivery Address: <?php echo $address; ?></p>
                 <p for="">Delivered by: Ninja Van</p>
                 <div class="container">
                     <div class="row align-content-center">

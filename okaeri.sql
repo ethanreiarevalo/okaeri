@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2019 at 04:38 AM
+-- Generation Time: Nov 22, 2019 at 06:18 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -51,7 +51,35 @@ CREATE TABLE `10purchases` (
   `productID` int(10) DEFAULT NULL,
   `amount` int(10) DEFAULT NULL,
   `datePurchase` date DEFAULT NULL,
-  `salesID` int(10) DEFAULT NULL
+  `salesID` int(10) DEFAULT NULL,
+  `paymentMethod` varchar(16) NOT NULL,
+  `orderStatus` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `11cart`
+--
+
+CREATE TABLE `11cart` (
+  `productID` int(10) DEFAULT NULL,
+  `amount` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `11purchases`
+--
+
+CREATE TABLE `11purchases` (
+  `productID` int(10) DEFAULT NULL,
+  `amount` int(10) DEFAULT NULL,
+  `datePurchase` date DEFAULT NULL,
+  `salesID` int(10) DEFAULT NULL,
+  `paymentMethod` varchar(16) DEFAULT NULL,
+  `orderStatus` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 -- --------------------------------------------------------
@@ -81,6 +109,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPublisher`, `productType`, `productLanguage`, `productDateReceived`, `productDatePublished`, `productGenre`, `productImage`, `productStock`, `productPrice`, `productDescription`) VALUES
+(0, 'Delivery Charge', 'admin', 'null', 'null', 'null', '0000-00-00', '0000-00-00', 'null', 'null', 0, 50.00, 'null'),
 (1, 'Kono Subarashii Sekai ni Shukufuku wo! Volume 10', 'Natsume Akatsuki', 'Yen Press', 'Light Novel', 'Japanese', '2019-11-07', '2016-11-01', 'on, on, on', 'product_image/v10cover.jpg', 50, 300.00, 'After Belzerg\'s financial support is cut off, Iris is forced into an arranged marriage with Elroad\'s crown prince in an attempt to regain the funding Belzerg so desperately needs to continue repelling the Demon King\'s invasion. With even this maneuver not guaranteed to succeed, Iris calls for help from the one person which common sense never seems to apply to.'),
 (2, 'Dungeon ni Deai o Motomeru no wa Machigatteiru Darou ka Volume 8', 'Fujino Omori', 'SB Creative', 'Light Novel', 'Japanese', '2019-11-14', '2015-06-15', 'on, on, on, on', 'product_image/DanMachi_Light_Novel_Volume_8_Cover.png', 20, 300.00, 'The royal army led by the War God Ares. The number of the army heading to Orario numbers 30,000. Against the sound of the incoming army, Orario - didn\'t change.\r\nWhile the invaders outside let out cries of despair against the too strong adventurers, Orario spent peaceful days.\r\nThe Pallum\'s marriage proposal, the lovely bodyguard, the town girl\'s secret, the love songs to the Gods - and the love song that a Goddess spins.\r\nA daily life part that Gods and children give!'),
 (3, 'No Game No Life Volume 1', 'Yuu Kamiya', 'Yen Press', 'Light Novel', 'English', '2019-11-23', '2019-11-22', 'on, on, on, on, on', 'product_image/ngnl-vol1.png', 3, 150.00, 'Sora and Shiro are two hikikomori step-siblings who are known in the online gaming world as Blank, an undefeated group of gamers. One day, they are challenged to a game of chess by Tet, a god from another reality. The two are victorious and are offered to live in a world that centers around games. They accept, believing it to be a joke, and are summoned to a reality known as Disboard.'),
@@ -121,7 +150,8 @@ CREATE TABLE `useraccounts` (
 INSERT INTO `useraccounts` (`userID`, `userEmail`, `userPassword`, `userType`, `status`) VALUES
 (1, 'Admin', 'Admin', 'Admin', ''),
 (2, 'carloangeles342@gmail.com', 'asdfjklh', 'user', 'Inactive'),
-(10, 'ethanreiarevalo@gmail.com', 'hanirokyu', 'user', 'Active');
+(10, 'ethanreiarevalo@gmail.com', 'hanirokyu', 'user', 'Active'),
+(11, 'toniaguilar14@gmail.com', 'kahitanona', 'user', 'Active');
 
 -- --------------------------------------------------------
 
@@ -145,7 +175,8 @@ CREATE TABLE `userdetails` (
 
 INSERT INTO `userdetails` (`email`, `fName`, `lName`, `address`, `contactNo`, `birthdate`, `sex`) VALUES
 ('carloangeles342@gmail.com', 'Carlo', 'Angeles', 'Alfonso, Cavite', '2147483647', '1996-11-01', 'Male'),
-('ethanreiarevalo@gmail.com', 'Ethan Rei', 'Arevalo', 'Regina Ville 2000', '2147483647', '1996-08-09', 'Female');
+('ethanreiarevalo@gmail.com', 'Ethan Rei', 'Arevalo', 'Regina Ville 2000', '2147483647', '1996-08-09', 'Female'),
+('toniaguilar14@gmail.com', 'Jan Anthony', 'Aguilar', 'Paliparan, DasmariÃ±as City', '09776844592', '1998-01-15', 'Male');
 
 --
 -- Indexes for dumped tables
@@ -177,7 +208,7 @@ ALTER TABLE `useraccounts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -189,7 +220,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `useraccounts`
 --
 ALTER TABLE `useraccounts`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
