@@ -11,6 +11,17 @@
     <header>
         <?php include('nav.php');?>
     </header>
+    <section>
+        <div class="jumbotron">
+            <h1 class="display-4">Your Account</h1>
+            <hr class="my-4">
+            <p>Name: </p>
+            <p>Birthday: </p>
+            <p>Age: </p>
+            <p>Address: </p>
+            <p>Email: </p>
+        </div>
+    </section>
     <?php include('script.php');?>
 </body>
 </html>
