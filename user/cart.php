@@ -25,6 +25,11 @@ $cartName = $userID."cart";
             bottom: 0;
             right:0;
         }
+        @media only screen and (max-width : 768px) {
+            #checkout{
+                position: relative !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -92,7 +97,9 @@ $cartName = $userID."cart";
         <div class="jumbotron border border-dark">
             <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
-            <button class="btn btn-primary" onclick="popup()">Checkout as Debit</button>
+            <div class= "mb-2">
+                <button class="btn btn-primary" onclick="popup()">Checkout as Debit</button>
+            </div>
             <button class="btn btn-success" onclick="popup_two()">Checkout as COD</button>
         </div>
     </section>
