@@ -23,19 +23,25 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $paymentMethod = $_POST['paymentMethod'];
     $salesID = "";
 
+    $totalprice = $totalprice + 50;
     //input to sales table
-    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID'");
+    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID')");
+
     //select salesID from sales table
-    $selectSales = "SELECT salesID from sales where date = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
+    $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
     $salesresult = mysqli_query($connection,$selectSales);
     $salesrow = mysqli_fetch_array($salesresult);
-    if(!empty($row['salesID'])){
-        $salesID = $row['salesID'];
+    if(!empty($salesrow['salesID'])){
+        $salesID = $salesrow['salesID'];
+    }else{
+        echo "<script> alert('salesID is Empty')</script>";
     }
-
-    //insert delivery charge in purchases
-    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userID."puchases VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
     
+    $userPurchases = $userID."purchases";
+    //insert delivery charge in purchases
+    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+    
+    $userCart = $userID."cart";
     //transfer from cart to purchases
     $cartSQL = "SELECT * FROM ".$userID."cart";
     $cartresult = mysqli_query($connection,$cartSQL);
@@ -44,10 +50,17 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
 
             $cartProdID = $cartrow['productID'];
             $cartProdAmount = $cartrow['amount'];
-            $cartItems = mysqli_query($connection, "INSERT INTO ".$userID."puchases VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
-    
+            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+            
+            //update stock
+            $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+
+
         }
     }
+
+    //delete cart items
+    $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
 
 }
 
@@ -136,8 +149,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     </section>
     <section id="checkout" class="col-xl-4 position-fixed">
         <div class="jumbotron border border-dark">
-            <h5>Total Amount: <span>&#8369;</span><?php $totalPrice = $totalPrice+50; echo $totalPrice;?> </h5>
-            With cash on delivery
+            <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
             <div class= "mb-2 text-center">
                 <button class="btn btn-primary" onclick="popup()"><i class= "fa fa-credit-card"></i> Checkout as Debit</button>
