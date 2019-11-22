@@ -55,7 +55,6 @@
         </div>
 
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
-<<<<<<< HEAD
             <div class="container">
                 <div class="row justify-content-center">
                 <?php
