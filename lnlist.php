@@ -29,7 +29,7 @@
                       <label class="custom-control-label" for="All">All</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="Japanese" name="example1" value="Japanese">
+                      <input type="radio" onclick="displayJ()" class="custom-control-input" id="Japanese" name="example1" value="Japanese">
                       <label class="custom-control-label" for="Japanese">Japanese</label>
                     </div>
                     <div class="custom-control custom-radio">
@@ -53,6 +53,7 @@
                 </form>
             </div>
         </div>
+
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
             <div class="row justify-content-center">
             <?php
@@ -62,10 +63,11 @@
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
                 ?>
-                    <div class="card m-3 border border-warning" style="width:220px; height:500px;">
+                    <div id="itemCard" class="card m-3 border border-warning position-relative" style="width:220px; height:500px;">
                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                         <div class="card-body text-center">
                             <p class="card-title"><?php echo $row['productTitle']; ?></p>
+                            <p id="type"><?php echo $row['productLanguage']; ?></p>
                             <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
                             <form action="item.php" method="post">
                                 <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
@@ -79,6 +81,7 @@
             </div>
         </div>
     </section>
+    
     <?php include('script.php');?>
 </body>
 </html>
