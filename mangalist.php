@@ -1,9 +1,3 @@
-<?php
-session_start();
-$getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
-
-?>
-
 <!-- MANGA LIST WHEN MANGA LINK IS CLICKED -->
 <!DOCTYPE html>
 <html lang="en">
