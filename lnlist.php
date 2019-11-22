@@ -79,31 +79,6 @@
                         }}
                     ?> 
                 </div>
-=======
-            <div class="row justify-content-center">
-            <?php
-                include('connection.php');
-                $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
-                $result = mysqli_query($connection, $getItems);
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)){
-                ?>
-                    <div id="itemCard" class="card m-3 border border-warning position-relative" style="width:220px; height:500px;">
-                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                        <div class="card-body text-center">
-                            <p class="card-title"><?php echo $row['productTitle']; ?></p>
-                            <p id="type"><?php echo $row['productLanguage']; ?></p>
-                            <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                            <form action="item.php" method="post">
-                                <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
-                                <button class="btn btn-warning">Add to cart</button>
-                            </form>
-                        </div> 
-                    </div>
-                <?php 
-                    }}
-                ?> 
->>>>>>> 049456d0ec262caeb3b43c633345ce87c18f1072
             </div>
         </div>
     </section>
