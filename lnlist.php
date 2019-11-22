@@ -54,28 +54,30 @@
             </div>
         </div>
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
-            <div class="row justify-content-center">
-            <?php
-                include('connection.php');
-                $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
-                $result = mysqli_query($connection, $getItems);
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)){
-                ?>
-                    <div class="card m-3 border border-warning" style="width:220px; height:500px;">
-                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                        <div class="card-body text-center">
-                            <p class="card-title"><?php echo $row['productTitle']; ?></p>
-                            <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
-                            <form action="item.php" method="post">
-                                <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
-                                <button class="btn btn-warning">Add to cart</button>
-                            </form>
-                        </div> 
-                    </div>
-                <?php 
-                    }}
-                ?> 
+            <div class="container">
+                <div class="row justify-content-center">
+                <?php
+                    include('connection.php');
+                    $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+                    $result = mysqli_query($connection, $getItems);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){
+                    ?>
+                        <div class="card col-lg-2 col-md-3 m-3 shadow border border-warning p-0">
+                            <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                            <div class="card-body text-center">
+                            <h6 class="card-title" style= "height: 15vh;"><?php echo $row['productTitle']; ?></h6>
+                                <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
+                                <form action="item.php" method="post">
+                                    <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
+                                    <button class="btn btn-success">Add to cart</button>
+                                </form>
+                            </div> 
+                        </div>
+                    <?php 
+                        }}
+                    ?> 
+                </div>
             </div>
         </div>
     </section>

@@ -17,8 +17,6 @@
         header{
             border-bottom: 2px solid #ffc107 !important;
         }
-        
-        
     </style>
 </head>
 <body>
@@ -50,39 +48,36 @@
             </a>
         </div>
     </header>
-    <section id="newrelease" class="overflow-hidden">
-        
+    <section id="newrelease" class="overflow-hidden">       
         <div class="container mt-3 position-relative">
             <div class="row justify-content-between">
                 <h4>NEW RELEASES</h4>
                 <a href="">View More >></a>
-            </div>
-            
+            </div>           
             <div id="card" class="">
-            <div class="row justify-content-center">
-            <?php
-                include('connection.php');
-                $getItems = "SELECT * FROM products order by productDateReceived desc";
-                $result = mysqli_query($connection, $getItems);
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)){
-                ?>
-                    <div class="card m-2 border border-warning" style="width:220px; height:500px;">
+                <div class="row justify-content-center">
+                    <?php
+                    include('connection.php');
+                    $getItems = "SELECT * FROM products order by productDateReceived desc";
+                    $result = mysqli_query($connection, $getItems);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){                    ?>
+                    <div class="card col-lg-2 col-md-3 col-5 m-2 px-0 shadow border border-warning">
                         <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
-                        <div class="card-body text-center">
-                            <p class="card-title"><?php echo $row['productTitle']; ?></p>
-                            <p class="card-text">Price: <?php echo $row['productPrice'];?></p>
+                        <div class="card-body text-center px-2">
+                            <h6 class="card-title" style= "height: 10vh;"><?php echo $row['productTitle']; ?></h6>
+                            <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
                             <form action="item.php" method="post">
                                 <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
-                                <button class="btn btn-warning">Add to cart</button>
+                                <button class="btn btn-success">Add to cart</button>
                             </form>
                         </div> 
                     </div>
-                <?php 
-                    }}
-                ?> 
+                    <?php 
+                        }}
+                    ?> 
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
