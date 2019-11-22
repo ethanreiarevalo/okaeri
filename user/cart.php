@@ -39,6 +39,7 @@ $cartName = $userID."cart";
                     <th>Title</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th> </th>
                 </tr>
             </thead>
             <?php
@@ -63,7 +64,6 @@ $cartName = $userID."cart";
                             ?>
                             <tr>
                                 <td>
-                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     <img src="../<?php echo $productImage;?>" alt="">
                                 </td>
                                 <td>
@@ -75,6 +75,9 @@ $cartName = $userID."cart";
                                 </td>
                                 <td>
                                     <?php echo $productTPrice; ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <?php  
