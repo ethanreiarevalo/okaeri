@@ -23,6 +23,9 @@
             </li>
                 <a class="nav-link text-white-50" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
             <li>
+            <li class="nav-item">
+                <a class="nav-link text-white-50" href="trackall.php">Orders</a>
+            </li>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="account-settings.php">Welcome!</a>
