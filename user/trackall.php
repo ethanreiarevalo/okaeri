@@ -30,11 +30,6 @@ $sql = "SELECT * FROM ".$userID."purchases INNER JOIN products ON ".$userID."pur
                         All
                     </div>
                 </a>
-                <a href="topay.php">
-                    <div class="text-center py-3">
-                        To Pay
-                    </div>
-                </a>
                 <a href="toship.php">
                     <div class="text-center py-3">
                         To Ship
