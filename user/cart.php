@@ -97,10 +97,12 @@ $cartName = $userID."cart";
         <div class="jumbotron border border-dark">
             <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
-            <div class= "mb-2">
+            <div class= "mb-2 text-center">
                 <button class="btn btn-primary" onclick="popup()">Checkout as Debit</button>
             </div>
-            <button class="btn btn-success" onclick="popup_two()">Checkout as COD</button>
+            <div class= "mb-2 text-center">
+                <button class="btn btn-success" onclick="popup_two()">Checkout as COD</button>
+            </div>
         </div>
     </section>
 
