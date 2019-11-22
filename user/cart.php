@@ -135,7 +135,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         </table>
     </section>
     <section id="checkout" class="col-xl-4 position-fixed">
-        <div class="jumbotron border border-dark">
+        <div class="jumbotron border border-dark py-3">
             <h5>Total Amount: <span>&#8369;</span><?php $totalPrice = $totalPrice+50; echo $totalPrice;?> </h5>
             With cash on delivery
             <hr class="my-4 bg-dark">
