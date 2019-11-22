@@ -61,7 +61,7 @@
                 <div class="row justify-content-center">
                     <?php
                     include('connection.php');
-                    $getItems = "SELECT * FROM products WHERE productType LIKE 'Light Novel' order by productDateReceived desc";
+                    $getItems = "SELECT * FROM products WHERE productType = 'Light Novel' order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){                    ?>
@@ -96,7 +96,7 @@
                 <div class="row justify-content-center">
                     <?php
                     include('connection.php');
-                    $getItems = "SELECT * FROM products Where productID > 0 order by productDateReceived desc";
+                    $getItems = "SELECT * FROM products Where productType = 'Manga' order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){                    ?>
