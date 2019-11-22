@@ -66,7 +66,7 @@
                         <div class="card col-lg-2 col-md-3 m-2 shadow border border-warning p-0">
                             <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
                             <div class="card-body text-center">
-                            <h6 class="card-title" style= "height: 15vh;"><?php echo $row['productTitle']; ?></h6>
+                            <h6 class="card-title" style= "height: 17vh;"><?php echo $row['productTitle']; ?></h6>
                                 <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
                                 <form action="item.php" method="post">
                                     <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">

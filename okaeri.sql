@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2019 at 08:20 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Nov 22, 2019 at 04:38 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,7 +38,8 @@ CREATE TABLE `10cart` (
 --
 
 INSERT INTO `10cart` (`productID`, `amount`) VALUES
-(1, 3);
+(1, 3),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -109,17 +110,18 @@ CREATE TABLE `useraccounts` (
   `userID` int(11) NOT NULL,
   `userEmail` varchar(50) NOT NULL,
   `userPassword` varchar(50) NOT NULL,
-  `userType` varchar(50) NOT NULL
+  `userType` varchar(50) NOT NULL,
+  `status` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 --
 -- Dumping data for table `useraccounts`
 --
 
-INSERT INTO `useraccounts` (`userID`, `userEmail`, `userPassword`, `userType`) VALUES
-(1, 'Admin', 'Admin', 'Admin'),
-(2, 'carloangeles342@gmail.com', 'asdfjklh', 'user'),
-(10, 'ethanreiarevalo@gmail.com', 'hanirokyu', 'user');
+INSERT INTO `useraccounts` (`userID`, `userEmail`, `userPassword`, `userType`, `status`) VALUES
+(1, 'Admin', 'Admin', 'Admin', ''),
+(2, 'carloangeles342@gmail.com', 'asdfjklh', 'user', 'Inactive'),
+(10, 'ethanreiarevalo@gmail.com', 'hanirokyu', 'user', 'Active');
 
 -- --------------------------------------------------------
 
