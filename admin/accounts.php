@@ -87,11 +87,16 @@
         </div>
     </section>
     <section class="container">
-    <div class="jumbotron">
-        <p class="lead">Add sub-accounts</p>
-        <hr class="my-4">
-        <p>Content</p>
-    </div>
+        <div class="jumbotron">
+            <p class="lead">Add courier account</p>
+            <hr class="my-4">
+            <form action="" method="post">
+                <input type="text" class="form-control m-1" name="name" id="name" placeholder="Name">
+                <input type="password" class="form-control m-1" name="password" id="password" placeholder="courier password">
+                <input type="text" class="form-control m-1" disabled value="Courier">
+                <button class="btn btn-primary m-1">Add the Courier</button>
+            </form>
+        </div>
     </section>
     <?php include('script.php');?>
 </body>
