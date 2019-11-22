@@ -86,6 +86,13 @@
             </table>
         </div>
     </section>
+    <section class="container">
+    <div class="jumbotron">
+        <p class="lead">Add sub-accounts</p>
+        <hr class="my-4">
+        <p>Content</p>
+    </div>
+    </section>
     <?php include('script.php');?>
 </body>
 </html>
