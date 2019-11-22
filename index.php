@@ -51,14 +51,52 @@
     <section id="newrelease" class="overflow-hidden">       
         <div class="container mt-3 position-relative">
             <div class="row justify-content-between">
-                <h4>NEW RELEASES</h4>
-                <a href="">View More >></a>
+                <div class= "d-flex">
+                    <h4>NEW RELEASES</h4>
+                    <h6 class= "text-danger font-weight-bold m-1">Light Novel</h6>
+                </div>
+                <a href="lnlist.php">View More >></a>
             </div>           
             <div id="card" class="">
                 <div class="row justify-content-center">
                     <?php
                     include('connection.php');
-                    $getItems = "SELECT * FROM products order by productDateReceived desc";
+                    $getItems = "SELECT * FROM products WHERE productType LIKE 'Light Novel' order by productDateReceived desc";
+                    $result = mysqli_query($connection, $getItems);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){                    ?>
+                    <div class="card col-lg-2 col-md-3 col-5 m-2 px-0 shadow border border-warning">
+                        <img class="card-img-top" src="<?php echo $row['productImage']; ?>" alt="">
+                        <div class="card-body text-center px-2">
+                            <h6 class="card-title" style= "height: 10vh;"><?php echo $row['productTitle']; ?></h6>
+                            <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
+                            <form action="item.php" method="post">
+                                <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
+                                <button class="btn btn-success">Add to cart</button>
+                            </form>
+                        </div> 
+                    </div>
+                    <?php 
+                        }}
+                    ?> 
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="newrelease" class="overflow-hidden">       
+        <div class="container mt-3 position-relative">
+            <div class="row justify-content-between">
+            <div class= "d-flex">
+                    <h4>NEW RELEASES</h4>
+                    <h6 class= "text-danger font-weight-bold m-1">Manga</h6>
+                </div>
+                <a href="mangalist.php">View More >></a>
+            </div>           
+            <div id="card" class="">
+                <div class="row justify-content-center">
+                    <?php
+                    include('connection.php');
+                    $getItems = "SELECT * FROM products WHERE productType LIKE 'Manga' order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){                    ?>
