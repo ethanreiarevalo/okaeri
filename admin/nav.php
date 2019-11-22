@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="sales.php">Sales</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white-50" href="delivery.php">Delivery Update</a>
+            </li>
             <li class="nav-item disabled">
                 <a class="nav-link text-white-50">Welcome! </a>
             </li>
