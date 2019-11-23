@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2019 at 06:18 AM
+-- Generation Time: Nov 23, 2019 at 05:56 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -33,14 +33,6 @@ CREATE TABLE `10cart` (
   `amount` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
---
--- Dumping data for table `10cart`
---
-
-INSERT INTO `10cart` (`productID`, `amount`) VALUES
-(1, 3),
-(3, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -55,6 +47,18 @@ CREATE TABLE `10purchases` (
   `paymentMethod` varchar(16) NOT NULL,
   `orderStatus` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `10purchases`
+--
+
+INSERT INTO `10purchases` (`productID`, `amount`, `datePurchase`, `salesID`, `paymentMethod`, `orderStatus`) VALUES
+(0, 1, '2019-11-22', 9, 'Cash On Delivery', 'For Delivery'),
+(3, 3, '2019-11-22', 9, 'Cash On Delivery', 'For Delivery'),
+(0, 1, '2019-11-22', 10, 'Cash On Delivery', 'For Delivery'),
+(4, 1, '2019-11-22', 10, 'Cash On Delivery', 'For Delivery'),
+(0, 1, '2019-11-22', 11, 'Cash On Delivery', 'For Delivery'),
+(5, 3, '2019-11-22', 11, 'Cash On Delivery', 'For Delivery');
 
 -- --------------------------------------------------------
 
@@ -114,7 +118,7 @@ INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPu
 (2, 'Dungeon ni Deai o Motomeru no wa Machigatteiru Darou ka Volume 8', 'Fujino Omori', 'SB Creative', 'Light Novel', 'Japanese', '2019-11-14', '2015-06-15', 'on, on, on, on', 'product_image/DanMachi_Light_Novel_Volume_8_Cover.png', 20, 300.00, 'The royal army led by the War God Ares. The number of the army heading to Orario numbers 30,000. Against the sound of the incoming army, Orario - didn\'t change.\r\nWhile the invaders outside let out cries of despair against the too strong adventurers, Orario spent peaceful days.\r\nThe Pallum\'s marriage proposal, the lovely bodyguard, the town girl\'s secret, the love songs to the Gods - and the love song that a Goddess spins.\r\nA daily life part that Gods and children give!'),
 (3, 'No Game No Life Volume 1', 'Yuu Kamiya', 'Yen Press', 'Light Novel', 'English', '2019-11-23', '2019-11-22', 'on, on, on, on, on', 'product_image/ngnl-vol1.png', 3, 150.00, 'Sora and Shiro are two hikikomori step-siblings who are known in the online gaming world as Blank, an undefeated group of gamers. One day, they are challenged to a game of chess by Tet, a god from another reality. The two are victorious and are offered to live in a world that centers around games. They accept, believing it to be a joke, and are summoned to a reality known as Disboard.'),
 (4, 'Yahari Ore no Seishun Love Come wa Machigatteiru', 'Watari Wataru', 'Yen Press', 'Light Novel', 'English', '2019-11-23', '2019-11-22', 'on, on', 'product_image/oregairu-vol1--eng.png', 5, 120.00, 'The story follows: the pragmatic Hachiman Hikigaya, Yukino Yukinoshita and friendly Yui Yuigahama, who, despite their varying personalities and ideals, offer help and advice to others as part of their school\'s Service Club. It largely depicts various social situations faced by teens in a high school setting and the psychology driving their interactions.'),
-(5, 'Yahari Ore no Seishun Love Come wa Machigatteiru', 'Watari Wataru', 'Shogakukan', 'Light Novel', 'Japanese', '2019-11-22', '2019-11-21', 'on, on', 'product_image/oregairu-vol1-jap.png', 3, 100.00, 'The story follows: the pragmatic Hachiman Hikigaya, Yukino Yukinoshita and friendly Yui Yuigahama, who, despite their varying personalities and ideals, offer help and advice to others as part of their school\'s Service Club. It largely depicts various social situations faced by teens in a high school setting and the psychology driving their interactions.');
+(5, 'Yahari Ore no Seishun Love Come wa Machigatteiru', 'Watari Wataru', 'Shogakukan', 'Light Novel', 'Japanese', '2019-11-22', '2019-11-21', 'on, on', 'product_image/oregairu-vol1-jap.png', 0, 100.00, 'The story follows: the pragmatic Hachiman Hikigaya, Yukino Yukinoshita and friendly Yui Yuigahama, who, despite their varying personalities and ideals, offer help and advice to others as part of their school\'s Service Club. It largely depicts various social situations faced by teens in a high school setting and the psychology driving their interactions.');
 
 -- --------------------------------------------------------
 
@@ -125,9 +129,18 @@ INSERT INTO `products` (`productID`, `productTitle`, `productAuthor`, `productPu
 CREATE TABLE `sales` (
   `salesID` int(20) NOT NULL,
   `amount` int(7) NOT NULL,
-  `date` date NOT NULL,
+  `salesDate` date NOT NULL,
   `invoice` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`salesID`, `amount`, `salesDate`, `invoice`) VALUES
+(9, 500, '2019-11-22', 10),
+(10, 170, '2019-11-22', 10),
+(11, 350, '2019-11-22', 10);
 
 -- --------------------------------------------------------
 
@@ -208,13 +221,13 @@ ALTER TABLE `useraccounts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `salesID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `salesID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `useraccounts`

@@ -14,7 +14,7 @@ if(!empty($monthlyRow['SumAmount'])){
 }
 
 //getting weekly sales
-$day = date('w');
+$day = date('w'); // exports the number of the day of the week i.e. 6 = saturday, 0 = sunday
 $startWeek = date('Y-m-d', strtotime('-'.$day.' days'));
 $endWeek = date('Y-m-d', strtotime('+'.(6-$day).' days'));
 $weeklySql = "SELECT SUM(amount) as SumAmount FROM sales Where salesDate BETWEEN '$startWeek' and '$endWeek'";
