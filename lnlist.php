@@ -1,4 +1,20 @@
 <!-- LN LIST WHEN MANGA LINK IS CLICKED -->
+<?php
+session_start();
+include('connection.php');
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $Language = $_POST['Language'];
+    if($Language == "All"){
+        $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+    }else{
+        $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
+    
+    }
+}else{
+    $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,32 +38,32 @@
             <div class="jumbotron bg-transparent">
                 <h3>Light Novel List</h3>
                 <p class="mb-3">Sort By:</p>
-                <form action="" method="">
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>"enctype="multipart/form-data" method="post">
                     <h5>Language</h5>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="All" name="example1" value="All">
+                      <input type="radio" class="custom-control-input" id="All" name="Language" value="All">
                       <label class="custom-control-label" for="All">All</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="Japanese" name="example1" value="Japanese">
+                      <input type="radio" class="custom-control-input" id="Japanese" name="Language" value="Japanese">
                       <label class="custom-control-label" for="Japanese">Japanese</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="English" name="example1" value="English">
+                      <input type="radio" class="custom-control-input" id="English" name="Language" value="English">
                       <label class="custom-control-label" for="English">English</label>
                     </div>
                     <hr class="my-3 bg-warning">
                     <h5>Genre</h5>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="action" value="action">
                       <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="horror" value="horror">
                       <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre" id="fantasy" value="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                     <button class="btn btn-success mt-3 w-100">Sort</button>
@@ -60,7 +76,6 @@
                 <div class="row justify-content-start">
                 <?php
                     include('connection.php');
-                    $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){

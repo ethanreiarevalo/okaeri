@@ -25,29 +25,29 @@
                 <form action="" method="">
                     <h5>Language</h5>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="All" name="language[]" value="All">
+                      <input type="radio" class="custom-control-input" id="All" name="language" value="All">
                       <label class="custom-control-label" for="All">All</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="Japanese" name="language[]" value="Japanese">
+                      <input type="radio" class="custom-control-input" id="Japanese" name="language" value="Japanese">
                       <label class="custom-control-label" for="Japanese">Japanese</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" id="English" name="language[]" value="English">
+                      <input type="radio" class="custom-control-input" id="English" name="language" value="English">
                       <label class="custom-control-label" for="English">English</label>
                     </div>
                     <hr class="my-3 bg-warning">
                     <h5>Genre</h5>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="action" value="action">
                       <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="horror" value="horror">
                       <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre" id="fantasy" value="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                     <button class="btn btn-success mt-3 w-100">Sort</button>
