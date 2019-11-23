@@ -30,24 +30,27 @@ if($row['email']==$userEmail){
     </header>
     <section class="container">
         <div class="row justify-content-between">
-            <div class="jumbotron bg-transparent">
-                <h1 class="display-4">Your Account</h1>
-                <hr class="my-4">
-                
-                <p>Name: <?php echo $name; ?></p>
-                <p>Sex: <?php echo $sex?></p>
-                <p>Birthday: <?php echo $birthday; ?></p>
-                <p>Age: </p>
-                <p>Address: <?php echo $address; ?></p>
-                <p>Contact Number: <?php echo $contact?></p>
-                <p>Email: <?php echo $email?></p>
+            <div class="col-xl-8 col-lg-8">
+                <div class="jumbotron bg-transparent">
+                    <h1>Your Account</h1>
+                    <hr class="my-4">
+                    <p>Name: <?php echo $name; ?></p>
+                    <p>Sex: <?php echo $sex?></p>
+                    <p>Birthday: <?php echo $birthday; ?></p>
+                    <p>Age: </p>
+                    <p>Address: <?php echo $address; ?></p>
+                    <p>Contact Number: <?php echo $contact?></p>
+                    <p>Email: <?php echo $email?></p>
+                </div>
             </div>
-
-            <div class="jumbotron bg-warning mt-5">
-                <p class="lead">Purchase History Summary</p>
-                <hr class="my-4">
-                <p>Content</p>
+            <div class="col-xl-4 col-lg-4">
+                <div class="jumbotron bg-warning mt-5 h-75">
+                    <p class="lead">Purchase History Summary</p>
+                    <hr class="my-4">
+                    <p>Content</p>
+                </div>
             </div>
+            
         </div>
     </section>
     <?php include('script.php');?>
