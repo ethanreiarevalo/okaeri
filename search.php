@@ -3,7 +3,7 @@ session_start();
 include('connection.php');
 $count = '';
 $search = '%'.$_POST['search'].'%';
-$getItemCount = "SELECT count(productTitle) as counted FROM products where productTitle LIKE '$search' order by productDateReceived desc";
+$getItemCount = "SELECT count(productTitle) as counted FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
   $resulta = mysqli_query($connection, $getItemCount);
   if(mysqli_num_rows($resulta) > 0){
     while($arow = mysqli_fetch_array($resulta)){
@@ -91,7 +91,7 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                 <div class="row justify-content-center">
                 <?php
                     // include('connection.php');
-                    $getItems = "SELECT * FROM products where productTitle LIKE '$search' order by productDateReceived desc";
+                    $getItems = "SELECT * FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){

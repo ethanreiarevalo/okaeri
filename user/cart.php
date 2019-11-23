@@ -13,21 +13,54 @@ $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_array($result);
 if($row['email']==$userEmail){
     $name = $row['fName']." ".$row['lName'];
-    $birthday = $row['birthdate'];
     $address = $row['address'];
     $contact = $row['contactNo']; 
-    $sex = $row['sex'];
-    $email = $row['email'];
 }
 
 if($_SERVER ["REQUEST_METHOD"] == "POST"){
-    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userID."puchases VALUES (null, '$email', '$password', 'user', 'Active')");
+    $totalprice = $_POST['totalPrice'];
+    $currentDate = date("Y-m-d");
+    $paymentMethod = $_POST['paymentMethod'];
+    $salesID = "";
+
+    $totalprice = $totalprice + 50;
+    //input to sales table
+    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID')");
+
+    //select salesID from sales table
+    $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
+    $salesresult = mysqli_query($connection,$selectSales);
+    $salesrow = mysqli_fetch_array($salesresult);
+    if(!empty($salesrow['salesID'])){
+        $salesID = $salesrow['salesID'];
+    }else{
+        echo "<script> alert('salesID is Empty')</script>";
+    }
+    
+    $userPurchases = $userID."purchases";
+    //insert delivery charge in purchases
+    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+    
+    $userCart = $userID."cart";
+    //transfer from cart to purchases
     $cartSQL = "SELECT * FROM ".$userID."cart";
     $cartresult = mysqli_query($connection,$cartSQL);
-    $cartrow = mysqli_fetch_array($cartresult);
-    if(!empty($cartrow['productID'])){
-    
+    if(mysqli_num_rows($cartresult) > 0){
+        while($cartrow = mysqli_fetch_array($cartresult)){
+
+            $cartProdID = $cartrow['productID'];
+            $cartProdAmount = $cartrow['amount'];
+            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+            
+            //update stock
+            $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+
+
+        }
     }
+
+    //delete cart items
+    $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
 
 }
 
@@ -115,7 +148,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         </table>
     </section>
     <section id="checkout" class="col-xl-4 position-fixed">
-        <div class="jumbotron border border-dark">
+        <div class="jumbotron border border-dark py-3">
             <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
             <div class= "mb-2 text-center">
@@ -216,7 +249,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                     </div>
                 </div>
                 <hr class="my-2 bg-warning">
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
+                <input type="hidden" id="paymentMethod" name="paymentMethod" value="Cash On Delivery">
+                <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice;?>">
                 <button class="btn btn-danger w-100">Checkout</button>
+                </form>
             </div>
         </div>
     </div>
