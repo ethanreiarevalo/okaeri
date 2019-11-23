@@ -191,7 +191,7 @@ if(isset($_SESSION ["userID"])){
             </div>
         </div>
         <div id="tables" class="table table-responsive col-xl-8">
-            <table class="table text-center">
+            <table id="mytable" class="table text-center">
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
@@ -200,23 +200,25 @@ if(isset($_SESSION ["userID"])){
                     <th>Type</th>
                     <th>Date Recieved</th>
                     <th>Date Published</th>
+                    <th>Stock</th>
                     <th>Price</th>
                     <th>Edit</th>
                 </tr>
                 <?php
                   $sql = "SELECT productTitle, productAuthor, productPublisher,
-                    productLanguage, productType, productDateReceived, productDatePublished, productPrice FROM products";
+                    productLanguage, productType, productDateReceived, productDatePublished, productStock, productPrice FROM products";
                   $result = mysqli_query($connection,$sql);
                   if($result->num_rows >0){
                     while($row = $result->fetch_assoc()){
                       echo '<tr><td><center>' .$row["productTitle"]. '</center></td>
-                      <td><center>' .$row["productAuthor"]. '</div></center></td>
-                      <td><center>' .$row["productPublisher"]. '</div> </center></td>
-                      <td><center>' .$row["productLanguage"]. '</center></td>
-                      <td><center>' .$row["productType"]. '</div> </center></td>
-                      <td><center>' .$row["productDateReceived"]. '</center></td>
-                      <td><center>' .$row["productDatePublished"]. '</div> </center></td>
-                      <td><center>' .$row["productPrice"]. '</div> </center></td>
+                      <td>' .$row["productAuthor"]. '</div></td>
+                      <td>' .$row["productPublisher"]. '</div></td>
+                      <td>' .$row["productLanguage"]. '</td>
+                      <td>' .$row["productType"]. '</div></td>
+                      <td>' .$row["productDateReceived"]. '</td>
+                      <td>' .$row["productDatePublished"]. '</div></td>
+                      <td>' .$row["productStock"]. '</div></td>
+                      <td>' .$row["productPrice"]. '</div></td>
                       <td><center><button class= "btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></center></td></tr>'
                       ;
                     }
@@ -269,6 +271,20 @@ if(isset($_SESSION ["userID"])){
             t.className = "popup";
         }
     }
+
+  var table = document.getElementById("mytable");
+  
+  for(var i = 1; i < table.rows.length; i++)
+  {
+      table.rows[i].onclick = function()
+      {
+           //rIndex = this.rowIndex;
+           //alert(this.cells[1].innerHTML);
+           
+          document.getElementById("stock").value = this.cells[7].innerHTML;
+          document.getElementById("price").value = this.cells[8].innerHTML;
+      };
+  }
 </script>
 <?php include('script.php');?>
 </body>
