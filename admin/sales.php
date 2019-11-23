@@ -169,6 +169,12 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                     <th>
                         Invoice
                     </th>
+                    <th>
+                        Payment Method
+                    </th>
+                    <th>
+                        Status
+                    </th>
                 </tr>
                 <?php
                     $salesQuery = mysqli_query($connection,$salesSql);
@@ -178,6 +184,8 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                             $salesAmount = $row['amount'];
                             $salesDate = $row['salesDate'];
                             $salesInvoice = $row['invoice'];
+                            $salesPaymentMethod = $row['paymentMethod'];
+                            $salesStatus = $row['deliveryStatus'];
 
                 ?>
                     <tr>
