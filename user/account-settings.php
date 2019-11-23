@@ -3,8 +3,19 @@ session_start();
 include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $Address = $_POST['newaddress'];
-    $updateAddress = mysqli_query($connection,"UPDATE `userdetails` set `address` = '$Address' where `email` = '$userEmail'");
+    if(empty($_POST['newcontact'])){
+        $Address = $_POST['newaddress'];
+        $updateAddress = mysqli_query($connection,"UPDATE `userdetails` set `address` = '$Address' where `email` = '$userEmail'");
+    }
+    else if(empty($_POST['newaddress'])){
+        $Contact = $_POST['newcontact'];
+        $updateContact = mysqli_query($connection,"UPDATE `userdetails` set `contactNo` = '$Contact' where `email` = '$userEmail'");
+    }
+    else{
+        $Address = $_POST['newaddress'];
+        $contact = $_POST['newcontact'];
+        $updateBoth = mysqli_query($connection, "UPDATE ``userdetails set `contactNo` = '$Contact' and `address` = '$Address' where `email` = '$userEmail'");
+    }
 }
 
 
