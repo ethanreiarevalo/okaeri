@@ -30,6 +30,11 @@ echo $userPurchases;
                         All
                     </div>
                 </a>
+                <a href="processing.php">
+                    <div class="text-center py-3">
+                        Processing
+                    </div>
+                </a>
                 <a href="torecieve.php">
                     <div class="text-center py-3">
                         Undelivered
