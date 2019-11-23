@@ -60,7 +60,7 @@ $userPurchases = $userID.'purchases';
                             <th>Status</th>
                         </tr>
                         <?php
-                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Cancelled'";
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Cancelled' order by datePurchase desc";
                             $result = mysqli_query($connection,$sql);
 
                             if(empty($salesQuery)){
@@ -73,7 +73,11 @@ $userPurchases = $userID.'purchases';
                                     $productImage = $row['productImage'];
                                     $productName = $row['productTitle'];
                                     $productPrice = $row['productPrice'];
+                                    $productAmount = $row['amount'];
+                                    $productTotalPrice = $productPrice * $productAmount;
                                     $productStatus = $row['orderStatus'];
+                                    $productID = $row['productID'];
+                                    $productSalesID = $row['salesID'];
                                     ?>
                                     <tr>
                                         <td>
@@ -83,7 +87,7 @@ $userPurchases = $userID.'purchases';
                                             <?php echo $productName; ?>
                                         </td>
                                         <td>
-                                            <?php echo $productPrice; ?>
+                                            <?php echo $productTotalPrice; ?>
                                         </td>
                                     </tr>
                                     <?php
