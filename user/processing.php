@@ -1,3 +1,11 @@
+<?php
+session_start();
+include('../connection.php');
+$userEmail = $_SESSION['userEmail'];
+$userID = $_SESSION['userID'];
+$userPurchases = $userID.'purchases';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,17 +57,44 @@
                             <th>Price</th>
                             <th>Cancel</th>
                         </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger">Cancel Order</button>
-                            </td>
-                        </tr>
+                        <?php
+                            $currentDate = date('Y-m-d');
+                            echo $currentDate;
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' AND datePurchased <= '$currentDate'";
+                            $salesQuery = mysqli_query($connection,$sql);
+                            if(empty($salesQuery)){
+                                echo "</table>";
+                                echo "no results found";
+                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
+                            }else if($salesQuery->num_rows > 0 ){
+                                while($row = $salesQuery->fetch_assoc()){
+                                    $userOrderStatus = $userPurchases.'.orderStatus';
+                                    $productImage = $row['productImage'];
+                                    $productName = $row['productTitle'];
+                                    $productPrice = $row['productPrice'];
+                                    $productStatus = $row['orderStatus'];
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
+                                        </td>
+                                        <td>
+                                            <?php echo $productName; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $productPrice; ?>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger">Cancel Order</button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }?>
+                                </table><?php
+                            }else{
+                                echo "no results found";
+                            }
+                        ?>
                     </table>
                 </div>
             </div>
