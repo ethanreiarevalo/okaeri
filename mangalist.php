@@ -56,7 +56,7 @@
         </div>
         <div id="card" class="col-xl-9  mt-5 overflow-hidden">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row justify-content-between">
                 <?php
                     include('connection.php');
                     $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";

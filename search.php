@@ -89,7 +89,7 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
         </div>
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row justify-content-between">
                 <?php
                     // include('connection.php');
                     $getItems = "SELECT * FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
