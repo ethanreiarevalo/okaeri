@@ -19,19 +19,19 @@
                         All
                     </div>
                 </a>
-                <a href="toship.php">
+                <a href="processing.php">
                     <div class="text-center border-right border-warning py-3">
-                        To Ship
+                        Processing
                     </div>
                 </a>
                 <a href="torecieve.php">
                     <div class="text-center py-3">
-                        To Recieve
+                        Undelivered
                     </div>
                 </a>
                 <a href="completed.php">
                     <div class="text-center py-3">
-                        Completed
+                        Delivered
                     </div>
                 </a>
                 <a href="cancelled.php">
@@ -47,7 +47,18 @@
                             <th>Product Cover</th>
                             <th>Product Name</th>
                             <th>Price</th>
-                            <th>Status</th>
+                            <th>Cancel</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">Cancel Order</button>
+                            </td>
                         </tr>
                     </table>
                 </div>
