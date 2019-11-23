@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2019 at 05:56 AM
+-- Generation Time: Nov 23, 2019 at 06:11 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -130,17 +130,19 @@ CREATE TABLE `sales` (
   `salesID` int(20) NOT NULL,
   `amount` int(7) NOT NULL,
   `salesDate` date NOT NULL,
-  `invoice` int(7) NOT NULL
+  `invoice` int(7) NOT NULL,
+  `paymentMethod` varchar(16) NOT NULL,
+  `deliveryStatus` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 --
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`salesID`, `amount`, `salesDate`, `invoice`) VALUES
-(9, 500, '2019-11-22', 10),
-(10, 170, '2019-11-22', 10),
-(11, 350, '2019-11-22', 10);
+INSERT INTO `sales` (`salesID`, `amount`, `salesDate`, `invoice`, `paymentMethod`, `deliveryStatus`) VALUES
+(9, 500, '2019-11-22', 10, '', ''),
+(10, 170, '2019-11-22', 10, '', ''),
+(11, 350, '2019-11-22', 10, '', '');
 
 -- --------------------------------------------------------
 
