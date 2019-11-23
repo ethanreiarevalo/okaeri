@@ -2,9 +2,16 @@
 session_start();
 include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $Address = $_POST['newaddress'];
+    $updateAddress = mysqli_query($connection,"UPDATE `userdetails` set `address` = '$Address' where `email` = '$userEmail'");
+}
+
+
 $sql = "SELECT * FROM userdetails WHERE email = '$userEmail'";
 $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_array($result);
+
 if($row['email']==$userEmail){
     $name = $row['fName']." ".$row['lName'];
     $birthday = $row['birthdate'];
@@ -53,10 +60,10 @@ if($row['email']==$userEmail){
                     <p>Birthday: <?php echo $birthday; ?></p>
                     <p>Age: </p>
                     <p class= "mb-1">Address: <?php echo $address; ?> <button class="btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></p>
-                    <form id="myform" class="hide-c" action="">
+                    <form id="myform" class="hide-c" action="<?php htmlspecialchars("PHP_SELF"); ?>"enctype="multipart/form-data" method="post">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Enter New Address">
+                                <input type="text" class="form-control" name="newaddress" placeholder="Enter New Address" required>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-success">Submit</button>
@@ -64,10 +71,10 @@ if($row['email']==$userEmail){
                         </div>
                     </form>
                     <p class= "mb-1">Contact Number: <?php echo $contact?> <button class="btn btn-primary" onclick="popup_c()"><i class="fa fa-edit"></i></button></p>
-                    <form id="myform-c" class="hide-c" action="">
+                    <form id="myform-c" class="hide-c" action="<?php htmlspecialchars("PHP_SELF"); ?>"enctype="multipart/form-data" method="post">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Enter Contact Number">
+                                <input type="text" class="form-control" name="newcontact" placeholder="Enter Contact Number" required>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-success">Submit</button>
