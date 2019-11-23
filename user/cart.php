@@ -229,7 +229,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     </div> -->
 
     <div id="modal2" class="popup">
-        <div class="row w-100 justify-content-center">
+        <div class="row w-100 justify-content-center m-0">
             <div class="jumbotron bg-dark text-white">
                 <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_two()">x</div>
                 <h4>Please Confirm the information below</h4>
@@ -239,7 +239,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                 <div class="container">
                     <div class="row align-content-center">
                         <label for="deliveramount">Delivery Amount:</label>
-                        <input type="text" id="deliveramount" class="form-control col-xl-2" disabled value="50">
+                        <input type="text" id="deliveramount" class="form-control col-xl-2" disabled value="₱50.00">
                     </div>
                 </div>
                 <div class="container">
@@ -255,6 +255,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                 <button class="btn btn-danger w-100">Checkout</button>
                 </form>
             </div>
+            
         </div>
     </div>
 
