@@ -54,12 +54,14 @@ if($row['email']==$userEmail){
                 <p>Contact Number: <?php echo $contact?></p>
                 <p>Email: <?php echo $email?></p>
             </div>
-
-            <div class="jumbotron bg-warning mt-5">
-                <p class="lead">Purchase History Summary</p>
-                <hr class="my-4">
-                <p>Content</p>
+            <div class="col-xl-4 col-lg-4">
+                <div class="jumbotron bg-warning mt-5 h-75">
+                    <p class="lead">Purchase History Summary</p>
+                    <hr class="my-4">
+                    <p>Content</p>
+                </div>
             </div>
+            
         </div>
     </section>
     <!-- DO NOT CHANGE -->
