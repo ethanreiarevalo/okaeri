@@ -23,6 +23,20 @@ if($row['email']==$userEmail){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
     <title>Document</title>
+    <style>
+        .hide{
+            display: none !important;
+        }
+        .show{
+            display: block !important;
+        }
+        .hide-c{
+            display: none !important;
+        }
+        .show-c{
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -38,18 +52,51 @@ if($row['email']==$userEmail){
                 <p>Sex: <?php echo $sex?></p>
                 <p>Birthday: <?php echo $birthday; ?></p>
                 <p>Age: </p>
-                <p>Address: <?php echo $address; ?></p>
-                <p>Contact Number: <?php echo $contact?></p>
+                <p>Address: <?php echo $address; ?> <button class="btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></p>
+                <form id="myform" class="hide" action="">
+                    <input type="text" class="form-control" placeholder="Enter New Address">
+                    <button class="btn btn-success mt-2">Submit</button>
+                </form>
+                <p>Contact Number: <?php echo $contact?><button class="btn btn-primary" onclick="popup_c()"><i class="fa fa-edit"></i></button></p>
+                <form id="myform-c" class="hide-c" action="">
+                    <input type="text" class="form-control" placeholder="Enter Contact Number">
+                    <button class="btn btn-success mt-2">Submit</button>
+                </form>
                 <p>Email: <?php echo $email?></p>
             </div>
-
-            <div class="jumbotron bg-warning mt-5">
-                <p class="lead">Purchase History Summary</p>
-                <hr class="my-4">
-                <p>Content</p>
+            <div class="col-xl-4 col-lg-4">
+                <div class="jumbotron bg-warning mt-5 h-75">
+                    <p class="lead">Purchase History Summary</p>
+                    <hr class="my-4">
+                    <p>Content</p>
+                </div>
             </div>
+            
         </div>
     </section>
+    <!-- DO NOT CHANGE -->
+    <script>
+        var t = document.getElementById("myform");
+
+        function popup(){
+            if (t.className === "hide"){
+                t.className = "show";
+            }
+            else{
+                t.className = "hide";
+            }
+        }
+        var c = document.getElementById("myform-c");
+
+        function popup_c(){
+            if (c.className === "hide-c"){
+                c.className = "show-c";
+            }
+            else{
+                c.className = "hide-c";
+            }
+        }
+    </script>
     <?php include('script.php');?>
 </body>
 </html>

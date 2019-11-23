@@ -93,7 +93,7 @@
             </table>
         </div>
     </section>
-    <section class="container">
+    <!-- <section class="container">
         <div class="jumbotron">
             <p class="lead">Add courier account</p>
             <hr class="my-4">
@@ -104,7 +104,7 @@
                 <button class="btn btn-primary m-1">Add the Courier</button>
             </form>
         </div>
-    </section>
+    </section> -->
 
     <!-- <script>
         function press(){
