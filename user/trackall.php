@@ -3,7 +3,9 @@ session_start();
 include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
 $userID = $_SESSION['userID'];
-$sql = "SELECT * FROM ".$userID."purchases INNER JOIN products ON ".$userID."purchases.productID = products.productID";
+$userPurchases = $userID.'purchases';
+echo $userPurchases;
+$sql = "SELECT * FROM '$userPurchases' INNER JOIN products ON '$userPurchases'.productID = products.productID";
 
 
 ?>
@@ -30,19 +32,14 @@ $sql = "SELECT * FROM ".$userID."purchases INNER JOIN products ON ".$userID."pur
                         All
                     </div>
                 </a>
-                <a href="toship.php">
-                    <div class="text-center py-3">
-                        To Ship
-                    </div>
-                </a>
                 <a href="torecieve.php">
                     <div class="text-center py-3">
-                        To Recieve
+                        Undelivered
                     </div>
                 </a>
                 <a href="completed.php">
                     <div class="text-center py-3">
-                        Completed
+                        Delivered
                     </div>
                 </a>
                 <a href="cancelled.php">

@@ -19,19 +19,14 @@
                         All
                     </div>
                 </a>
-                <a href="toship.php">
-                    <div class="text-center py-3">
-                        To Ship
-                    </div>
-                </a>
                 <a href="torecieve.php">
                     <div class="text-center py-3">
-                        To Recieve
+                        Undelivered
                     </div>
                 </a>
                 <a href="completed.php">
                     <div class="text-center py-3">
-                        Completed
+                        Delivered
                     </div>
                 </a>
                 <a href="cancelled.php">
