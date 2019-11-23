@@ -151,9 +151,9 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         <div class="jumbotron border border-dark py-3">
             <h5>Total Amount: <span>&#8369;</span><?php echo $totalPrice;?> </h5>
             <hr class="my-4 bg-dark">
-            <div class= "mb-2 text-center">
+            <!-- <div class= "mb-2 text-center">
                 <button class="btn btn-primary" onclick="popup()"><i class= "fa fa-credit-card"></i> Checkout as Debit</button>
-            </div>
+            </div> -->
             <div class= "mb-2 text-center">
                 <button class="btn btn-success" onclick="popup_two()"><i class= "fa fa-truck"></i> Checkout as COD</button>
             </div>
@@ -186,7 +186,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             }
         </style>
     </head>
-    <div id="modal1" class="popup">
+    <!-- <div id="modal1" class="popup">
         <div class="row w-100 justify-content-center">
             <div class="jumbotron bg-dark text-white">
                 <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
@@ -226,7 +226,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                 <button class="btn btn-danger w-100">Checkout</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center">
