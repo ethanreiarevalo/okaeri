@@ -1,4 +1,27 @@
 <!-- LN LIST WHEN MANGA LINK IS CLICKED -->
+<?php
+session_start();
+include('connection.php');
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    // $Language = $_POST['Language'];
+    if(empty($_POST['Language'])){
+        $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+    }
+    else{
+        $Language = $_POST['Language'];
+        if($Language == "All"){
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+        }
+        else{
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
+        
+        }
+    }
+}else{
+    $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +82,7 @@
                 <div class="row justify-content-between">
                 <?php
                     include('../connection.php');
-                    $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+                    //$getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){

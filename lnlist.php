@@ -4,12 +4,19 @@ session_start();
 include('connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $Language = $_POST['Language'];
-    if($Language == "All"){
+    // $Language = $_POST['Language'];
+    if(empty($_POST['Language'])){
         $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
-    }else{
-        $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
-    
+    }
+    else{
+        $Language = $_POST['Language'];
+        if($Language == "All"){
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+        }
+        else{
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
+        
+        }
     }
 }else{
     $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
