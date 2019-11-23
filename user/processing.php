@@ -9,8 +9,17 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $productID = $_POST['productID'];
     $productSalesID = $_POST['productSalesID'];
     $productTotalPrice = $_POST['productTotalPrice'];
+    $productAmount = $_POST['productStock'];
+    //remove item from user purchase table
     $updateUserPurchase = mysqli_query($connection, "UPDATE `$userPurchases` set orderStatus = 'Cancelled' where productID = '$productID' and salesID = '$productSalesID'");
+    
+    //update product sales sales
     $updateSales = mysqli_query($connection, "UPDATE sales set amount = amount - '$productTotalPrice' where salesID = '$productSalesID'");
+    
+    //update product stock
+    $updateStock = mysqli_query($connection, "UPDATE products set productStock = productStock + '$productAmount' WHERE productID = $productID");
+    
+    //update sales price to 0 when empty
     $selectSales = "SELECT * FROM sales where salesID = '$productSalesID'";
     $result = mysqli_query($connection,$selectSales);
     $row = mysqli_fetch_array($result);

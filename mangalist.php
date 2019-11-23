@@ -4,11 +4,10 @@ session_start();
 include('connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    // $Language = $_POST['Language'];
-    if(empty($_POST['language'])){
+    if(empty($_POST['language']) && empty($_POST['genre'])){
         $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
     }
-    else{
+    else if(empty($_POST['genre'])){
         $Language = $_POST['language'];
         if($Language == "All"){
             $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
@@ -18,6 +17,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         
         }
     }
+    else if(empty($_POST['language'])){
+        $Genre ='%'.$_POST['genre'].'%';
+        $getItems = "SELECT * FROM products where productType = 'Manga' and productGenre LIKE '$Genre' order by productDateReceived desc";
+    }
+    else{
+        $Genre ='%'.$_POST['genre'].'%';
+        $Language = $_POST['language'];
+        if($Language == "All"){
+            $getItems = "SELECT * FROM products where productType = 'Manga' and productGenre LIKE '$Genre' order by productDateReceived desc";
+        }
+        else{
+            $getItems = "SELECT * FROM products where productType = 'Manga' and productLanguage = '$Language' and productGenre LIKE '$Genre' order by productDateReceived desc";
+        
+        }
+    }
+    
 }else{
     $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
 }
@@ -45,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <div class="jumbotron bg-transparent">
                 <h3>Manga List</h3>
                 <p class="mb-3">Sort By:</p>
-                <form action="" method="">
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>"enctype="multipart/form-data" method="post">
                     <h5>Language</h5>
                     <div class="custom-control custom-radio">
                       <input type="radio" class="custom-control-input" id="All" name="language" value="All">

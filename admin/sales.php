@@ -42,7 +42,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $SelectedMonth = $_POST['month'];
     if($SelectedMonth=='All'){
         $salesSql = "SELECT * FROM sales";
-    
+        echo "i have value";
     }else if($SelectedMonth=='January'){
         $startMonth = date('Y').'-1-1';
         $endMonth = date('Y').'-1-31';
@@ -106,10 +106,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     }
 }else{
     $salesSql = "SELECT * FROM sales";
+    $SelectedMonth = "All";
 }
 
 
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,11 +141,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <p class="lead">Today: <?php echo $DailySales; ?></p>
         </div>
         <div id="option" class="row justify-content-between">
-            <p>Total Sales: </p>
+            <p>Total Sales for month of <?php echo $SelectedMonth; ?>: </p>
             <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
                 <div class="input-group w-100 d-flex mb-1">
                     <select class="custom-select w-25" id="inputGroupSelect01" name="month">
-                      <option value="January">All</option>
+                      <option value="All">All</option>
                       <option value="January">January</option>
                       <option value="February">February</option>
                       <option value="March">March</option>
@@ -210,8 +211,14 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                         <td>
                         <?php echo $salesInvoice; ?>
                         </td>
+                        <td>
+                        <?php echo $salesPaymentMethod; ?>
+                        </td>
+                        <?php echo $salesStatus; ?>
+                        </td>
                     </tr>
                 <?php
+                        <td>
                         }
                     }
                 ?>
