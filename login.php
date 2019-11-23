@@ -16,7 +16,19 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         $_SESSION['userID'] = $row['userID'];
         $_SESSION['userEmail'] = $row['userEmail'];
         $_SESSION['userPassword'] = $row['userPassword'];
-        echo "<script>window.location.href= 'user';</script>";
+        $sql = "SELECT * FROM userdetails WHERE email='$email'"; 
+        $result = mysqli_query($connection,$sql);
+        $row = mysqli_fetch_array($result);
+        if(!empty($result)){
+            $_SESSION['fName'] = $row['fName'];
+            if($row['sex']=="Male"){
+                $_SESSION['chan'] = "Onii-chan";
+                echo "<script>window.location.href= 'user';</script>";
+            }else{
+                $_SESSION['chan'] = "Onee-chan";
+                echo "<script>window.location.href= 'user';</script>";
+            }
+        }
     }else if($row['userEmail']==$email && $row['userPassword']==$password && $row['userType']=="user" && $row['status']=="Inactive"){
         //register the userID in session
         $loginError = "Email has been Deactivated!";
