@@ -4,7 +4,6 @@ include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
 $userID = $_SESSION['userID'];
 $userPurchases = $userID.'purchases';
-echo $userPurchases;
 
 ?>
 
@@ -58,9 +57,17 @@ echo $userPurchases;
                         
                         <?php
                             $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0";
-                            $result = mysqli_query($connection,$sql);
-                            if(mysqli_num_rows($result) > 0){
-                                while($row = mysqli_fetch_array($result)){ 
+                            $salesQuery = mysqli_query($connection,$sql);
+                            if(empty($salesQuery)){
+                                echo "</table>";
+                                echo "no results found";
+                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
+                            }else if($salesQuery->num_rows > 0 ){
+                                while($row = $salesQuery->fetch_assoc()){
+                            
+                            // $result = mysqli_query($connection,$sql);
+                            // if(mysqli_num_rows($result) > 0){
+                            //     while($row = mysqli_fetch_array($result)){ 
                                     $userOrderStatus = $userPurchases.'.orderStatus';
                                     $productImage = $row['productImage'];
                                     $productName = $row['productTitle'];
@@ -82,12 +89,12 @@ echo $userPurchases;
                                         </td>
                                     </tr>
                                     <?php
-                                }
+                                }?>
+                                </table><?php
                             }else{
                                 echo "no results found";
                             }
                         ?>
-                    </table>
                 </div>
             </div>
         </div>

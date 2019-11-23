@@ -1,3 +1,13 @@
+<?php
+session_start();
+include('../connection.php');
+$userEmail = $_SESSION['userEmail'];
+$userID = $_SESSION['userID'];
+$userPurchases = $userID.'purchases';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +54,40 @@
                             <th>Price</th>
                             <th>Status</th>
                         </tr>
-                    </table>
+                        <?php
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Cancelled'";
+                            $result = mysqli_query($connection,$sql);
+
+                            if(empty($salesQuery)){
+                                echo "</table>";
+                                echo "no results found";
+                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
+                            }else if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){ 
+                                    $userOrderStatus = $userPurchases.'.orderStatus';
+                                    $productImage = $row['productImage'];
+                                    $productName = $row['productTitle'];
+                                    $productPrice = $row['productPrice'];
+                                    $productStatus = $row['orderStatus'];
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
+                                        </td>
+                                        <td>
+                                            <?php echo $productName; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $productPrice; ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }?>
+                                </table><?php
+                            }else{
+                                echo "no results found";
+                            }
+                        ?>
                 </div>
             </div>
         </div>
