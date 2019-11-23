@@ -5,10 +5,10 @@ include('connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     // $Language = $_POST['Language'];
-    if(empty($_POST['Language'])){
+    if(empty($_POST['Language']) && empty($_POST['genre'])){
         $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
     }
-    else{
+    else if(empty($_POST['genre'])){
         $Language = $_POST['Language'];
         if($Language == "All"){
             $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
@@ -18,6 +18,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         
         }
     }
+    else if(empty($_POST['Language'])){
+        $Genre ='%'.$_POST['genre'].'%';
+        $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
+    }
+    
 }else{
     $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
 }
