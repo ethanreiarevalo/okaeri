@@ -201,6 +201,7 @@ if(isset($_SESSION ["userID"])){
                     <th>Date Recieved</th>
                     <th>Date Published</th>
                     <th>Price</th>
+                    <th>Edit</th>
                 </tr>
                 <?php
                   $sql = "SELECT productTitle, productAuthor, productPublisher,
@@ -215,14 +216,60 @@ if(isset($_SESSION ["userID"])){
                       <td><center>' .$row["productType"]. '</div> </center></td>
                       <td><center>' .$row["productDateReceived"]. '</center></td>
                       <td><center>' .$row["productDatePublished"]. '</div> </center></td>
-                      <td><center>' .$row["productPrice"]. '</div> </center></td><tr>';
+                      <td><center>' .$row["productPrice"]. '</div> </center></td>
+                      <td><center><button class= "btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></center></td></tr>'
+                      ;
                     }
                   }
                 ?>
             </table>
         </div>
     </section>
+<!-- DO NOT CHANGE MODAL FOR EDIT -->
+<style>
+  .pop{
+      position:fixed;
+      width: 100%;
+      height: 100vh;
+      top: 23%;
+  }
+  .popup{
+      display:none;
+  }
+  .cl{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+  }
+</style>
+    <div id="modal" class="popup">
+        <div class="row w-100 justify-content-center">
+            <div class="jumbotron text-center">
+                <div class="cl row justify-content-center bg-warning text-dark" onclick="popup()">x</div>
+                <form action="">
+                  <label for="stock" >Edit Stock</label>
+                  <input type="number" id="stock" min="0" class="form-control" name="stock">
+                  <label for="price">Edit Price</label>
+                  <input type="text" id="price" class="form-control" name="price">
+                  <button class="btn btn-success mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 <!-- SCRIPT     -->
+<script>
+    var t = document.getElementById("modal");
+
+    function popup  (){
+        if (t.className === "popup"){
+            t.className = "pop";
+        }
+        else{
+            t.className = "popup";
+        }
+    }
+</script>
 <?php include('script.php');?>
 </body>
 </html>
