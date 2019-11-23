@@ -117,6 +117,12 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <?php include('css.php');?>
     <title>Manage Sales</title>
     <style>
+        @media only screen and (max-width: 480px){
+            #option{
+            display: block !important;
+            margin: 6%;
+        }
+        }
     </style>
 </head>
 <body>
@@ -130,27 +136,27 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             <p class="lead">This Week: <?php echo $WeeklySales; ?></p>
             <p class="lead">Today: <?php echo $DailySales; ?></p>
         </div>
-        <div class="row justify-content-between">
+        <div id="option" class="row justify-content-between">
             <p>Total Sales: </p>
             <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
-            <div class="input-group w-25 mb-1">
-                <select class="custom-select w-25" id="inputGroupSelect01" name="month">
-                  <option value="January">All</option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="February">December</option>
-                </select>
-                <button class="btn btn-primary">Submit</button>
-            </div>
+                <div class="input-group w-100 d-flex mb-1">
+                    <select class="custom-select w-25" id="inputGroupSelect01" name="month">
+                      <option value="January">All</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="February">December</option>
+                    </select>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
         <center>
