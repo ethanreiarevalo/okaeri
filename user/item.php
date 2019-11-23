@@ -19,16 +19,19 @@
         $productPrice = $row['productPrice'];
         $productDescription = $row['productDescription'];
     }
-    if(!empty($_POST['itemQuantity'])){
+    if($_POST['itemQuantity']!=0){
         $productID = $_POST['productID'];
         $itemQuantity = $_POST['itemQuantity'];
         $userID = $_SESSION['userID'];
         $cartname = $userID."cart";
-        // $_SESSION['productID'] = $productID;
-        // $_SESSION['itemQuantity'] = $itemQuantity;
 
-        $sql = mysqli_query($connection,"INSERT INTO `$cartname` VALUES ('$productID','$itemQuantity')");
-        
+        $selectCartsql = mysqli_query($connection, "SELECT * FROM `$cartname` where productID = '$productID'");
+        $cartrow = mysqli_fetch_array($selectCartsql);
+        if($cartrow['productID'] == $productID){
+            $sql = mysqli_query($connection,"UPDATE `$cartname` SET amount = amount + '$itemQuantity' WHERE productID = '$productID'");
+        }else{
+            $sql = mysqli_query($connection,"INSERT INTO `$cartname` VALUES ('$productID','$itemQuantity')");
+        }
         echo "<script>window.location.href='cart.php';</script>";
     }
 

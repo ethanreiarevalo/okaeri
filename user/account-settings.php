@@ -2,6 +2,7 @@
 session_start();
 include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
+$userPurchases = $_SESSION['userID'].'purchases';
 $sql = "SELECT * FROM userdetails WHERE email = '$userEmail'";
 $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_array($result);
@@ -82,6 +83,20 @@ if($row['email']==$userEmail){
                     <p class="lead">Purchase History Summary</p>
                     <hr class="my-4">
                     <p>Content</p>
+                    <?php
+                    // include('../connection.php');
+                    $getItems = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID 
+                    where orderStatus = 'Undelivered' and products.productID > 0 LIMIT 10";
+                    $count = 0;
+                    $result = mysqli_query($connection, $getItems);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_array($result)){
+                            $count = $count + 1;
+                    ?>
+                    <p><?php echo $count.'. '.$row['productTitle'].' Amount: '.$row['amount'];?><p>
+                    <?php
+                        }
+                    }?>
                 </div>
             </div>
             

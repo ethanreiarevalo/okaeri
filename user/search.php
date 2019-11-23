@@ -2,8 +2,46 @@
 session_start();
 include('../connection.php');
 $count = '';
-$search = '%'.$_POST['search'].'%';
-$getItemCount = "SELECT count(productTitle) as counted FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
+
+
+//sorting
+//add search post to search session
+if(!empty($_POST['search'])){
+  $_SESSION['search'] = '%'.$_POST['search'].'%';
+}
+
+$search = $_SESSION['search'];
+echo $search;
+// $search = '%'.$_POST['search'].'%';
+
+//check if language was selected
+if(empty($_POST['Language'])){
+  $productLanguage = 'is not null';
+}else{
+  $productLanguage = '=`'.$_POST['Language'].'`';
+}
+echo $productLanguage;
+
+//check if genre was selected
+if(empty($_POST['genre'])){
+  $productGenre = 'null';
+}else{
+  $productGenre = '%'.$_POST['genre'].'%';
+}
+echo $productGenre;
+
+//check if Type was selected
+if(empty($_POST['Type'])){
+  $productType = 'is not null';
+}else{
+  $productType = '=`'.$_POST['Type'].'`';
+}
+echo $productType;
+
+$getItems = "SELECT * FROM products where productType $productType and productLanguage $productLanguage and productTitle LIKE $search and productID > 0 order by productDateReceived desc";
+
+//itemcount
+$getItemCount = "SELECT count(productTitle) as counted FROM products where productType = '$productType' and productLanguage = '$productLanguage' and productTitle LIKE '$search' and productGenre LIKE '$productGenre' and productID > 0 order by productDateReceived desc";
   $resulta = mysqli_query($connection, $getItemCount);
   if(mysqli_num_rows($resulta) > 0){
     while($arow = mysqli_fetch_array($resulta)){
@@ -92,7 +130,6 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                 <div class="row justify-content-between">
                 <?php
                     // include('connection.php');
-                    $getItems = "SELECT * FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){
