@@ -1,7 +1,7 @@
 <!-- LN LIST WHEN MANGA LINK IS CLICKED -->
 <?php
 session_start();
-include('connection.php');
+include('../connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     // $Language = $_POST['Language'];

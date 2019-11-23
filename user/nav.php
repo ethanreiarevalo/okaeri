@@ -28,7 +28,9 @@
             </li>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="account-settings.php">Welcome!</a>
+                <a class="nav-link text-white-50" href="account-settings.php">Welcome! <?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} echo $_SESSION['fName'].' '.$_SESSION['chan']?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-50" href="../logout.php">Sign out</a>
