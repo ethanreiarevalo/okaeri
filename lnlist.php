@@ -22,6 +22,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $Genre ='%'.$_POST['genre'].'%';
         $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
     }
+    else{
+        $Genre ='%'.$_POST['genre'].'%';
+        $Language = $_POST['Language'];
+        if($Language == "All"){
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
+        }
+        else{
+            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' and productGenre LIKE '$Genre' order by productDateReceived desc";
+        
+        }
+    }
     
 }else{
     $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
