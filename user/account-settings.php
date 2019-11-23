@@ -23,6 +23,14 @@ if($row['email']==$userEmail){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
     <title>Document</title>
+    <style>
+        .hide{
+            display: none !important;
+        }
+        .show{
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -38,7 +46,11 @@ if($row['email']==$userEmail){
                 <p>Sex: <?php echo $sex?></p>
                 <p>Birthday: <?php echo $birthday; ?></p>
                 <p>Age: </p>
-                <p>Address: <?php echo $address; ?></p>
+                <p>Address: <?php echo $address; ?> <button class="btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></p>
+                <form id="myform" class="hide" action="">
+                    <input type="text" class="form-control" placeholder="Enter New Address">
+                    <button class="btn btn-success mt-2">Submit</button>
+                </form>
                 <p>Contact Number: <?php echo $contact?></p>
                 <p>Email: <?php echo $email?></p>
             </div>
@@ -50,6 +62,19 @@ if($row['email']==$userEmail){
             </div>
         </div>
     </section>
+    <!-- DO NOT CHANGE -->
+    <script>
+        var t = document.getElementById("myform");
+
+        function popup(){
+            if (t.className === "hide"){
+                t.className = "show";
+            }
+            else{
+                t.className = "hide";
+            }
+        }
+    </script>
     <?php include('script.php');?>
 </body>
 </html>
