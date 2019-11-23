@@ -51,6 +51,7 @@
                 <div class="jumbotron bg-transparent">
                     <h1 class="display-4"><?php echo $productTitle; ?></h1>
                     <p class="lead">Type: <?php echo $productType; ?></p>
+                    <p class="lead">Genre: <?php echo $productGenre; ?></p>
                     <hr class="my-4">
                     <p>ITEM SUMMARY </br> <?php echo $productDescription;?></p>
                     <b>Stock Available: <?php echo $productStock; ?></b>

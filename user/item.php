@@ -17,6 +17,7 @@
         $productImage = $row['productImage'];
         $productStock = $row['productStock'];
         $productPrice = $row['productPrice'];
+        $productDescription = $row['productDescription'];
     }
     if(!empty($_POST['itemQuantity'])){
         $productID = $_POST['productID'];
@@ -65,21 +66,23 @@
                 <div class="jumbotron bg-transparent">
                     <h1 class="display-4"><?php echo $productTitle; ?></h1>
                     <p class="lead">Type: <?php echo $productType; ?></p>
+                    <p class="lead">Genre: <?php echo $productGenre; ?></p>
                     <hr class="my-4">
-                    <p>ITEM SUMMARY</p>
+                    <p>ITEM SUMMARY </br> <?php echo $productDescription;?></p>
                     <b>Stock Available: <?php echo $productStock; ?></b>
                     <hr class="my-4">
                         <div class="row">
                             <div class="col-xl-5 d-flex">
-                                <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
                                 <button id="plus-button" class="btn btn-primary mx-1" onclick="plusValue()">+</button>
+                                <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
                                 <form action="<?php htmlspecialchars("SELF_PHP");?>" method="post">
                                 <input type="text" class="form-control mx-1" id="integer_value" name="itemQuantity">
+
                                 <input type="hidden" id="productID" name="productID" value="<?php echo $productID; ?>">
                             </div>   
                             <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
                         
-                    </form>
+                                </form>
                         </div>
                 </div>
             </div>
