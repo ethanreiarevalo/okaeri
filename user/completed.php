@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div id="table">
-                <div class="table table-responsive table-bordered m-5">
+                <div class="table table-responsive table-bordered mt-4">
                     <table>
                         <tr class="thead-dark">
                             <th>Product Cover</th>
