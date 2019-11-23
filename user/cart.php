@@ -25,7 +25,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
 
     $totalprice = $totalprice + 50;
     //input to sales table
-    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID')");
+    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
 
     //select salesID from sales table
     $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
@@ -39,7 +39,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     
     $userPurchases = $userID."purchases";
     //insert delivery charge in purchases
-    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
     
     $userCart = $userID."cart";
     //transfer from cart to purchases
@@ -50,7 +50,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
 
             $cartProdID = $cartrow['productID'];
             $cartProdAmount = $cartrow['amount'];
-            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'For Delivery')");
+            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
             
             //update stock
             $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
