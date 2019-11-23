@@ -9,8 +9,17 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     $productID = $_POST['productID'];
     $productSalesID = $_POST['productSalesID'];
     $productTotalPrice = $_POST['productTotalPrice'];
+    $productAmount = $_POST['productStock'];
+    //remove item from user purchase table
     $updateUserPurchase = mysqli_query($connection, "UPDATE `$userPurchases` set orderStatus = 'Cancelled' where productID = '$productID' and salesID = '$productSalesID'");
+    
+    //update product sales sales
     $updateSales = mysqli_query($connection, "UPDATE sales set amount = amount - '$productTotalPrice' where salesID = '$productSalesID'");
+    
+    //update product stock
+    $updateStock = mysqli_query($connection, "UPDATE products set productStock = productStock + '$productAmount' WHERE productID = $productID");
+    
+    //update sales price to 0 when empty
     $selectSales = "SELECT * FROM sales where salesID = '$productSalesID'";
     $result = mysqli_query($connection,$selectSales);
     $row = mysqli_fetch_array($result);
@@ -101,6 +110,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                                         <td>
                                             <form auto-complete= "off" action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
                                                 <input type="hidden" id="productID" name="productID" value="<?php echo $productID; ?>">
+                                                <input type="hidden" id="productStock" name="productStock" value="<?php echo $productAmount; ?>">
                                                 <input type="hidden" id="productSalesID" name="productSalesID" value="<?php echo $productSalesID; ?>">
                                                 <input type="hidden" id="productTotalPrice" name="productTotalPrice" value="<?php echo $productTotalPrice; ?>">
                                                 <button class="btn btn-danger">Cancel Order</button>
