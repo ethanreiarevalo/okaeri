@@ -107,6 +107,9 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
 }else{
     $salesSql = "SELECT * FROM sales";
 }
+
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

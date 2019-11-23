@@ -4,7 +4,20 @@ include('../connection.php');
 $userEmail = $_SESSION['userEmail'];
 $userID = $_SESSION['userID'];
 $userPurchases = $userID.'purchases';
-
+//cancel order
+if($_SERVER ["REQUEST_METHOD"] == "POST"){
+    $productID = $_POST['productID'];
+    $productSalesID = $_POST['productSalesID'];
+    $productTotalPrice = $_POST['productTotalPrice'];
+    $updateUserPurchase = mysqli_query($connection, "UPDATE `$userPurchases` set orderStatus = 'Cancelled' where productID = '$productID' and salesID = '$productSalesID'");
+    $updateSales = mysqli_query($connection, "UPDATE sales set amount = amount - '$productTotalPrice' where salesID = '$productSalesID'");
+    $selectSales = "SELECT * FROM sales where salesID = '$productSalesID'";
+    $result = mysqli_query($connection,$selectSales);
+    $row = mysqli_fetch_array($result);
+    if($row['amount']==50){
+        $updateSales = mysqli_query($connection, "UPDATE sales set amount = 0, deliveryStatus = 'Cancelled' where salesID = '$productSalesID'");
+    }
+}            
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,21 +71,22 @@ $userPurchases = $userID.'purchases';
                             <th>Cancel</th>
                         </tr>
                         <?php
-                            $currentDate = date('Y-m-d');
-                            echo $currentDate;
-                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' AND datePurchased <= '$currentDate'";
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' AND datePurchase <= CURDATE() order by datePurchase desc";
                             $salesQuery = mysqli_query($connection,$sql);
                             if(empty($salesQuery)){
                                 echo "</table>";
                                 echo "no results found";
-                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
                             }else if($salesQuery->num_rows > 0 ){
                                 while($row = $salesQuery->fetch_assoc()){
                                     $userOrderStatus = $userPurchases.'.orderStatus';
                                     $productImage = $row['productImage'];
                                     $productName = $row['productTitle'];
                                     $productPrice = $row['productPrice'];
+                                    $productAmount = $row['amount'];
+                                    $productTotalPrice = $productPrice * $productAmount;
                                     $productStatus = $row['orderStatus'];
+                                    $productID = $row['productID'];
+                                    $productSalesID = $row['salesID'];
                                     ?>
                                     <tr>
                                         <td>
@@ -82,10 +96,15 @@ $userPurchases = $userID.'purchases';
                                             <?php echo $productName; ?>
                                         </td>
                                         <td>
-                                            <?php echo $productPrice; ?>
+                                            <?php echo $productTotalPrice; ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger">Cancel Order</button>
+                                            <form auto-complete= "off" action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
+                                                <input type="hidden" id="productID" name="productID" value="<?php echo $productID; ?>">
+                                                <input type="hidden" id="productSalesID" name="productSalesID" value="<?php echo $productSalesID; ?>">
+                                                <input type="hidden" id="productTotalPrice" name="productTotalPrice" value="<?php echo $productTotalPrice; ?>">
+                                                <button class="btn btn-danger">Cancel Order</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php

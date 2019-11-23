@@ -60,12 +60,11 @@ $userPurchases = $userID.'purchases';
                             <th>Status</th>
                         </tr>
                         <?php
-                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Delivered'";
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Delivered' order by datePurchase desc";
                             $salesQuery = mysqli_query($connection,$sql);
                             if(empty($salesQuery)){
                                 echo "</table>";
                                 echo "no results found";
-                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
                             }else if($salesQuery->num_rows > 0 ){
                                 while($row = $salesQuery->fetch_assoc()){
                             
@@ -73,7 +72,11 @@ $userPurchases = $userID.'purchases';
                                     $productImage = $row['productImage'];
                                     $productName = $row['productTitle'];
                                     $productPrice = $row['productPrice'];
+                                    $productAmount = $row['amount'];
+                                    $productTotalPrice = $productPrice * $productAmount;
                                     $productStatus = $row['orderStatus'];
+                                    $productID = $row['productID'];
+                                    $productSalesID = $row['salesID'];
                                     ?>
                                     <tr>
                                         <td>
@@ -83,7 +86,7 @@ $userPurchases = $userID.'purchases';
                                             <?php echo $productName; ?>
                                         </td>
                                         <td>
-                                            <?php echo $productPrice; ?>
+                                            <?php echo $productTotalPrice; ?>
                                         </td>
                                     </tr>
                                     <?php

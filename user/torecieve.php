@@ -57,7 +57,7 @@ $userPurchases = $userID.'purchases';
                             <th>Price</th>
                         </tr>
                         <?php
-                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered'";
+                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' order by datePurchase desc";
                             $salesQuery = mysqli_query($connection,$sql);
                             if(empty($salesQuery)){
                                 echo "</table>";
@@ -70,7 +70,11 @@ $userPurchases = $userID.'purchases';
                                     $productImage = $row['productImage'];
                                     $productName = $row['productTitle'];
                                     $productPrice = $row['productPrice'];
+                                    $productAmount = $row['amount'];
+                                    $productTotalPrice = $productPrice * $productAmount;
                                     $productStatus = $row['orderStatus'];
+                                    $productID = $row['productID'];
+                                    $productSalesID = $row['salesID'];
                                     ?>
                                     <tr>
                                         <td>
@@ -80,7 +84,7 @@ $userPurchases = $userID.'purchases';
                                             <?php echo $productName; ?>
                                         </td>
                                         <td>
-                                            <?php echo $productPrice; ?>
+                                            <?php echo $productTotalPrice; ?>
                                         </td>
                                     </tr>
                                     <?php
