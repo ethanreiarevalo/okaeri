@@ -30,6 +30,12 @@ if($row['email']==$userEmail){
         .show{
             display: block !important;
         }
+        .hide-c{
+            display: none !important;
+        }
+        .show-c{
+            display: block !important;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +57,11 @@ if($row['email']==$userEmail){
                     <input type="text" class="form-control" placeholder="Enter New Address">
                     <button class="btn btn-success mt-2">Submit</button>
                 </form>
-                <p>Contact Number: <?php echo $contact?></p>
+                <p>Contact Number: <?php echo $contact?><button class="btn btn-primary" onclick="popup_c()"><i class="fa fa-edit"></i></button></p>
+                <form id="myform-c" class="hide-c" action="">
+                    <input type="text" class="form-control" placeholder="Enter Contact Number">
+                    <button class="btn btn-success mt-2">Submit</button>
+                </form>
                 <p>Email: <?php echo $email?></p>
             </div>
             <div class="col-xl-4 col-lg-4">
@@ -74,6 +84,16 @@ if($row['email']==$userEmail){
             }
             else{
                 t.className = "hide";
+            }
+        }
+        var c = document.getElementById("myform-c");
+
+        function popup_c(){
+            if (c.className === "hide-c"){
+                c.className = "show-c";
+            }
+            else{
+                c.className = "hide-c";
             }
         }
     </script>
