@@ -1,7 +1,7 @@
 <!-- MANGA LIST WHEN MANGA LINK IS CLICKED -->
 <?php
 session_start();
-include('connection.php');
+include('../connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty($_POST['language']) && empty($_POST['genre'])){
