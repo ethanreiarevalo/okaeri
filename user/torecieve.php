@@ -48,52 +48,54 @@ $userPurchases = $userID.'purchases';
                     </div>
                 </a>
             </div>
-            <div id="table">
-                <div class="table table-responsive table-bordered mt-4">
-                    <table>
-                        <tr class="thead-dark">
-                            <th>Product Cover</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                        </tr>
-                        <?php
-                            $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' order by datePurchase desc";
-                            $salesQuery = mysqli_query($connection,$sql);
-                            if(empty($salesQuery)){
-                                echo "</table>";
-                                echo "no results found";
-                                // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
-                            }else if($salesQuery->num_rows > 0 ){
-                                while($row = $salesQuery->fetch_assoc()){
-                            
-                                    $userOrderStatus = $userPurchases.'.orderStatus';
-                                    $productImage = $row['productImage'];
-                                    $productName = $row['productTitle'];
-                                    $productPrice = $row['productPrice'];
-                                    $productAmount = $row['amount'];
-                                    $productTotalPrice = $productPrice * $productAmount;
-                                    $productStatus = $row['orderStatus'];
-                                    $productID = $row['productID'];
-                                    $productSalesID = $row['salesID'];
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
-                                        </td>
-                                        <td>
-                                            <?php echo $productName; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $productTotalPrice; ?>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }?>
-                                </table><?php
-                            }else{
-                                echo "no results found";
-                            }
-                        ?>
+            <div class="col-xl-10">
+                <div id="table">
+                    <div class="table table-responsive table-striped  mt-4">
+                        <table>
+                            <tr class="thead-dark text-center">
+                                <th>Product Cover</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                            </tr>
+                            <?php
+                                $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 AND orderStatus = 'Undelivered' order by datePurchase desc";
+                                $salesQuery = mysqli_query($connection,$sql);
+                                if(empty($salesQuery)){
+                                    echo "</table>";
+                                    echo "no results found";
+                                    // echo "<script>var p = document.getElementById('results');var node = document.createTextNode('This is new.');p.appendChild(node);</script>";
+                                }else if($salesQuery->num_rows > 0 ){
+                                    while($row = $salesQuery->fetch_assoc()){
+                                    
+                                        $userOrderStatus = $userPurchases.'.orderStatus';
+                                        $productImage = $row['productImage'];
+                                        $productName = $row['productTitle'];
+                                        $productPrice = $row['productPrice'];
+                                        $productAmount = $row['amount'];
+                                        $productTotalPrice = $productPrice * $productAmount;
+                                        $productStatus = $row['orderStatus'];
+                                        $productID = $row['productID'];
+                                        $productSalesID = $row['salesID'];
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <img class="card-img-top" src="../<?php echo $row['productImage']; ?>" alt="">
+                                            </td>
+                                            <td>
+                                                <?php echo $productName; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $productTotalPrice; ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }?>
+                                    </table><?php
+                                }else{
+                                    echo "no results found";
+                                }
+                            ?>
+                    </div>
                 </div>
             </div>
         </div>
