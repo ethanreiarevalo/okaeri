@@ -80,7 +80,7 @@
 
                                 <input type="hidden" id="productID" name="productID" value="<?php echo $productID; ?>">
                             </div>   
-                            <button id="button" class="btn btn-warning col-xl-2" onclick="popup()">Add to Cart</button>
+                            <button id="button" class="btn btn-warning col-xl-2">Add to Cart</button>
                         
                                 </form>
                         </div>
