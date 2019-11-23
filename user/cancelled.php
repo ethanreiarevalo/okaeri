@@ -19,11 +19,6 @@
                         All
                     </div>
                 </a>
-                <a href="topay.php">
-                    <div class="text-center py-3">
-                        To Pay
-                    </div>
-                </a>
                 <a href="toship.php">
                     <div class="text-center py-3">
                         To Ship
@@ -46,7 +41,7 @@
                 </a>
             </div>
             <div id="table">
-                <div class="table table-responsive table-bordered m-5">
+                <div class="table table-responsive table-bordered mt-4">
                     <table>
                         <tr class="thead-dark">
                             <th>Product Cover</th>

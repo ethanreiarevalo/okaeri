@@ -52,7 +52,7 @@ $sql = "SELECT * FROM ".$userID."purchases INNER JOIN products ON ".$userID."pur
                 </a>
             </div>
             <div id="table">
-                <div class="table table-responsive table-bordered m-5">
+                <div class="table table-responsive table-bordered">
                     <table>
                         <tr class="thead-dark">
                             <th>Product Cover</th>
