@@ -55,15 +55,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     <hr class="my-3 bg-warning">
                     <h5>Genre</h5>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="action" value="action">
                       <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre" id="horror" value="horror">
                       <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre" id="fantasy" value="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                     <button class="btn btn-success mt-3 w-100">Sort</button>

@@ -155,30 +155,30 @@ if(isset($_SESSION ["userID"])){
                 <div class="row">
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="adventure" value="adventure">
                       <label class="custom-control-label float-left" for="adventure">Adventure</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="romance">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="romance" value="romance">
                       <label class="custom-control-label float-left" for="romance">Romance</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="sliceoflife">
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="sliceoflife" value="slice of life">
                       <label class="custom-control-label float-left" for="sliceoflife">Slice of Life</label>
                     </div>
                   </div>
 
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action" value="action">
                       <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror" value="horror">
                       <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy" value="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                   </div>
