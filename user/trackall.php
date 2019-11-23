@@ -5,9 +5,8 @@ $userEmail = $_SESSION['userEmail'];
 $userID = $_SESSION['userID'];
 $userPurchases = $userID.'purchases';
 echo $userPurchases;
-$sql = "SELECT * FROM '$userPurchases' INNER JOIN products ON '$userPurchases'.productID = products.productID";
-
-
+// products INNER JOIN 
+// ON '$userPurchases'.productID = products.productID
 ?>
 
 
@@ -57,13 +56,20 @@ $sql = "SELECT * FROM '$userPurchases' INNER JOIN products ON '$userPurchases'.p
                             <th>Price</th>
                             <th>Status</th>
                         </tr>
-                        <?php 
+                        
+                        <?php
+                            $sql = "SELECT * FROM '$userPurchases'";
                             $result = mysqli_query($connection,$sql);
-                            $row = mysqli_fetch_array($result);
-                            if(!empty($row['productID'])){
-                                echo "success";
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){ 
+                                    if(!empty($row['productID'])){
+                                        echo "success";
+                                    }else{
+                                        echo "No Purchases Yet!";
+                                    }
+                                }
                             }else{
-                                echo "No Purchases Yet!";
+                                echo "no results found";
                             }
                         ?>
                     </table>
