@@ -83,6 +83,7 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                     <input type="checkbox" class="custom-control-input" name="genre[]" id="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
+                    <button class="btn btn-success mt-3 w-100">Sort</button>
                 </form>
             </div>
         </div>
