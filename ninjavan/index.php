@@ -51,6 +51,8 @@
                             </td>
                             <td>
                                 <p class="lead text-success">Delivered</p>
+                                <!-- <button class="btn btn-danger">Undelivered</button>
+                                <p class="lead text-danger">Cancelled</p> -->
                             </td>
                         </tr>
                     </table>
