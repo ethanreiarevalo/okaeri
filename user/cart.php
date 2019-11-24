@@ -190,40 +190,25 @@ if(empty($_SESSION['userID'])){
     </head>
     <!-- DELETE FROM CART UI -->
     <div id="delete" class="popup">
-        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
-            <form action="deletecart.php" enctype="multipart/form-data" method="post">
-                <div class="row justify-content-center">
-                     <p class="lead">Are you sure you want to delete</p>
-                     <input type="text" id="pid" style="display:none;" name="pid">
-                     <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-7 m-auto">
+                <div class="jumbotron text-center">
+                    <form action="deletecart.php" enctype="multipart/form-data" method="post">
+                        <div>
+                            <p class="lead">Are you sure you want to delete?</p>
+                            <input type="text" id="pid" style="display:none;" name="pid">
+                            <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
+                        </div>
+                        <hr class="my-4">
+                        <div>
+                            <button type="Submit" class="btn btn-primary m-1">Yes</button>
+                        </div>
+                    </form>
+                    <button class="btn btn-danger m-1" onclick ="popup()">No</button>
                 </div>
-
-                <hr class="my-4">
-                <div class="row justify-content-center">
-                    <button type="Submit" class="btn btn-primary m-1">Yes</button>
-                    
-                </div>
-            </form>
-                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
+            </div>
         </div>
-        
     </div>
-    <!-- UPDATE FROM CART UI -->
-    <div id="edit" class="popup">
-        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
-            <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_three()">x</div>
-            <form action="updatecart.php" enctype="multipart/form-data" method="post">
-                <p class="lead">Edit Quantity</p>
-                <input type="text" id="pid_update" style="display:none;" name="pid_update">
-                <input type="text" min="1" class="form-control" id="quantity_u" name="quantity_u">
-                <div class="row justify-content-center">
-                    <button type="Submit" class="btn btn-primary m-1">Update</button> 
-                </div>
-            </form>
-        </div>
-        
-    </div>
-    <!-- CHECKOUT COD -->
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
             <div class="jumbotron bg-dark text-white">
