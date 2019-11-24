@@ -3,8 +3,6 @@ session_start();
 include('../connection.php');
 $count = '';
 
-
-//sorting
 //add search post to search session
 if(!empty($_POST['search'])){
   $_SESSION['search'] = '%'.$_POST['search'].'%';
@@ -14,28 +12,36 @@ $search = $_SESSION['search'];
 
 //check if language was selected
 if(empty($_POST['Language'])){
-  $productLanguage = 'productLanguage is not null';
+  $productLanguage = "productLanguage is not null";
 }else{
-  $productLanguage = 'productLanguage = `'.$_POST['Language'].'`';
+  $productLanguage = "productLanguage = '".$_POST['Language']."'";
 }
 
 //check if genre was selected
+$productGenre = '';
 if(empty($_POST['genre'])){
-  $productGenre = 'productGenre is not null';
+  $productGenre = "productGenre is not null";
 }else{
-  $productGenre = 'productGenre LIKE %'.$_POST['genre'].'%';
+  $arrayGenre = $_POST['genre'];
+  foreach($arrayGenre as $arrGenre){
+    if($productGenre == ''){
+      $productGenre = "productGenre LIKE '%".$arrGenre."%'";
+    }else{
+      $productGenre = $productGenre." or productGenre LIKE '%".$arrGenre."%'";
+    }
+  }
+  $productGenre = "(".$productGenre.")";
 }
 
 //check if Type was selected
 if(empty($_POST['Type'])){
-  $productType = 'productType is not null';
+  $productType = "productType is not null";
 }else{
-  $productType = 'productType = `'.$_POST['Type'].'`';
+  $productType = "productType = '".$_POST['Type']."'";
 }
 
+//set get items query
 $getItems = "SELECT * FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
-
-
 
 //itemcount
 $getItemCount = "SELECT count(productTitle) as counted FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
@@ -48,7 +54,6 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where ".$pr
       $count = $arow['counted'];
     }
   }
-
 
 ?>
 

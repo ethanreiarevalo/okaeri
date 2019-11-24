@@ -2,15 +2,58 @@
 session_start();
 include('connection.php');
 $count = '';
-$search = '%'.$_POST['search'].'%';
-$getItemCount = "SELECT count(productTitle) as counted FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
+
+//add search post to search session
+if(!empty($_POST['search'])){
+  $_SESSION['search'] = '%'.$_POST['search'].'%';
+}
+
+$search = $_SESSION['search'];
+
+//check if language was selected
+if(empty($_POST['Language'])){
+  $productLanguage = "productLanguage is not null";
+}else{
+  $productLanguage = "productLanguage = '".$_POST['Language']."'";
+}
+
+//check if genre was selected
+$productGenre = '';
+if(empty($_POST['genre'])){
+  $productGenre = "productGenre is not null";
+}else{
+  $arrayGenre = $_POST['genre'];
+  foreach($arrayGenre as $arrGenre){
+    if($productGenre == ''){
+      $productGenre = "productGenre LIKE '%".$arrGenre."%'";
+    }else{
+      $productGenre = $productGenre." or productGenre LIKE '%".$arrGenre."%'";
+    }
+  }
+  $productGenre = "(".$productGenre.")";
+}
+
+//check if Type was selected
+if(empty($_POST['Type'])){
+  $productType = "productType is not null";
+}else{
+  $productType = "productType = '".$_POST['Type']."'";
+}
+
+//set get items query
+$getItems = "SELECT * FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
+
+//itemcount
+$getItemCount = "SELECT count(productTitle) as counted FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
   $resulta = mysqli_query($connection, $getItemCount);
-  if(mysqli_num_rows($resulta) > 0){
+  if(empty($resulta)){
+    $count = 0;
+  
+  }else if(mysqli_num_rows($resulta) > 0){
     while($arow = mysqli_fetch_array($resulta)){
       $count = $arow['counted'];
     }
   }
-
 
 ?>
 
@@ -91,8 +134,6 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
             <div class="container">
                 <div class="row justify-content-between">
                 <?php
-                    // include('connection.php');
-                    $getItems = "SELECT * FROM products where productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){
@@ -109,9 +150,10 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                             </div> 
                         </div>
                     <?php 
-                        }}else{
-                          echo "nothing found";
                         }
+                      }else{
+                          echo "nothing found";
+                      }
                     ?> 
                 </div>
             </div>
