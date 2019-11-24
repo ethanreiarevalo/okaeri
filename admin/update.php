@@ -5,12 +5,12 @@
     $pp_Name = $_POST['p_name'];
     $pStock = $_POST['stock'];
     $pPrice = $_POST['price'];
-    echo $pp_Name;
-    echo $pStock;
-    echo $pPrice;
+    // echo $pp_Name;
+    // echo $pStock;
+    // echo $pPrice;
     $updateBoth = mysqli_query($connection, "UPDATE `products` set `productStock` = '$pStock', `productPrice` = '$pPrice' where `productTitle` = '$pp_Name'");
     // echo "success";
     
     header("location: index.php");
-    //exit;
+    exit;
 ?>
