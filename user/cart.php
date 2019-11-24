@@ -209,6 +209,24 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </div>
+    <!--<div id="delete" class="popup">
+        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
+            <form action="deletecart.php" enctype="multipart/form-data" method="post">
+                <div class="row justify-content-center">
+                     <p class="lead">Are you sure you want to delete</p>
+                     <input type="text" id="pid" style="display:none;" name="pid">
+                     <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
+                </div>
+                <hr class="my-4">
+                <div class="row justify-content-center">
+                    <button type="Submit" class="btn btn-primary m-1">Yes</button>
+                    
+                </div>
+            </form>
+                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
+        </div>
+    </div>-->
+
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
             <div class="jumbotron bg-dark text-white">
