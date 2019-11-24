@@ -1,7 +1,7 @@
 <?php
 include('../connection.php');
 session_start();
-
+$checkoutMessage = '';
 if(empty($_SESSION['userID'])){
     echo "<script>window.location.href='../login.php';</script>";
 }else{
@@ -44,7 +44,7 @@ if(empty($_SESSION['userID'])){
     
         $userCart = $userID."cart";
         //transfer from cart to purchases
-        $cartSQL = "SELECT * FROM ".$userID."cart";
+        $cartSQL = "SELECT * FROM ".$userID."cart WHERE amount <= (SELECT productStock from products where products.productID = ".$userID."cart.productID)";
         $cartresult = mysqli_query($connection,$cartSQL);
         if(mysqli_num_rows($cartresult) > 0){
             while($cartrow = mysqli_fetch_array($cartresult)){
@@ -55,11 +55,22 @@ if(empty($_SESSION['userID'])){
             
                 //update stock
                 $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+                
+                $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart." where productID=".$cartProdID."");
             }
+        }
+        $selectSales = "SELECT * from ".$userID."cart";
+        $salesresult = mysqli_query($connection,$selectSales);
+        $salesrow = mysqli_fetch_array($salesresult);
+        if(!empty($salesrow)){
+            $checkoutMessage = 'Some Items were not purchased due to stock issues';
+            echo "<script> alert('$checkoutMessage'); </script>";
+        }else{
+            $checkoutMessage = 'All Orders is being processed';
+            echo "<script> alert('$checkoutMessage'); </script>";
         }
 
     //delete cart items
-        $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
 
     }
 }
@@ -90,6 +101,7 @@ if(empty($_SESSION['userID'])){
     <header>
         <?php include('nav.php');?>
     </header>
+    <!-- <p><?php echo $checkoutMessage; ?></p> -->
     <section id="tablecart" class="table-responsive">
         <table id="mytable" class="table table-bordered table-striped text-center mt-5">
             <thead class="thead-dark">
@@ -238,13 +250,34 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </div>
-
+    <div id="lowStock" class="popup">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-7 m-auto">
+                <div class="jumbotron text-center">
+                    <form action="deletecart.php" enctype="multipart/form-data" method="post">
+                        <div>
+                            <p class="lead"><?php echo $checkoutMessage; ?></p>
+                            <input type="text" id="pid" style="display:none;" name="pid">
+                            <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
+                        </div>
+                        <hr class="my-4">
+                        <div>
+                            <button type="Submit" class="btn btn-primary m-1">Yes</button>
+                        </div>
+                    </form>
+                    <button class="btn btn-danger m-1" onclick ="popup()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <!-- DO NOT CHANGE THIS -->
     <script>
         var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
         var a = document.getElementById("edit");
+        var l = document.getElementById("lowStock");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
