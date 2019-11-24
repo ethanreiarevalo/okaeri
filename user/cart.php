@@ -192,7 +192,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <div id="delete" class="popup">
         <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
             <form action="deletecart.php" enctype="multipart/form-data" method="post">
-                <div class="row">
+                <div class="row justify-content-center">
                      <p class="lead">Are you sure you want to delete</p>
                      <input type="text" id="pid" style="display:none;" name="pid">
                      <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
