@@ -268,26 +268,6 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </div>
-    <div id="lowStock" class="popup">
-        <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-7 m-auto">
-                <div class="jumbotron text-center">
-                    <form action="deletecart.php" enctype="multipart/form-data" method="post">
-                        <div>
-                            <p class="lead"><?php echo $checkoutMessage; ?></p>
-                            <input type="text" id="pid" style="display:none;" name="pid">
-                            <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
-                        </div>
-                        <hr class="my-4">
-                        <div>
-                            <button type="Submit" class="btn btn-primary m-1">Yes</button>
-                        </div>
-                    </form>
-                    <button class="btn btn-danger m-1" onclick ="popup()">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
     
 
     <!-- DO NOT CHANGE THIS -->
@@ -295,7 +275,6 @@ if(empty($_SESSION['userID'])){
         var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
         var a = document.getElementById("edit");
-        var l = document.getElementById("lowStock");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
