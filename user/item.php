@@ -6,6 +6,8 @@
 
     if(empty($_SESSION['userID'])){
         echo "<script>window.location.href='../login.php';</script>";
+    }else if(!($_SERVER ["REQUEST_METHOD"] == "POST")){
+        echo "<script>window.location.href='index.php';</script>";
     }else{
         $productID = $_POST['productID'];
         $sql = mysqli_query($connection, "SELECT * FROM products where productID = '$productID'");
