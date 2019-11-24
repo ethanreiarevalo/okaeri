@@ -209,7 +209,7 @@ if(empty($_SESSION['userID'])){
                         <div>
                             <p class="lead">Are you sure you want to delete?</p>
                             <input type="text" id="pid" style="display:none;" name="pid">
-                            <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
+                            <input type="hidden" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
                         </div>
                         <hr class="my-4">
                         <div>
@@ -245,7 +245,7 @@ if(empty($_SESSION['userID'])){
             <form action="updatecart.php" enctype="multipart/form-data" method="post">
                 <p class="lead">Edit Quantity</p>
                 <input type="text" id="pid_update" style="display:none;" name="pid_update">
-                <input type="text" min="1" class="form-control" id="quantity_u" name="quantity_u">
+                <input type="number" min="1" class="form-control" id="quantity_u" name="quantity_u">
                 <div class="row justify-content-center">
                     <button type="Submit" class="btn btn-primary m-1">Update</button> 
                 </div>
