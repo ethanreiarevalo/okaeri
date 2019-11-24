@@ -1,3 +1,9 @@
+<?php session_start();
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

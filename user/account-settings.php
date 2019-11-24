@@ -1,38 +1,41 @@
 <?php
 session_start();
 include('../connection.php');
-$userEmail = $_SESSION['userEmail'];
-$userPurchases = $_SESSION['userID'].'purchases';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty($_POST['newcontact'])){
-        $Address = $_POST['newaddress'];
-        $updateAddress = mysqli_query($connection,"UPDATE `userdetails` set `address` = '$Address' where `email` = '$userEmail'");
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}else{
+
+    $userEmail = $_SESSION['userEmail'];
+    $userPurchases = $_SESSION['userID'].'purchases';
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(empty($_POST['newcontact'])){
+            $Address = $_POST['newaddress'];
+            $updateAddress = mysqli_query($connection,"UPDATE `userdetails` set `address` = '$Address' where `email` = '$userEmail'");
+        }
+        else if(empty($_POST['newaddress'])){
+            $Contact = $_POST['newcontact'];
+            $updateContact = mysqli_query($connection,"UPDATE `userdetails` set `contactNo` = '$Contact' where `email` = '$userEmail'");
+        }else{
+            $Address = $_POST['newaddress'];
+            $contact = $_POST['newcontact'];
+            $updateBoth = mysqli_query($connection, "UPDATE ``userdetails set `contactNo` = '$Contact' and `address` = '$Address' where `email` = '$userEmail'");
+        }
     }
-    else if(empty($_POST['newaddress'])){
-        $Contact = $_POST['newcontact'];
-        $updateContact = mysqli_query($connection,"UPDATE `userdetails` set `contactNo` = '$Contact' where `email` = '$userEmail'");
-    }
-    else{
-        $Address = $_POST['newaddress'];
-        $contact = $_POST['newcontact'];
-        $updateBoth = mysqli_query($connection, "UPDATE ``userdetails set `contactNo` = '$Contact' and `address` = '$Address' where `email` = '$userEmail'");
+
+
+    $sql = "SELECT * FROM userdetails WHERE email = '$userEmail'";
+    $result = mysqli_query($connection,$sql);
+    $row = mysqli_fetch_array($result);
+
+    if($row['email']==$userEmail){
+        $name = $row['fName']." ".$row['lName'];
+        $birthday = $row['birthdate'];
+        $address = $row['address'];
+        $contact = $row['contactNo']; 
+        $sex = $row['sex'];
+        $email = $row['email'];
     }
 }
-
-
-$sql = "SELECT * FROM userdetails WHERE email = '$userEmail'";
-$result = mysqli_query($connection,$sql);
-$row = mysqli_fetch_array($result);
-
-if($row['email']==$userEmail){
-    $name = $row['fName']." ".$row['lName'];
-    $birthday = $row['birthdate'];
-    $address = $row['address'];
-    $contact = $row['contactNo']; 
-    $sex = $row['sex'];
-    $email = $row['email'];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

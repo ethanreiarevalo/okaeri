@@ -2,66 +2,66 @@
 include('../connection.php');
 session_start();
 
-$userID = $_SESSION['userID'];
-$cartName = $userID."cart";
-$userEmail = $_SESSION['userEmail'];
-// $productID = $_SESSION['productID'];
-// $itemQuantity = $_SESSION['itemQuantity'];
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}else{
+    $userID = $_SESSION['userID'];
+    $cartName = $userID."cart";
+    $userEmail = $_SESSION['userEmail'];
 
-$sql = "SELECT * FROM userdetails where email = '$userEmail'";
-$result = mysqli_query($connection,$sql);
-$row = mysqli_fetch_array($result);
-if($row['email']==$userEmail){
-    $name = $row['fName']." ".$row['lName'];
-    $address = $row['address'];
-    $contact = $row['contactNo']; 
-}
-
-if($_SERVER ["REQUEST_METHOD"] == "POST"){
-    $totalprice = $_POST['totalPrice'];
-    $currentDate = date("Y-m-d");
-    $paymentMethod = $_POST['paymentMethod'];
-    $salesID = "";
-
-    $totalprice = $totalprice + 50;
-    //input to sales table
-    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
-
-    //select salesID from sales table
-    $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
-    $salesresult = mysqli_query($connection,$selectSales);
-    $salesrow = mysqli_fetch_array($salesresult);
-    if(!empty($salesrow['salesID'])){
-        $salesID = $salesrow['salesID'];
-    }else{
-        echo "<script> alert('salesID is Empty')</script>";
+    $sql = "SELECT * FROM userdetails where email = '$userEmail'";
+    $result = mysqli_query($connection,$sql);
+    $row = mysqli_fetch_array($result);
+    if($row['email']==$userEmail){
+        $name = $row['fName']." ".$row['lName'];
+        $address = $row['address'];
+        $contact = $row['contactNo']; 
     }
-    
-    $userPurchases = $userID."purchases";
-    //insert delivery charge in purchases
-    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
-    
-    $userCart = $userID."cart";
-    //transfer from cart to purchases
-    $cartSQL = "SELECT * FROM ".$userID."cart";
-    $cartresult = mysqli_query($connection,$cartSQL);
-    if(mysqli_num_rows($cartresult) > 0){
-        while($cartrow = mysqli_fetch_array($cartresult)){
 
-            $cartProdID = $cartrow['productID'];
-            $cartProdAmount = $cartrow['amount'];
-            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
-            
-            //update stock
-            $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+    if($_SERVER ["REQUEST_METHOD"] == "POST"){
+        $totalprice = $_POST['totalPrice'];
+        $currentDate = date("Y-m-d");
+        $paymentMethod = $_POST['paymentMethod'];
+        $salesID = "";
 
+        $totalprice = $totalprice + 50;
+        //input to sales table
+        $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
 
+        //select salesID from sales table
+        $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
+        $salesresult = mysqli_query($connection,$selectSales);
+        $salesrow = mysqli_fetch_array($salesresult);
+        if(!empty($salesrow['salesID'])){
+            $salesID = $salesrow['salesID'];
+        }else{
+            echo "<script> alert('salesID is Empty')</script>";
         }
-    }
+    
+        $userPurchases = $userID."purchases";
+        //insert delivery charge in purchases
+        $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
+    
+        $userCart = $userID."cart";
+        //transfer from cart to purchases
+        $cartSQL = "SELECT * FROM ".$userID."cart";
+        $cartresult = mysqli_query($connection,$cartSQL);
+        if(mysqli_num_rows($cartresult) > 0){
+            while($cartrow = mysqli_fetch_array($cartresult)){
+
+                $cartProdID = $cartrow['productID'];
+                $cartProdAmount = $cartrow['amount'];
+                $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
+            
+                //update stock
+                $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+            }
+        }
 
     //delete cart items
-    $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
+        $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
 
+    }
 }
 
 ?>
@@ -133,12 +133,12 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                                 </td>
                                 <td>
                                     <?php echo $productQuantity; ?>
-                                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
                                 </td>
                                 <td>
                                     <?php echo $productTPrice; ?>
                                 </td>
                                 <td>
+                                    <button class="btn btn-primary" onclick="popup_three()"><i class="fa fa-edit"></i></button>
                                     <button onclick="popup()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -209,24 +209,6 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
     </div>
-    <!--<div id="delete" class="popup">
-        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
-            <form action="deletecart.php" enctype="multipart/form-data" method="post">
-                <div class="row">
-                     <p class="lead">Are you sure you want to delete</p>
-                     <input type="text" id="pid" style="display:none;" name="pid">
-                     <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
-                </div>
-                <hr class="my-4">
-                <div class="row justify-content-center">
-                    <button type="Submit" class="btn btn-primary m-1">Yes</button>
-                    
-                </div>
-            </form>
-                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
-        </div>
-    </div>-->
-
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
             <div class="jumbotron bg-dark text-white">
@@ -262,6 +244,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <script>
         var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
+        var a = document.getElementById("edit");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
@@ -280,6 +263,15 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             }
         }
 
+        function popup_three(){
+            if (a.className === "popup"){
+                a.className = "pop";
+            }
+            else{
+                a.className = "popup";
+            }
+        }
+
         var table = document.getElementById("mytable");
   
         for(var i = 1; i < table.rows.length; i++)
@@ -288,8 +280,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             {
                  //rIndex = this.rowIndex;
                  //alert(this.cells[1].innerHTML);
+                document.getElementById("pid_update").value = this.cells[0].innerHTML;
+                document.getElementById("quantity_u").value = this.cells[3].innerHTML;
                 document.getElementById("title_d").value = this.cells[2].innerHTML;
                 document.getElementById("pid").value = this.cells[0].innerHTML;
+                
             };
         }
     </script>

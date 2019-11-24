@@ -2,64 +2,38 @@
 <?php
 session_start();
 include('../connection.php');
-
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    // if(empty($_POST['language']) && empty($_POST['genre'])){
-    //     $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
-    // }
-    // else if(empty($_POST['genre'])){
-    //     $Language = $_POST['language'];
-    //     if($Language == "All"){
-    //         $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
-    //     }
-    //     else{
-    //         $getItems = "SELECT * FROM products where productType = 'Manga' and productLanguage = '$Language' order by productDateReceived desc";
-        
-    //     }
-    // }
-    // else if(empty($_POST['language'])){
-    //     $Genre ='%'.$_POST['genre'].'%';
-    //     $getItems = "SELECT * FROM products where productType = 'Manga' and productGenre LIKE '$Genre' order by productDateReceived desc";
-    // }
-    // else{
-    //     $Genre ='%'.$_POST['genre'].'%';
-    //     $Language = $_POST['language'];
-    //     if($Language == "All"){
-    //         $getItems = "SELECT * FROM products where productType = 'Manga' and productGenre LIKE '$Genre' order by productDateReceived desc";
-    //     }
-    //     else{
-    //         $getItems = "SELECT * FROM products where productType = 'Manga' and productLanguage = '$Language' and productGenre LIKE '$Genre' order by productDateReceived desc";
-        
-    //     }
-    // }
-    
-    if(empty($_POST['Language'])){
-        $productLanguage = "productLanguage is not null";
-      }else{
-        $productLanguage = "productLanguage = '".$_POST['Language']."'";
-      }
-      
-      //check if genre was selected
-      $productGenre = '';
-      if(empty($_POST['genre'])){
-        $productGenre = "productGenre is not null";
-      }else{
-        $arrayGenre = $_POST['genre'];
-        foreach($arrayGenre as $arrGenre){
-          if($productGenre == ''){
-            $productGenre = "productGenre LIKE '%".$arrGenre."%'";
-          }else{
-            $productGenre = $productGenre." or productGenre LIKE '%".$arrGenre."%'";
-          }
-        }
-        $productGenre = "(".$productGenre.")";
-      }
-      
-      //set get items query
-      $getItems = "SELECT * FROM products where productType = 'Manga' and ".$productGenre." and ".$productLanguage." and productID > 0 order by productDateReceived desc";
-      
+if(empty($_SESSION['userID'])){
+  echo "<script>window.location.href='../login.php';</script>";
 }else{
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if(empty($_POST['Language'])){
+      $productLanguage = "productLanguage is not null";
+    }else{
+      $productLanguage = "productLanguage = '".$_POST['Language']."'";
+    }
+      
+    //check if genre was selected
+    $productGenre = '';
+    if(empty($_POST['genre'])){
+      $productGenre = "productGenre is not null";
+    }else{
+      $arrayGenre = $_POST['genre'];
+      foreach($arrayGenre as $arrGenre){
+        if($productGenre == ''){
+          $productGenre = "productGenre LIKE '%".$arrGenre."%'";
+        }else{
+          $productGenre = $productGenre." or productGenre LIKE '%".$arrGenre."%'";
+        }
+      }
+      $productGenre = "(".$productGenre.")";
+    }
+      
+    //set get items query
+    $getItems = "SELECT * FROM products where productType = 'Manga' and ".$productGenre." and ".$productLanguage." and productID > 0 order by productDateReceived desc";
+      
+  }else{
     $getItems = "SELECT * FROM products where productType = 'Manga' order by productDateReceived desc";
+  }
 }
 ?>
 <!DOCTYPE html>
