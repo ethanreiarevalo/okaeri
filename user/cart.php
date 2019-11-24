@@ -2,66 +2,66 @@
 include('../connection.php');
 session_start();
 
-$userID = $_SESSION['userID'];
-$cartName = $userID."cart";
-$userEmail = $_SESSION['userEmail'];
-// $productID = $_SESSION['productID'];
-// $itemQuantity = $_SESSION['itemQuantity'];
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}else{
+    $userID = $_SESSION['userID'];
+    $cartName = $userID."cart";
+    $userEmail = $_SESSION['userEmail'];
 
-$sql = "SELECT * FROM userdetails where email = '$userEmail'";
-$result = mysqli_query($connection,$sql);
-$row = mysqli_fetch_array($result);
-if($row['email']==$userEmail){
-    $name = $row['fName']." ".$row['lName'];
-    $address = $row['address'];
-    $contact = $row['contactNo']; 
-}
-
-if($_SERVER ["REQUEST_METHOD"] == "POST"){
-    $totalprice = $_POST['totalPrice'];
-    $currentDate = date("Y-m-d");
-    $paymentMethod = $_POST['paymentMethod'];
-    $salesID = "";
-
-    $totalprice = $totalprice + 50;
-    //input to sales table
-    $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
-
-    //select salesID from sales table
-    $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
-    $salesresult = mysqli_query($connection,$selectSales);
-    $salesrow = mysqli_fetch_array($salesresult);
-    if(!empty($salesrow['salesID'])){
-        $salesID = $salesrow['salesID'];
-    }else{
-        echo "<script> alert('salesID is Empty')</script>";
+    $sql = "SELECT * FROM userdetails where email = '$userEmail'";
+    $result = mysqli_query($connection,$sql);
+    $row = mysqli_fetch_array($result);
+    if($row['email']==$userEmail){
+        $name = $row['fName']." ".$row['lName'];
+        $address = $row['address'];
+        $contact = $row['contactNo']; 
     }
-    
-    $userPurchases = $userID."purchases";
-    //insert delivery charge in purchases
-    $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
-    
-    $userCart = $userID."cart";
-    //transfer from cart to purchases
-    $cartSQL = "SELECT * FROM ".$userID."cart";
-    $cartresult = mysqli_query($connection,$cartSQL);
-    if(mysqli_num_rows($cartresult) > 0){
-        while($cartrow = mysqli_fetch_array($cartresult)){
 
-            $cartProdID = $cartrow['productID'];
-            $cartProdAmount = $cartrow['amount'];
-            $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
-            
-            //update stock
-            $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+    if($_SERVER ["REQUEST_METHOD"] == "POST"){
+        $totalprice = $_POST['totalPrice'];
+        $currentDate = date("Y-m-d");
+        $paymentMethod = $_POST['paymentMethod'];
+        $salesID = "";
 
+        $totalprice = $totalprice + 50;
+        //input to sales table
+        $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
 
+        //select salesID from sales table
+        $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
+        $salesresult = mysqli_query($connection,$selectSales);
+        $salesrow = mysqli_fetch_array($salesresult);
+        if(!empty($salesrow['salesID'])){
+            $salesID = $salesrow['salesID'];
+        }else{
+            echo "<script> alert('salesID is Empty')</script>";
         }
-    }
+    
+        $userPurchases = $userID."purchases";
+        //insert delivery charge in purchases
+        $deliveryCharge = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES (0, 1, '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
+    
+        $userCart = $userID."cart";
+        //transfer from cart to purchases
+        $cartSQL = "SELECT * FROM ".$userID."cart";
+        $cartresult = mysqli_query($connection,$cartSQL);
+        if(mysqli_num_rows($cartresult) > 0){
+            while($cartrow = mysqli_fetch_array($cartresult)){
+
+                $cartProdID = $cartrow['productID'];
+                $cartProdAmount = $cartrow['amount'];
+                $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
+            
+                //update stock
+                $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
+            }
+        }
 
     //delete cart items
-    $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
+        $deleteCart = mysqli_query($connection, "DELETE FROM ".$userCart."");
 
+    }
 }
 
 ?>
