@@ -221,15 +221,13 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </div>
-    <!-- EDIT MODAL -->
-    <div id="edit" class="popup">
+    <!--<div id="delete" class="popup">
         <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
-            <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_three()">x</div>
-            <form action="updatecart.php" enctype="multipart/form-data" method="post">
+            <form action="deletecart.php" enctype="multipart/form-data" method="post">
                 <div class="row justify-content-center">
-                     <p class="lead">Edit Quantity</p>
-                     <input type="text" id="uid" style="display:none;" name="uid">
-                     <input type="text" style="" class=" form-control w-100 text-dark" id="quantity_u" name="quantity_u">
+                     <p class="lead">Are you sure you want to delete</p>
+                     <input type="text" id="pid" style="display:none;" name="pid">
+                     <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
                 </div>
                 <hr class="my-4">
                 <div class="row justify-content-center">
@@ -237,6 +235,7 @@ if(empty($_SESSION['userID'])){
                     
                 </div>
             </form>
+                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
         </div>
     </div>-->
     <!-- UPDATE FROM CART UI -->
