@@ -3,38 +3,44 @@
     include('../connection.php');
     session_start();
     // $itemQuantity = '';
-    $productID = $_POST['productID'];
-    $sql = mysqli_query($connection, "SELECT * FROM products where productID = '$productID'");
-    $row = mysqli_fetch_array($sql);
-    if($row['productID'] == $productID){
-        $productTitle = $row['productTitle'];
-        $productAuthor = $row['productAuthor'];
-        $productPublisher = $row['productPublisher'];
-        $productType = $row['productType'];
-        $productLanguage = $row['productLanguage'];
-        $productDatePublished = $row['productDatePublished'];
-        $productGenre = $row['productGenre'];
-        $productImage = $row['productImage'];
-        $productStock = $row['productStock'];
-        $productPrice = $row['productPrice'];
-        $productDescription = $row['productDescription'];
-    }
-    if($_POST['itemQuantity']!=0){
+
+    if(empty($_SESSION['userID'])){
+        echo "<script>window.location.href='../login.php';</script>";
+    }else{
         $productID = $_POST['productID'];
-        $itemQuantity = $_POST['itemQuantity'];
-        $userID = $_SESSION['userID'];
-        $cartname = $userID."cart";
-
-        $selectCartsql = mysqli_query($connection, "SELECT * FROM `$cartname` where productID = '$productID'");
-        $cartrow = mysqli_fetch_array($selectCartsql);
-        if($cartrow['productID'] == $productID){
-            $sql = mysqli_query($connection,"UPDATE `$cartname` SET amount = amount + '$itemQuantity' WHERE productID = '$productID'");
-        }else{
-            $sql = mysqli_query($connection,"INSERT INTO `$cartname` VALUES ('$productID','$itemQuantity')");
+        $sql = mysqli_query($connection, "SELECT * FROM products where productID = '$productID'");
+        $row = mysqli_fetch_array($sql);
+        if($row['productID'] == $productID){
+            $productTitle = $row['productTitle'];
+            $productAuthor = $row['productAuthor'];
+            $productPublisher = $row['productPublisher'];
+            $productType = $row['productType'];
+            $productLanguage = $row['productLanguage'];
+            $productDatePublished = $row['productDatePublished'];
+            $productGenre = $row['productGenre'];
+            $productImage = $row['productImage'];
+            $productStock = $row['productStock'];
+            $productPrice = $row['productPrice'];
+            $productDescription = $row['productDescription'];
         }
-        echo "<script>window.location.href='cart.php';</script>";
-    }
+        if(empty($_POST['itemQuantity'])){
 
+        }else if($_POST['itemQuantity']!=0){
+            $productID = $_POST['productID'];
+            $itemQuantity = $_POST['itemQuantity'];
+            $userID = $_SESSION['userID'];
+            $cartname = $userID."cart";
+
+            $selectCartsql = mysqli_query($connection, "SELECT * FROM `$cartname` where productID = '$productID'");
+            $cartrow = mysqli_fetch_array($selectCartsql);
+            if($cartrow['productID'] == $productID){
+                $sql = mysqli_query($connection,"UPDATE `$cartname` SET amount = amount + '$itemQuantity' WHERE productID = '$productID'");
+            }else{
+                $sql = mysqli_query($connection,"INSERT INTO `$cartname` VALUES ('$productID','$itemQuantity')");
+            }
+            echo "<script>window.location.href='cart.php';</script>";
+        }
+    }
 
 ?>
 <!DOCTYPE html>

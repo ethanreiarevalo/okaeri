@@ -1,10 +1,13 @@
 <?php
 session_start();
 include('../connection.php');
-$userEmail = $_SESSION['userEmail'];
-$userID = $_SESSION['userID'];
-$userPurchases = $userID.'purchases';
-
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}else{
+    $userEmail = $_SESSION['userEmail'];
+    $userID = $_SESSION['userID'];
+    $userPurchases = $userID.'purchases';
+}
 ?>
 
 
