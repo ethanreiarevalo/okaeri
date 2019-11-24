@@ -54,9 +54,10 @@
                     <p class="lead">Genre: <?php echo $productGenre; ?></p>
                     <hr class="my-4">
                     <p>ITEM SUMMARY </br> <?php echo $productDescription;?></p>
-                    <b>Stock Available: <?php echo $productStock; ?></b>
+                    <b>Stock Available: <label id="p_stock" for=""><?php echo $productStock; ?></label></b>
+                    <b><label id="outofstock" class="text-danger" for=""></label></b>
                     <hr class="my-4">
-                    <div class="row">
+                    <div id="quantity-btn" class="row">
                         <div class="col-xl-5 d-flex">
                             <button id="minus-button" class="btn btn-danger mx-1" onclick="minusValue()">-</button>
                             <input type="text" class="form-control mx-1" id="integer_value">
@@ -68,7 +69,15 @@
             </div>
         </div>
     </section>
-
+    <script>
+        var pstock = document.getElementById("p_stock").textContent;
+        var intstock = parseInt(pstock);
+        if(intstock < 1){
+            document.getElementById("p_stock").style.display = "none";
+            document.getElementById("outofstock").textContent = "Out of Stock"
+            document.getElementById("quantity-btn").style.display = "none";
+        }
+    </script>
     <!-- DO NOT CHANGE THIS SECTION -->
     <!-- POPUP LOGIN FIRST -->
     <!-- DO NOT CHANGE -->
