@@ -133,12 +133,12 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                                 </td>
                                 <td>
                                     <?php echo $productQuantity; ?>
-                                    <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
                                 </td>
                                 <td>
                                     <?php echo $productTPrice; ?>
                                 </td>
                                 <td>
+                                    <button class="btn btn-primary" onclick="popup_three()"><i class="fa fa-edit"></i></button>
                                     <button onclick="popup()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -208,7 +208,22 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         </div>
         
     </div>
-
+    <!-- UPDATE FROM CART UI -->
+    <div id="edit" class="popup">
+        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
+            <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_three()">x</div>
+            <form action="updatecart.php" enctype="multipart/form-data" method="post">
+                <p class="lead">Edit Quantity</p>
+                <input type="text" id="pid_update" style="display:none;" name="pid_update">
+                <input type="text" min="1" class="form-control" id="quantity_u" name="quantity_u">
+                <div class="row justify-content-center">
+                    <button type="Submit" class="btn btn-primary m-1">Update</button> 
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <!-- CHECKOUT COD -->
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
             <div class="jumbotron bg-dark text-white">
@@ -244,6 +259,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <script>
         var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
+        var a = document.getElementById("edit");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
@@ -262,6 +278,15 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             }
         }
 
+        function popup_three(){
+            if (a.className === "popup"){
+                a.className = "pop";
+            }
+            else{
+                a.className = "popup";
+            }
+        }
+
         var table = document.getElementById("mytable");
   
         for(var i = 1; i < table.rows.length; i++)
@@ -270,8 +295,11 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             {
                  //rIndex = this.rowIndex;
                  //alert(this.cells[1].innerHTML);
+                document.getElementById("pid_update").value = this.cells[0].innerHTML;
+                document.getElementById("quantity_u").value = this.cells[3].innerHTML;
                 document.getElementById("title_d").value = this.cells[2].innerHTML;
                 document.getElementById("pid").value = this.cells[0].innerHTML;
+                
             };
         }
     </script>
