@@ -223,7 +223,6 @@ if(empty($_SESSION['userID'])){
                         </td>
                     </tr>
                 <?php
-                        
                         }
                     }
                 ?>
