@@ -8,7 +8,7 @@
     echo $pp_Name;
     echo $pStock;
     echo $pPrice;
-    $updateBoth = mysqli_query($connection, "UPDATE `products` set `productStock` = '$pStock' and `productPrice` = '$pPrice' where `productTitle` = '$pp_Name'");
+    $updateBoth = mysqli_query($connection, "UPDATE `products` set `productStock` = '$pStock', `productPrice` = '$pPrice' where `productTitle` = '$pp_Name'");
     // echo "success";
     
     //header("location: index.php");
