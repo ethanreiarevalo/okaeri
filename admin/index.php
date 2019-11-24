@@ -117,9 +117,9 @@ if(isset($_SESSION ["userID"])){
               <form action="<?php htmlspecialchars("PHP_SELF"); ?>" enctype="multipart/form-data" method="post"> 
                 <p class="lead">Add Item</p>
                 <hr class="my-2 bg-white">
-                <input type="text" class="form-control mb-1" placeholder="Title" name="title">
-                <input type="text" class="form-control mb-1" placeholder="Author" name="author">
-                <input type="text" class="form-control mb-1" placeholder="Publisher" name="publisher">
+                <input type="text" class="form-control mb-1" placeholder="Title" name="title" required>
+                <input type="text" class="form-control mb-1" placeholder="Author" name="author" required>
+                <input type="text" class="form-control mb-1" placeholder="Publisher" name="publisher" required>
                 <div class="input-group mb-1">
                     <select class="custom-select" id="inputGroupSelect01" name="language">
                       <option selected>Language</option>
@@ -138,16 +138,16 @@ if(isset($_SESSION ["userID"])){
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Date Published</label>
                     </div>
-                    <input type="date" class="form-control" name="dPublished">
+                    <input type="date" class="form-control" name="dPublished" required>
                 </div>
                 <div class="input-group mb-1">
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Date Received</label>
                     </div>
-                    <input type="date" class="form-control" name="dReceived">
+                    <input type="date" class="form-control" name="dReceived" required>
                 </div>
-                <input type="text" class="form-control mb-1" placeholder="Stock" name="stock">
-                <input type="text" class="form-control mb-1" placeholder="Price" name="price">
+                <input type="text" class="form-control mb-1" placeholder="Stock" name="stock" required>
+                <input type="text" class="form-control mb-1" placeholder="Price" name="price" required>
                 <div class="row">
                   <div class="container mb-1 col-xl-5">
                     <div class="container custom-control custom-checkbox">
@@ -179,9 +179,9 @@ if(isset($_SESSION ["userID"])){
                     </div>
                   </div>
                 </div>
-                <textarea name="summary" id="summary" class="form-control mb-1" cols="30" rows="10" placeholder="Enter Product Summary here"></textarea>
+                <textarea name="summary" id="summary" class="form-control mb-1" cols="30" rows="10" placeholder="Enter Product Summary here" required></textarea>
                 <label for="fileToUpload" class="float-left">Upload a cover image (200x300)</label>
-                <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file mb-1" placeholder="Upload Photo" accept="image/*">
+                <input type="file" id="fileToUpload" name="fileToUpload" class="form-control-file mb-1" placeholder="Upload Photo" accept="image/*" required>
                 <button class="btn btn-warning" type="submit">Submit</button>
               </form>
             </div>
