@@ -75,64 +75,10 @@
                 </div>
             </div>
         </div>
-                <!-- <tr>
-                    <td>
-                        John doe
-                    </td>
-                    <td>
-                        Regina Ville Saint Street
-                    </td>
-                    <td>
-                        09120012378
-                    </td>
-                    <td>
-                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                    </td>
-                </tr> -->
 
             </table>
         </div>
-    </section>
-    <!-- <section class="container">
-        <div class="jumbotron">
-            <p class="lead">Add courier account</p>
-            <hr class="my-4">
-            <form action="" method="post">
-                <input type="text" class="form-control m-1" name="name" id="name" placeholder="Name">
-                <input type="password" class="form-control m-1" name="password" id="password" placeholder="courier password">
-                <input type="text" class="form-control m-1" disabled value="Courier">
-                <button class="btn btn-primary m-1">Add the Courier</button>
-            </form>
-        </div>
-    </section> -->
-
-    <!-- <script>
-        function press(){
-            var table = document.getElementById('table');
-                var active = '<button id="status" class="btn btn-primary"><i>Active</i></button>';
-                var inactive = '<button id="status" onclick="press()" class="btn btn-primary"><i>Inactive</i></button>';
-                for(var i = 1; i < table.rows.length; i++)
-                {
-                    table.rows[i].onclick = function()
-                    {
-                         rIndex = this.rowIndex;
-                        // alert(this.cells[4].innerHTML);
-                        var thevalue  = this.cells[4].innerHTML.toString();
-                        if(thevalue ===  toString(inactive)){
-                            alert("try");
-                        }else{
-                            alert(thevalue+inactive);
-                        }
-                        
-                        // document.getElementById('itemcode').value = this.cells[0].innerHTML;
-                        // document.getElementById("p_name").value = this.cells[1].innerHTML;
-                        // document.getElementById("author").value = this.cells[2].innerHTML;
-                        // document.getElementById("publisher").value = this.cells[3].innerHTML;
-                        // document.getElementById("language").value = this.cells[4].innerHTML;
-                    };
-                }
-        }
-    </script> -->
+    </section>]
     <?php include('script.php');?>
 </body>
 </html>
