@@ -91,14 +91,15 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
         <?php include('nav.php');?>
     </header>
     <section id="tablecart" class="table-responsive">
-        <table class="table table-bordered table-striped text-center mt-5">
+        <table id="mytable" class="table table-bordered table-striped text-center mt-5">
             <thead class="thead-dark">
                 <tr>
+                    <th style="display:none;">Product ID</th>
                     <th>Cover</th>
                     <th>Title</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th> </th>
+                    <th></th>
                 </tr>
             </thead>
             <?php
@@ -113,7 +114,6 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                         $productDetailsQuery = mysqli_query($connection,$productDetails);
                         $productRow = mysqli_fetch_array($productDetailsQuery);
                         if($productRow['productID'] == $productID){
-                            
                             $productTitle = $productRow['productTitle'];
                             $productImage = $productRow['productImage'];
                             $productPrice = $productRow['productPrice'];
@@ -122,6 +122,9 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                                 // echo $productTitle." ".$productImage." ".$productPrice;
                             ?>
                             <tr>
+                                <td style="display:none;">
+                                    <?php echo $productID;?>
+                                </td>
                                 <td>
                                     <img src="../<?php echo $productImage;?>" alt="">
                                 </td>
@@ -161,7 +164,6 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     </section>
 
     <!-- DO NOT CHANGE THIS SECTION -->
-    <!-- POPUP LOGIN FIRST -->
     <!-- DO NOT CHANGE -->
     <head>
         <style>
@@ -188,15 +190,22 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     </head>
     <!-- DELETE FROM CART UI -->
     <div id="delete" class="popup">
-       <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto">
-            <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
-           <p class="lead">Are you sure you want to delete <label></label> from cart?</p>
-           <hr class="my-4">
-        <div class="row justify-content-center">
-            <button class="btn btn-primary m-1">Yes</button>
-            <button class="btn btn-danger m-1">No</button>
+        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
+            <form action="deletecart.php" enctype="multipart/form-data" method="post">
+                <div class="row justify-content-center text-center">
+                     <p class="lead">Are you sure you want to delete</p>
+                     <input type="text" id="pid" style="display:none;" name="pid">
+                     <input type="text" style="" class="form-control lead text-center text-dark" id="title_d" name="title_d">
+                </div>
+
+                <hr class="my-4">
+                <div class="row justify-content-center">
+                    <button type="Submit" class="btn btn-primary m-1">Yes</button>
+                    
+                </div>
+            </form>
+                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
         </div>
-       </div>
         
     </div>
 
@@ -251,6 +260,19 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             else{
                 h.className = "popup";
             }
+        }
+
+        var table = document.getElementById("mytable");
+  
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                 //rIndex = this.rowIndex;
+                 //alert(this.cells[1].innerHTML);
+                document.getElementById("title_d").value = this.cells[2].innerHTML;
+                document.getElementById("pid").value = this.cells[0].innerHTML;
+            };
         }
     </script>
     <?php include('script.php');?>
