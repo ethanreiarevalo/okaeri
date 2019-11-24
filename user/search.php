@@ -11,39 +11,39 @@ if(!empty($_POST['search'])){
 }
 
 $search = $_SESSION['search'];
-echo $search;
-// $search = '%'.$_POST['search'].'%';
 
 //check if language was selected
 if(empty($_POST['Language'])){
-  $productLanguage = 'is not null';
+  $productLanguage = 'productLanguage is not null';
 }else{
-  $productLanguage = '=`'.$_POST['Language'].'`';
+  $productLanguage = 'productLanguage = `'.$_POST['Language'].'`';
 }
-echo $productLanguage;
 
 //check if genre was selected
 if(empty($_POST['genre'])){
-  $productGenre = 'null';
+  $productGenre = 'productGenre is not null';
 }else{
-  $productGenre = '%'.$_POST['genre'].'%';
+  $productGenre = 'productGenre LIKE %'.$_POST['genre'].'%';
 }
-echo $productGenre;
 
 //check if Type was selected
 if(empty($_POST['Type'])){
-  $productType = 'is not null';
+  $productType = 'productType is not null';
 }else{
-  $productType = '=`'.$_POST['Type'].'`';
+  $productType = 'productType = `'.$_POST['Type'].'`';
 }
-echo $productType;
 
-$getItems = "SELECT * FROM products where productType $productType and productLanguage $productLanguage and productTitle LIKE $search and productID > 0 order by productDateReceived desc";
+$getItems = "SELECT * FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
+
+
 
 //itemcount
-$getItemCount = "SELECT count(productTitle) as counted FROM products where productType = '$productType' and productLanguage = '$productLanguage' and productTitle LIKE '$search' and productGenre LIKE '$productGenre' and productID > 0 order by productDateReceived desc";
+$getItemCount = "SELECT count(productTitle) as counted FROM products where ".$productType." and ".$productGenre." and ".$productLanguage." and productTitle LIKE '$search' and productID > 0 order by productDateReceived desc";
   $resulta = mysqli_query($connection, $getItemCount);
-  if(mysqli_num_rows($resulta) > 0){
+  if(empty($resulta)){
+    $count = 0;
+  
+  }else if(mysqli_num_rows($resulta) > 0){
     while($arow = mysqli_fetch_array($resulta)){
       $count = $arow['counted'];
     }
@@ -79,7 +79,7 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                 <h3>Search Result</h3>
                 <p class="mb-3"><?php echo $count; ?> Results found.</p>
                 <p class="mb-3">Sort By</p>
-                <form action="" method="">
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>"enctype="multipart/form-data" method="post">
                     <h5>Type</h5>
                     <div class="custom-control custom-radio">
                       <input type="radio" class="custom-control-input" id="All" name="Type" value="MangaandLN">
@@ -131,7 +131,9 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                 <?php
                     // include('connection.php');
                     $result = mysqli_query($connection, $getItems);
-                    if(mysqli_num_rows($result) > 0){
+                    if(empty($result)){
+                      echo "no results found";
+                    }else if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){
                     ?>
                         <div class="card col-lg-2 col-md-3 m-3 shadow border border-warning p-0">
@@ -146,7 +148,8 @@ $getItemCount = "SELECT count(productTitle) as counted FROM products where produ
                             </div> 
                         </div>
                     <?php 
-                        }}else{
+                        }
+                      }else{
                           echo "nothing found";
                         }
                     ?> 
