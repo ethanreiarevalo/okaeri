@@ -81,10 +81,6 @@ if(isset($_SESSION ["userID"])){
           echo "Sorry, there was an error uploading your file.";
         }
       }
-
-
-
-
     } else {
       echo "upload failed!!!".mysqli_error($connection);
     }
@@ -210,7 +206,7 @@ if(isset($_SESSION ["userID"])){
                   $result = mysqli_query($connection,$sql);
                   if($result->num_rows >0){
                     while($row = $result->fetch_assoc()){
-                      echo '<tr><td><center>' .$row["productTitle"]. '</center></td>
+                      echo '<tr><td>' .$row["productTitle"]. '</td>
                       <td>' .$row["productAuthor"]. '</div></td>
                       <td>' .$row["productPublisher"]. '</div></td>
                       <td>' .$row["productLanguage"]. '</td>
@@ -249,7 +245,8 @@ if(isset($_SESSION ["userID"])){
         <div class="row w-100 justify-content-center">
             <div class="jumbotron text-center">
                 <div class="cl row justify-content-center bg-warning text-dark" onclick="popup()">x</div>
-                <form action="">
+                <form action="update.php" enctype="multipart/form-data" method="post">
+                  <input type="text" class="form-control" name="p_name" id="p_name">
                   <label for="stock" >Edit Stock</label>
                   <input type="number" id="stock" min="0" class="form-control" name="stock">
                   <label for="price">Edit Price</label>
@@ -280,7 +277,7 @@ if(isset($_SESSION ["userID"])){
       {
            //rIndex = this.rowIndex;
            //alert(this.cells[1].innerHTML);
-           
+          document.getElementById("p_name").value = this.cells[0].innerHTML;
           document.getElementById("stock").value = this.cells[7].innerHTML;
           document.getElementById("price").value = this.cells[8].innerHTML;
       };
