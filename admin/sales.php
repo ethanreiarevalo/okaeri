@@ -218,11 +218,11 @@ if(empty($_SESSION['userID'])){
                         <td>
                         <?php echo $salesPaymentMethod; ?>
                         </td>
+                        <td>
                         <?php echo $salesStatus; ?>
                         </td>
                     </tr>
                 <?php
-                        <td>
                         }
                     }
                 ?>
