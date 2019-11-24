@@ -11,6 +11,6 @@
     $updateBoth = mysqli_query($connection, "UPDATE `products` set `productStock` = '$pStock' and `productPrice` = '$pPrice' where `productTitle` = '$pp_Name'");
     // echo "success";
     
-    //header("location: index.php");
+    header("location: index.php");
     //exit;
 ?>
