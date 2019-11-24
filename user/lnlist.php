@@ -4,36 +4,60 @@ session_start();
 include('../connection.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    // $Language = $_POST['Language'];
-    if(empty($_POST['Language']) && empty($_POST['genre'])){
-        $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
-    }
-    else if(empty($_POST['genre'])){
-        $Language = $_POST['Language'];
-        if($Language == "All"){
-            $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
-        }
-        else{
-            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
+    // // $Language = $_POST['Language'];
+    // if(empty($_POST['Language']) && empty($_POST['genre'])){
+    //     $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+    // }
+    // else if(empty($_POST['genre'])){
+    //     $Language = $_POST['Language'];
+    //     if($Language == "All"){
+    //         $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
+    //     }
+    //     else{
+    //         $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' order by productDateReceived desc";
         
-        }
-    }
-    else if(empty($_POST['Language'])){
-        $Genre ='%'.$_POST['genre'].'%';
-        $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
-    }
-    else{
-        $Genre ='%'.$_POST['genre'].'%';
-        $Language = $_POST['Language'];
-        if($Language == "All"){
-            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
-        }
-        else{
-            $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' and productGenre LIKE '$Genre' order by productDateReceived desc";
+    //     }
+    // }
+    // else if(empty($_POST['Language'])){
+    //     $Genre ='%'.$_POST['genre'].'%';
+    //     $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
+    // }
+    // else{
+    //     $Genre ='%'.$_POST['genre'].'%';
+    //     $Language = $_POST['Language'];
+    //     if($Language == "All"){
+    //         $getItems = "SELECT * FROM products where productType = 'Light Novel' and productGenre LIKE '$Genre' order by productDateReceived desc";
+    //     }
+    //     else{
+    //         $getItems = "SELECT * FROM products where productType = 'Light Novel' and productLanguage = '$Language' and productGenre LIKE '$Genre' order by productDateReceived desc";
         
+    //     }
+    // }
+    if(empty($_POST['Language'])){
+        $productLanguage = "productLanguage is not null";
+      }else{
+        $productLanguage = "productLanguage = '".$_POST['Language']."'";
+      }
+      
+      //check if genre was selected
+      $productGenre = '';
+      if(empty($_POST['genre'])){
+        $productGenre = "productGenre is not null";
+      }else{
+        $arrayGenre = $_POST['genre'];
+        foreach($arrayGenre as $arrGenre){
+          if($productGenre == ''){
+            $productGenre = "productGenre LIKE '%".$arrGenre."%'";
+          }else{
+            $productGenre = $productGenre." or productGenre LIKE '%".$arrGenre."%'";
+          }
         }
-    }
-    
+        $productGenre = "(".$productGenre.")";
+      }
+      
+      //set get items query
+      $getItems = "SELECT * FROM products where productType = 'Light Novel' and ".$productGenre." and ".$productLanguage." and productID > 0 order by productDateReceived desc";
+      
 }else{
     $getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
 }
@@ -78,15 +102,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     <hr class="my-3 bg-warning">
                     <h5>Genre</h5>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre" id="action" value="action">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="action" value="action">
                       <label class="custom-control-label float-left" for="action">Action</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="genre" id="horror" value="horror">
+                      <input type="checkbox" class="custom-control-input" name="genre[]" id="horror" value="horror">
                       <label class="custom-control-label float-left" for="horror">Horror</label>
                     </div>
                     <div class="container custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="genre" id="fantasy" value="fantasy">
+                    <input type="checkbox" class="custom-control-input" name="genre[]   " id="fantasy" value="fantasy">
                       <label class="custom-control-label float-left" for="fantasy">Fantasy</label>
                     </div>
                     <button class="btn btn-success mt-3 w-100">Sort</button>
