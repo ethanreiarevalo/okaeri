@@ -44,7 +44,7 @@ if(empty($_SESSION['userID'])){
     
         $userCart = $userID."cart";
         //transfer from cart to purchases
-        $cartSQL = "SELECT * FROM ".$userID."cart WHERE amount <= (SELECT productStock from products where products.productID = ".$userID."cart.productID)";
+        $cartSQL = "SELECT * FROM ".$userID."cart WHERE amount <= (SELECT productStock from products where products.productID = ".$userID."cart.productID) and amount > 0";
         $cartresult = mysqli_query($connection,$cartSQL);
         if(mysqli_num_rows($cartresult) > 0){
             while($cartrow = mysqli_fetch_array($cartresult)){
@@ -116,7 +116,7 @@ if(empty($_SESSION['userID'])){
             </thead>
             <?php
                 $totalPrice = 0;
-                $cartSql = "SELECT * FROM `$cartName`";
+                $cartSql = "SELECT * FROM `$cartName` where amount > 0";
                 $cartQuery = mysqli_query($connection,$cartSql);
                 if($cartQuery->num_rows > 0 ){
                     while($row = $cartQuery->fetch_assoc()){
