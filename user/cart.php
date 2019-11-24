@@ -188,13 +188,13 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     </head>
     <!-- DELETE FROM CART UI -->
     <div id="delete" class="popup">
-       <div class="jumbotron">
+       <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto">
             <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
            <p class="lead">Are you sure you want to delete <label></label> from cart?</p>
            <hr class="my-4">
-        <div class="row">
-            <button class="btn btn-primary">Yes</button>
-            <button class="btn btn-danger">No</button>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary m-1">Yes</button>
+            <button class="btn btn-danger m-1">No</button>
         </div>
        </div>
         
