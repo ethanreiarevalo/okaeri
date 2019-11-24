@@ -238,7 +238,7 @@ if(empty($_SESSION['userID'])){
                 <button class="btn btn-danger m-1" onclick ="popup()">No</button>
         </div>
     </div>-->
-    <!-- UPDATE FROM CART UI --><!--was removed earlier
+    <!-- UPDATE FROM CART UI -->
     <div id="edit" class="popup">
         <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
             <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup_three()">x</div>
@@ -253,7 +253,7 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
 
-    </div>-->
+    </div>
     <!-- CHECKOUT COD -->
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
