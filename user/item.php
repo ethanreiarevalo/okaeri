@@ -79,7 +79,7 @@
                     <hr class="my-4">
                     <p>ITEM SUMMARY </br> <?php echo $productDescription;?></p>
                     <b>Stock Available: <label id="p_stock" for=""><?php echo $productStock; ?></label></b>
-                    <b><label id="outofstock" for=""></label></b>
+                    <b><label id="outofstock" class="text-danger" for=""></label></b>
                     
                     <hr class="my-4">
                         <div id="quantity-btn" class="row">
