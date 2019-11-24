@@ -72,7 +72,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include('css.php');?>
-    <title>OKAERI | </title>
+    <title>OKAERI | Cart</title>
     <style>
         #checkout{
             position:fixed;
@@ -136,7 +136,7 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                                     <?php echo $productTPrice; ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <button onclick="popup()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <?php  
@@ -186,47 +186,19 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
             }
         </style>
     </head>
-    <!-- <div id="modal1" class="popup">
-        <div class="row w-100 justify-content-center">
-            <div class="jumbotron bg-dark text-white">
-                <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
-                <h4>Please Confirm the information below</h4>
-                <p for="">Addressed to: <?php echo $name; ?></p>
-                <p for="">Delivery Address: <?php echo $address; ?></p>
-                <p for="">Delivered by: Ninja Van</p>
-                <div class="container">
-                    <div class="row align-content-center">
-                        <label for="deliveramount">Delivery Amount:</label>
-                        <input type="text" id="deliveramount" class="form-control col-xl-2" disabled value="50">
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row align-content-center">
-                        <label for="promo">Delivery Amount:</label>
-                        <input type="text" id="promo" class="form-control col-xl-8" placeholder="Enter promo/voucher code">
-                    </div>
-                </div>
-                <hr class="my-2 bg-warning">
-                <div class="container">
-                    <h6>Please Enter Debit Card Info</h6>
-                    <div class="row justify-content-center mb-2">
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="0000">
-                        <span>-</span>
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="0000">
-                        <span>-</span>
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="0000">
-                        <span>-</span>
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="0000">
-                    </div>
-                    <div class="row justify-content-center mb-2">
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="cvv">
-                        <input type="text" class="form-control col-xl-2 text-center mx-1" placeholder="Until">
-                    </div>
-                </div>
-                <button class="btn btn-danger w-100">Checkout</button>
-            </div>
+    <!-- DELETE FROM CART UI -->
+    <div id="delete" class="popup">
+       <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto">
+            <div class="cl row justify-content-center bg-warning text-dark text-center" onclick="popup()">x</div>
+           <p class="lead">Are you sure you want to delete <label></label> from cart?</p>
+           <hr class="my-4">
+        <div class="row justify-content-center">
+            <button class="btn btn-primary m-1">Yes</button>
+            <button class="btn btn-danger m-1">No</button>
         </div>
-    </div> -->
+       </div>
+        
+    </div>
 
     <div id="modal2" class="popup">
         <div class="row w-100 justify-content-center m-0">
@@ -255,14 +227,13 @@ if($_SERVER ["REQUEST_METHOD"] == "POST"){
                 <button class="btn btn-danger w-100">Checkout</button>
                 </form>
             </div>
-            
         </div>
     </div>
 
 
     <!-- DO NOT CHANGE THIS -->
     <script>
-        var t = document.getElementById("modal1");
+        var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
         function popup(){
             if (t.className === "popup"){
