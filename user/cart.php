@@ -181,7 +181,7 @@ if(empty($_SESSION['userID'])){
                 height:150px;
             }
             .cl{
-                height: 20px;
+                height: 25px;
                 width: 20px;
                 border-radius: 50%;
                 cursor: pointer;
