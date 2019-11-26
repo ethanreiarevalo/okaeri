@@ -15,9 +15,9 @@
                 <div class="p-3">
                     <h6 class= "pb-3 font-weight-bold"></h6>
                     <ul class= "list-unstyled">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Light Novel</a></li>
-                        <li><a href="">Manga</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="lnlist.php">Light Novel</a></li>
+                        <li><a href="mangalist.php">Manga</a></li>
                     </ul>
                 </div>
             </div>
