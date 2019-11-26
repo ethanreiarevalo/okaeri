@@ -33,7 +33,7 @@
             </div>
             <div class="col-xl-3 col-md-12 p-0">
                 <div class="p-3">
-                    <h6 class= "pb-3 font-weight-bold">CONTACT US</h6>
+                    <h6 class= "pb-3 font-weight-bold">Contact Us</h6>
                     <ul class= "list-unstyled">
                         <li><a href=""><i class= "fa fa-map-marker text-warning"></i> Blk 138 Lt 22 Ph 1 Mabuhay City Paliparan 3 Dasma Cavite</a></li>
                         <li><a href=""><i class= "fa fa-phone text-warning"></i> (046) 930 2346 (Landline)</a></li>
