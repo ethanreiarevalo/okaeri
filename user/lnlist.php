@@ -119,6 +119,7 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </section>
+    <?php include('footer.php');?>
     <?php include('script.php');?>
 </body>
 </html>

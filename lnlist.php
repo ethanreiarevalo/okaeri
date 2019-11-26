@@ -146,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             </div>
         </div>
     </section>
-    
+    <?php include('footer.php');?>
     <?php include('script.php');?>
 </body>
 </html>

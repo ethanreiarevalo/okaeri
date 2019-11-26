@@ -146,6 +146,7 @@ if(empty($_SESSION['userID'])){
             }
         }
     </script>
+    <?php include('footer.php');?>
     <?php include('script.php');?>
 </body>
 </html>
