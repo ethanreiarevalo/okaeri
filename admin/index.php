@@ -214,9 +214,14 @@ if(isset($_SESSION ["userID"])){
                       <td>' .$row["productDateReceived"]. '</td>
                       <td>' .$row["productDatePublished"]. '</div></td>
                       <td>' .$row["productStock"]. '</div></td>
-                      <td>' .$row["productPrice"]. '</div></td>
-                      <td><center><button class= "btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></center></td></tr>'
-                      ;
+                      <td>' .$row["productPrice"]. '</div></td>';
+                      if($row["productTitle"] == "Delivery Charge"){
+
+                      }
+                      else{
+                      echo  '<td><button class= "btn btn-primary" onclick="popup()"><i class="fa fa-edit"></i></button></td></tr>';
+                      }
+                      
                     }
                   }
                 ?>
