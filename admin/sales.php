@@ -169,7 +169,7 @@ if(empty($_SESSION['userID'])){
         </div>
         <center>
         <div id="table" class="table-responsive mt-5">
-            <table class="table table-responsive table-bordered">
+            <table class="table table-responsive table-bordered text-center">
                 <tr class="thead-dark">
                     <th>
                         Sales Id
@@ -204,22 +204,28 @@ if(empty($_SESSION['userID'])){
                 ?>
                     <tr>
                         <td>
-                        <?php echo $salesID; ?>
+                            <?php echo $salesID; ?>
                         </td>
                         <td>
-                        <?php echo $salesAmount; ?>
+                            <?php echo $salesAmount; ?>
                         </td>
                         <td>
-                        <?php echo $salesDate; ?>
+                            <?php echo $salesDate; ?>
                         </td>
                         <td>
-                        <?php echo $salesInvoice; ?>
+                            <?php echo $salesInvoice; ?>
                         </td>
                         <td>
-                        <?php echo $salesPaymentMethod; ?>
+                            <?php echo $salesPaymentMethod; ?>
                         </td>
                         <td>
-                        <?php echo $salesStatus; ?>
+                            <?php 
+                                if($salesStatus == "Delivered"){
+                                    echo '<label class="text-success text-center">Delivered</label>';
+                                }else if($salesStatus == "Undelivered"){
+                                    echo '<button class="btn btn-danger">Undelivered</button>';
+                                }
+                            ?>
                         </td>
                     </tr>
                 <?php
