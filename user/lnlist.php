@@ -93,7 +93,7 @@ if(empty($_SESSION['userID'])){
         </div>
         <div id="card" class="col-xl-9 mt-5 overflow-hidden">
             <div class="container">
-                <div class="row justify-content-between">
+                <div class="row justify-content-start">
                 <?php
                     include('../connection.php');
                     //$getItems = "SELECT * FROM products where productType = 'Light Novel' order by productDateReceived desc";
@@ -108,7 +108,7 @@ if(empty($_SESSION['userID'])){
                                 <p class="card-text text-danger font-weight-bold">Price: ₱<?php echo $row['productPrice'];?></p>
                                 <form action="item.php" method="post">
                                     <input type="hidden" id="productID" name="productID" value="<?php echo$row['productID']; ?>">
-                                    <button class="btn btn-success">Add to cart</button>
+                                    <button class="btn btn-success">View</button>
                                 </form>
                             </div> 
                         </div>
