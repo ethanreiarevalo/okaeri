@@ -5,7 +5,7 @@
         }
     </style>
 </head>
-<nav class="navbar navbar-expand-sm navbar-light bg-dark text-white">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-white">
     <a href="index.php"><img src="image/OKAERI.png" alt=""></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
         aria-expanded="false" aria-label="Toggle navigation">

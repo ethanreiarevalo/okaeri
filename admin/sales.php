@@ -229,6 +229,8 @@ if(empty($_SESSION['userID'])){
                                     <input type="hidden" name="dInvoice" id="dInvoice" value="'.$salesInvoice.'">
                                     <button class="btn btn-danger">Undelivered</button>
                                     </form>';
+                                }else if($salesStatus == "Cancelled"){
+                                    echo '<label class="text-danger text-center">Cancelled</label>';
                                 }
                             ?>
                         </td>
