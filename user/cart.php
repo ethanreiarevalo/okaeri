@@ -254,23 +254,7 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
     </div>
-    <!--<div id="delete" class="popup">
-        <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
-            <form action="deletecart.php" enctype="multipart/form-data" method="post">
-                <div class="row justify-content-center">
-                     <p class="lead">Are you sure you want to delete</p>
-                     <input type="text" id="pid" style="display:none;" name="pid">
-                     <input type="text" style="background:transparent; border:none;" disabled class="w-100 text-dark" id="title_d" name="title_d">
-                </div>
-                <hr class="my-4">
-                <div class="row justify-content-center">
-                    <button type="Submit" class="btn btn-primary m-1">Yes</button>
-                    
-                </div>
-            </form>
-                <button class="btn btn-danger m-1" onclick ="popup()">No</button>
-        </div>
-    </div>-->
+   
     <!-- UPDATE FROM CART UI -->
     <div id="edit" class="popup">
         <div class="jumbotron col-xl-3 col-lg-3 col-md-4 col-sm-7 border border-dark d-block m-auto text-center">
@@ -305,10 +289,12 @@ if(empty($_SESSION['userID'])){
                 <div class="container">
                     <div class="row align-content-center">
                         <label for="promo">Voucher:</label>
+                        
+                <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
                         <div class="input-group mb-1">
-                            <select class="custom-select" id="inputGroupSelect02" name="type">
+                            <select class="custom-select" id="inputGroupSelect02" name="voucher">
                             <?php
-                                $vouchersSql = "SELECT * FROM vouchers";
+                                $vouchersSql = "SELECT * FROM $userVoucher";
                                 $salesQuery = mysqli_query($connection,$vouchersSql);
                                 if($salesQuery->num_rows > 0 ){
                                     while($row = $salesQuery->fetch_assoc()){
@@ -320,14 +306,20 @@ if(empty($_SESSION['userID'])){
                             ?>
                               <option value="<?php echo $salesID;?>"><?php echo $salesAmount." - ".$voucherDiscount;?></option>
                             <?php
-                                    }}
+                                    }
+                                }else{
+                            ?>
+                                <option value="">no vouchers available</option>
+                            
+                            <?php
+                                }
                             ?>
                             </select>
                         </div>
                     </div>
                 </div>
                 <hr class="my-2 bg-warning">
-                <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post"> 
+                <!-- <form action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post">  -->
                 <input type="hidden" id="paymentMethod" name="paymentMethod" value="Cash On Delivery">
                 <input type="hidden" id="totalPrice" name="totalPrice" value="<?php echo $totalPrice;?>">
                 <button class="btn btn-danger w-100">Checkout</button>
