@@ -62,10 +62,9 @@ if(empty($_SESSION['userID'])){
                                 <th>Product Cover</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
-                                <th>Status</th>
                             </tr>
                             <?php
-                                $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 orderStatus = 'Delivered' order by datePurchase desc";
+                                $sql = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID where products.productID > 0 and orderStatus = 'Delivered' order by datePurchase desc";
                                 $salesQuery = mysqli_query($connection,$sql);
                                 if(empty($salesQuery)){
                                     echo "</table>";
