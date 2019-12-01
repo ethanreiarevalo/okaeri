@@ -23,8 +23,8 @@
                 <hr class="my-4">
                 <div class="row justify-content-center">
                     <form class="col-xl-4 m-1" action="">
-                        <input type="text" id="voucher_name" class="form-control text-center my-1" name="voucher_name" placeholder="Enter Voucher Name">
-                        <input type="text" id="voucher_amount" class="form-control text-center my-1" name="voucher_amount" placeholder="Enter Amount of voucher">
+                        <input type="text" id="voucher_name" class="form-control my-1" name="voucher_name" placeholder="Enter Voucher Name">
+                        <input type="text" id="voucher_amount" class="form-control my-1" name="voucher_amount" placeholder="Enter Amount of voucher">
                         <input type="text" id="voucher_input" class="form-control text-center" name="voucher" placeholder="Click Generate to get random voucher code.">
                         <div class="container mt-2 text-center">
                             <input type="button" placeholder="generate" onclick = "g()" value="Generate" class="btn btn-primary" name="generate">
