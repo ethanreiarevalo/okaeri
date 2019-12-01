@@ -6,10 +6,13 @@ if(empty($_SESSION['userID'])){
     echo "<script>window.location.href='../login.php';</script>";
 }else{
     if($_SERVER ["REQUEST_METHOD"] == "POST"){
-        $voucherCode = $_POST['voucher'];
-        $voucherName = $_POST['voucher_name'];
+        $voucherName = addslashes($_POST['voucher_name']);
         $voucherAmount = $_POST['voucher_amount'];
         $voucherDiscount = $_POST['voucher_discount'];
+        
+        $voucherCode = $_POST['voucher'];
+        
+        echo $voucherCode.' '.$voucherName.' '.$voucherAmount.' '.$voucherDiscount;
         
         //check if voucher code already exists
         $voucherCheckSql = "SELECT * FROM vouchers where voucherID = '$voucherCode'";

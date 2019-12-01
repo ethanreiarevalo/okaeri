@@ -8,6 +8,8 @@ if(empty($_SESSION['userID'])){
     $userID = $_SESSION['userID'];
     $cartName = $userID."cart";
     $userEmail = $_SESSION['userEmail'];
+    $userVoucher = $userID."vouchers";
+    echo $userVoucher;
 
     $sql = "SELECT * FROM userdetails where email = '$userEmail'";
     $result = mysqli_query($connection,$sql);
@@ -25,9 +27,8 @@ if(empty($_SESSION['userID'])){
         
         $currentDate = date("Y-m-d");
         $paymentMethod = $_POST['paymentMethod'];
-        $usedVoucer = $_POST['voucher'];
+        $usedVoucher = $_POST['voucher'];
         
-        $userVoucher = $userID.'vouchers';
         $salesID = "";
 
         $usedVoucherSQL = "SELECT * from $userVoucher where voucherID = '$usedVoucher'";
@@ -35,11 +36,11 @@ if(empty($_SESSION['userID'])){
         $usedVoucherRow = mysqli_fetch_array($usedVoucherResult);
         if(!empty($usedVoucherRow)){
             $voucherDiscountPrice = $usedVoucherRow['voucherDiscount'];
-            $totalPrice = $semitotalprice - $voucherDiscountPrice;
+            $totalprice = $semitotalprice - $voucherDiscountPrice;
             $UPDATEuservoucher = mysqli_query($connection, "UPDATE $userVoucher set status='Used' where voucherID = '$usedVoucher'");
 
         }else{
-            $totalPrice = $semitotalprice;
+            $totalprice = $semitotalprice;
         }
 
         //input to sales table
@@ -77,7 +78,7 @@ if(empty($_SESSION['userID'])){
                 if(!empty($voucherRow)){
                     $totalPurchases = $voucherRow['totalPurchases'];
                     //check if can avail for voucher
-                    if($totalPurchases%1 == 0){
+                    if($totalPurchases%10 == 0){
                         //check for available voucher
 
                         $availVoucherSQL = "SELECT * FROM vouchers WHERE voucherAmount > 0 LIMIT 1";
@@ -86,9 +87,9 @@ if(empty($_SESSION['userID'])){
                         if(mysqli_num_rows($allVoucherResult) > 0){
                             while($allVoucherRow = mysqli_fetch_array($allVoucherResult)){
                                 $voucherCode = $allVoucherRow['voucherID'];
-                                $voucherName = $allVoucherRow['voucherName'];
+                                $voucherName = addslashes($allVoucherRow['voucherName']);
                                 $voucherDiscount = $allVoucherRow['voucherDiscount'];
-
+                                echo $voucherCode;
                                 //insert into uservouchers
                                 $insertUserVouchers = mysqli_query($connection,"INSERT INTO $userVoucher VALUES ('$voucherCode','$voucherName', '$voucherDiscount', 'Unused')");
 
@@ -314,17 +315,18 @@ if(empty($_SESSION['userID'])){
                         <div class="input-group mb-1">
                             <select class="custom-select" id="inputGroupSelect02" name="voucher">
                             <?php
-                                $vouchersSql = "SELECT * FROM $userVoucher";
-                                $salesQuery = mysqli_query($connection,$vouchersSql);
-                                if($salesQuery->num_rows > 0 ){
-                                    while($row = $salesQuery->fetch_assoc()){
+                                
+                                $vouchersSql = "SELECT * FROM $userVoucher where `status` = 'Unused'";
+                                $vouchersListQuery = mysqli_query($connection,$vouchersSql);
+                                if($vouchersListQuery->num_rows > 0 ){
+                                    while($row = $vouchersListQuery->fetch_assoc()){
                                         $salesID = $row['voucherID'];
                                         $salesAmount = $row['voucherName'];
                                         $salesDate = $row['voucherAmount'];
                                         $voucherDiscount = $row['voucherDiscount'];
 
                             ?>
-                              <option value="<?php echo $salesID;?>"><?php echo $salesAmount." - ".$voucherDiscount;?></option>
+                              <option value="<?php echo $salesID;?>"><?php echo $salesAmount." Discount: ".$voucherDiscount;?></option>
                             <?php
                                     }
                                 }else{

@@ -101,20 +101,21 @@ if(empty($_SESSION['userID'])){
             </div>
             <div class="col-xl-4 col-lg-4 col-md-12">
                 <div class="jumbotron bg-warning mt-5 h-75">
-                    <p class="lead">Purchase History Summary</p>
+                    <p class="lead">Usable Vouchers</p>
                     <hr class="my-4">
                     <p>Content</p>
                     <?php
                     // include('../connection.php');
-                    $getItems = "SELECT * FROM `$userPurchases` INNER JOIN products ON `$userPurchases`.productID = products.productID 
-                    where orderStatus = 'Undelivered' and products.productID > 0 LIMIT 10";
+                    $userID = $_SESSION['userID'];
+                    $userVoucher = $userID.'vouchers';
+                    $getItems = "SELECT * FROM `$userVoucher` where status = 'Unused' LIMIT 5";
                     $count = 0;
                     $result = mysqli_query($connection, $getItems);
                     if(mysqli_num_rows($result) > 0){
                         while($row = mysqli_fetch_array($result)){
                             $count = $count + 1;
                     ?>
-                    <p><?php echo $count.'. '.$row['productTitle'].' Amount: '.$row['amount'];?><p>
+                    <p><?php echo $count.'. '.$row['voucherName'].' Discount: '.$row['voucherDiscount'];?><p>
                     <?php
                         }
                     }?>
