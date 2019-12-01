@@ -60,6 +60,9 @@ if(empty($_SESSION['userID'])){
                                 <th>
                                     Amount
                                 </th>
+                                <th>
+                                    Discount
+                                </th>
                             </tr>
                             <?php
                                 $vouchersSql = "SELECT * FROM vouchers";
