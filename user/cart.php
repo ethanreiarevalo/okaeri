@@ -79,10 +79,7 @@ if(empty($_SESSION['userID'])){
                                 //update vouchers
                                 $updateVouchers = mysqli_query($connection,"UPDATE vouchers SET voucherAmount = voucherAmount - 1 WHERE voucherID = '$voucherCode'");
                                 
-                                echo"<div id='v_alert' class='popup'>
-                                    <p class='lead'>You Have claimed new Voucher!".$voucherName." with a Discount of ".$voucherDiscount."</p>
-                                    <button class='btn btn-warning' onclick='popup_alert()'>Claim</button>
-                                </div>";
+                                echo "<script> var v_popup = document.getElementById('v_alert'); v_popup.className = 'pop';</script>";
                             }
                         }
                     }         
@@ -289,6 +286,10 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
 
+    </div>
+    <div id='v_alert' class='popup'>
+        <p class='lead'>You Have claimed new Voucher!".$voucherName." with a Discount of ".$voucherDiscount."</p>
+        <button class='btn btn-warning' onclick='popup_alert()'>Claim</button>
     </div>
     <!-- CHECKOUT COD -->
     <div id="modal2" class="popup">
