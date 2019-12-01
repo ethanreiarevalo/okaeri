@@ -19,7 +19,10 @@ if(empty($_SESSION['userID'])){
     }
 
     if($_SERVER ["REQUEST_METHOD"] == "POST"){
-        $totalprice = $_POST['totalPrice'];
+        $semitotalprice = $_POST['totalPrice'];
+        
+        $semitotalprice = $semitotalprice + 50;
+        
         $currentDate = date("Y-m-d");
         $paymentMethod = $_POST['paymentMethod'];
         $usedVoucer = $_POST['voucher'];
@@ -27,13 +30,18 @@ if(empty($_SESSION['userID'])){
         $userVoucher = $userID.'vouchers';
         $salesID = "";
 
-        // $selectSales = "SELECT salesID from sales where salesDate = '$currentDate' and invoice = '$userID' and amount = '$totalprice'";
-        // $salesresult = mysqli_query($connection,$selectSales);
-        // $salesrow = mysqli_fetch_array($salesresult);
-        // if(!empty($salesrow['salesID'])){
-        
+        $usedVoucherSQL = "SELECT * from $userVoucher where voucherID = '$usedVoucher'";
+        $usedVoucherResult = mysqli_query($connection,$usedVoucherSQL);
+        $usedVoucherRow = mysqli_fetch_array($usedVoucherResult);
+        if(!empty($usedVoucherRow)){
+            $voucherDiscountPrice = $usedVoucherRow['voucherDiscount'];
+            $totalPrice = $semitotalprice - $voucherDiscountPrice;
+            $UPDATEuservoucher = mysqli_query($connection, "UPDATE $userVoucher set status='Used' where voucherID = '$usedVoucher'");
 
-        $totalprice = $totalprice + 50;
+        }else{
+            $totalPrice = $semitotalprice;
+        }
+
         //input to sales table
         $salesSQL = mysqli_query($connection, "INSERT INTO sales values (null, '$totalprice', '$currentDate', '$userID', '$paymentMethod', 'Undelivered')");
 
@@ -87,10 +95,7 @@ if(empty($_SESSION['userID'])){
                                 //update vouchers
                                 $updateVouchers = mysqli_query($connection,"UPDATE vouchers SET voucherAmount = voucherAmount - 1 WHERE voucherID = '$voucherCode'");
                                 
-                                echo "<div id='v_alert' class='popup'>
-                                    <p class='lead'>You Have claimed new Voucher!".$voucherName." with a Discount of ".$voucherDiscount."</p>
-                                    <button class='btn btn-warning' onclick='popup_alert()'>Claim</button>
-                                    </div>";
+                                echo "<script> alert('CONGRATULATIONS! YOU WON A NEW VOUCHER');</script>";
                             }
                         }
                     }         
@@ -281,6 +286,10 @@ if(empty($_SESSION['userID'])){
             </div>
         </div>
 
+    </div>
+    <div id='v_alert' class='popup'>
+        <p class='lead'>You Have claimed new Voucher!".$voucherName." with a Discount of ".$voucherDiscount."</p>
+        <button class='btn btn-warning' onclick='popup_alert()'>Claim</button>
     </div>
     <!-- CHECKOUT COD -->
     <div id="modal2" class="popup">
