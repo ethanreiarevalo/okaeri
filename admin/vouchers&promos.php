@@ -72,6 +72,7 @@ if(empty($_SESSION['userID'])){
                                         $salesID = $row['voucherID'];
                                         $salesAmount = $row['voucherName'];
                                         $salesDate = $row['voucherAmount'];
+                                        $voucherDiscount = $row['voucherDiscount'];
 
                             ?>
                             <tr>
@@ -83,6 +84,9 @@ if(empty($_SESSION['userID'])){
                                 </td>
                                 <td>
                                     <?php echo $salesDate; ?>
+                                </td>
+                                <td>
+                                    <?php echo $voucherDiscount; ?>
                                 </td>
                             </tr>
                             <?php
