@@ -1,3 +1,20 @@
+<?php
+session_start();
+include('../connection.php');
+
+if(empty($_SESSION['userID'])){
+    echo "<script>window.location.href='../login.php';</script>";
+}else{
+    if($_SERVER ["REQUEST_METHOD"] == "POST"){
+        $voucherCode = $_POST['voucher'];
+        $voucherName = $_POST['voucher_name'];
+        $voucherAmount = $_POST['voucher_amount'];
+        $addVoucher = mysqli_query($connection, "INSERT INTO vouchers VALUES ('$voucherCode', '$voucherName', '$voucherAmount')");
+            
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +39,7 @@
                 <h1 class="display-4">Add new Vouchers and Promos</h1>
                 <hr class="my-4">
                 <div class="row justify-content-center">
-                    <form class="col-xl-4 m-1" action="">
+                    <form class="col-xl-4 m-1" action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post">
                         <input type="text" id="voucher_name" class="form-control text-center my-1" name="voucher_name" placeholder="Enter Voucher Name">
                         <input type="text" id="voucher_amount" class="form-control text-center my-1" name="voucher_amount" placeholder="Enter Amount of voucher">
                         <input type="text" id="voucher_input" class="form-control text-center" name="voucher" placeholder="Click Generate to get random voucher code.">
