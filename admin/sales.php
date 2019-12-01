@@ -224,6 +224,8 @@ if(empty($_SESSION['userID'])){
                                     echo '<label class="text-success text-center">Delivered</label>';
                                 }else if($salesStatus == "Undelivered"){
                                     echo '<button class="btn btn-danger">Undelivered</button>';
+                                }else if($salesStatus == "Cancelled"){
+                                    echo '<label class="text-danger text-center">Cancelled</label>';
                                 }
                             ?>
                         </td>
