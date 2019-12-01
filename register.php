@@ -43,7 +43,7 @@
             $createPurchasesSql = "CREATE TABLE ".$userID."purchases (productID INT(10), amount INT(10), datePurchase DATE, salesID int(10), paymentMethod VARCHAR(16), orderStatus VARCHAR(15))";
             $createPurchases = mysqli_query($connection, $createPurchasesSql);
             //create table for vouchers records
-            $createVouchersSql = "CREATE TABLE ".$userID."vouchers (voucherID INT(10), voucherName VARCHAR(100), status VARCHAR(10))";
+            $createVouchersSql = "CREATE TABLE ".$userID."vouchers (voucherID INT(10), voucherName VARCHAR(100), voucherDiscount FLOAT(6,2), status VARCHAR(10))";
             $createVouchers = mysqli_query($connection, $createVouchersSql);
 
 

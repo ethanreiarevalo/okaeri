@@ -53,24 +53,36 @@ if(empty($_SESSION['userID'])){
                 $cartProdAmount = $cartrow['amount'];
                 $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
                 
-                //check if can available vouchers
-                $canAvailVoucherSQL = "SELECT COUNT(*) AS totalPurchases FROM ".$userID."purchases";
-                $cartresult = mysqli_query($connection,$cartSQL);
-                if(mysqli_num_rows($cartresult) > 0){
-                    while($cartrow = mysqli_fetch_array($cartresult)){
-
+                //check for number of purchases
+                $canAvailVoucherSQL = "SELECT  COUNT(*) AS totalPurchases FROM ".$userID."purchases";
+                $voucherResult = mysqli_query($connection,$canAvailVoucherSQL);
+                $voucherRow = mysqli_fetch_array($voucherResult);
+                if(!empty($voucherRow)){
+                    $totalPurchases = $voucherRow['totalPurchases'];
+                    //check if can avail for voucher
+                    if($totalPurchases%10 == 0){
                         //check for available voucher
-                        $cartSQL = "SELECT * FROM ".$userID."cart WHERE amount <= (SELECT productStock from products where products.productID = ".$userID."cart.productID) and amount > 0";
-                        $cartresult = mysqli_query($connection,$cartSQL);
-                        if(mysqli_num_rows($cartresult) > 0){
-                            while($cartrow = mysqli_fetch_array($cartresult)){
-                
-                    
-                    
-                    
+                        $userVoucher = $userID.'vouchers';
+
+                        $availVoucherSQL = "SELECT * FROM vouchers WHERE voucherAmount > 0 LIMIT 1";
+                        $allVoucherResult = mysqli_query($connection,$availVoucherSQL);
+
+                        if(mysqli_num_rows($allVoucherResult) > 0){
+                            while($allVoucherRow = mysqli_fetch_array($allVoucherResult)){
+                                $voucherCode = $allVoucherRow['voucherID'];
+                                $voucherName = $allVoucherRow['voucherName'];
+                                $voucherDiscount = $allVoucherRow['voucherDiscount'];
+
+                                //insert into uservouchers
+                                $insertUserVouchers = mysqli_query($connection,"INSERT INTO $userVoucher VALUES ('$voucherCode','$voucherName', '$voucherDiscount', 'Unused')");
+
+                                //update vouchers
+                                $updateVouchers = mysqli_query($connection,"UPDATE vouchers SET voucherAmount = voucherAmount - 1 WHERE voucherID = '$voucherCode'");
+                                
+
                             }
                         }
-                    }
+                    }         
                 }
 
 
