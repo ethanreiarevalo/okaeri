@@ -43,6 +43,9 @@
                                 <th>
                                     Amount
                                 </th>
+                                <th>
+                                    Discount
+                                </th>
                             </tr>
                         </table>
                     </div>
