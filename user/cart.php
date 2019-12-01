@@ -79,7 +79,10 @@ if(empty($_SESSION['userID'])){
                                 //update vouchers
                                 $updateVouchers = mysqli_query($connection,"UPDATE vouchers SET voucherAmount = voucherAmount - 1 WHERE voucherID = '$voucherCode'");
                                 
-                                echo"<script> alert('HERE ETHAN!')</script>";
+                                echo"<div id='v_alert' class='popup'>
+                                    <p class='lead'>You Have claimed new Voucher!".$voucherName." with a Discount of ".$voucherDiscount."</p>
+                                    <button class='btn btn-warning' onclick='popup_alert()'>Claim</button>
+                                </div>";
                             }
                         }
                     }         
@@ -342,6 +345,7 @@ if(empty($_SESSION['userID'])){
         var t = document.getElementById("delete");
         var h = document.getElementById("modal2");
         var a = document.getElementById("edit");
+        var v = document.getElementById("v_alert");
         function popup(){
             if (t.className === "popup"){
                 t.className = "pop";
@@ -366,6 +370,14 @@ if(empty($_SESSION['userID'])){
             }
             else{
                 a.className = "popup";
+            }
+        }
+        function popup_alert(){
+            if (v.className === "popup"){
+                v.className = "pop";
+            }
+            else{
+                v.className = "popup";
             }
         }
 
