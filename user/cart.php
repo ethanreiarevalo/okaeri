@@ -306,7 +306,7 @@ if(empty($_SESSION['userID'])){
                                         $voucherDiscount = $row['voucherDiscount'];
 
                             ?>
-                              <option value="<?php echo $salesID;?>"><?php echo $salesAmount."".$voucherDiscount;?></option>
+                              <option value="<?php echo $salesID;?>"><?php echo $salesAmount." - ".$voucherDiscount;?></option>
                             <?php
                                     }}
                             ?>
