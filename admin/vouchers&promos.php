@@ -10,11 +10,15 @@ if(empty($_SESSION['userID'])){
         $voucherName = $_POST['voucher_name'];
         $voucherAmount = $_POST['voucher_amount'];
         $voucherDiscount = $_POST['voucher_discount'];
-
         
-
-        $addVoucher = mysqli_query($connection, "INSERT INTO vouchers VALUES ('$voucherCode', '$voucherName', '$voucherAmount')");
-            
+        //check if voucher code already exists
+        $voucherCheckSql = "SELECT * FROM vouchers where voucherID = '$voucherCode'";
+        $voucherCheckQuery = mysqli_query($connection,$voucherCheckSql);
+        if($voucherCheckQuery->num_rows > 0 ){
+            echo '<script> alert("Voucher Code Already Exists"); </script>' ;
+        }else{
+            $addVoucher = mysqli_query($connection, "INSERT INTO vouchers VALUES ('$voucherCode', '$voucherName', '$voucherAmount', '$voucherDiscount')");
+        }
     }
 }
 

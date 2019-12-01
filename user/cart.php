@@ -52,7 +52,28 @@ if(empty($_SESSION['userID'])){
                 $cartProdID = $cartrow['productID'];
                 $cartProdAmount = $cartrow['amount'];
                 $cartItems = mysqli_query($connection, "INSERT INTO ".$userPurchases." VALUES ('$cartProdID', '$cartProdAmount', '$currentDate', '$salesID', '$paymentMethod', 'Undelivered')");
-            
+                
+                //check if can available vouchers
+                $canAvailVoucherSQL = "SELECT COUNT(*) AS totalPurchases FROM ".$userID."purchases";
+                $cartresult = mysqli_query($connection,$cartSQL);
+                if(mysqli_num_rows($cartresult) > 0){
+                    while($cartrow = mysqli_fetch_array($cartresult)){
+
+                        //check for available voucher
+                        $cartSQL = "SELECT * FROM ".$userID."cart WHERE amount <= (SELECT productStock from products where products.productID = ".$userID."cart.productID) and amount > 0";
+                        $cartresult = mysqli_query($connection,$cartSQL);
+                        if(mysqli_num_rows($cartresult) > 0){
+                            while($cartrow = mysqli_fetch_array($cartresult)){
+                
+                    
+                    
+                    
+                            }
+                        }
+                    }
+                }
+
+
                 //update stock
                 $updateStock = mysqli_query($connection, "UPDATE products SET productStock=productStock-'$cartProdAmount' where productID = '$cartProdID'");
                 
