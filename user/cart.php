@@ -9,7 +9,7 @@ if(empty($_SESSION['userID'])){
     $cartName = $userID."cart";
     $userEmail = $_SESSION['userEmail'];
     $userVoucher = $userID."vouchers";
-    echo $userVoucher;
+    // echo $userVoucher;
 
     $sql = "SELECT * FROM userdetails where email = '$userEmail'";
     $result = mysqli_query($connection,$sql);
