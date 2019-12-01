@@ -79,7 +79,7 @@ if(empty($_SESSION['userID'])){
                                 //update vouchers
                                 $updateVouchers = mysqli_query($connection,"UPDATE vouchers SET voucherAmount = voucherAmount - 1 WHERE voucherID = '$voucherCode'");
                                 
-
+                                echo"<script> alert('HERE ETHAN!')</script>";
                             }
                         }
                     }         
