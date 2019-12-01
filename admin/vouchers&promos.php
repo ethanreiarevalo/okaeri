@@ -61,6 +61,31 @@ if(empty($_SESSION['userID'])){
                                     Amount
                                 </th>
                             </tr>
+                            <?php
+                                $vouchersSql = "SELECT * FROM vouchers";
+                                $salesQuery = mysqli_query($connection,$vouchersSql);
+                                if($salesQuery->num_rows > 0 ){
+                                    while($row = $salesQuery->fetch_assoc()){
+                                        $salesID = $row['voucherID'];
+                                        $salesAmount = $row['voucherName'];
+                                        $salesDate = $row['voucherAmount'];
+
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $salesID; ?>
+                                </td>
+                                <td>
+                                    <?php echo $salesAmount; ?>
+                                </td>
+                                <td>
+                                    <?php echo $salesDate; ?>
+                                </td>
+                            </tr>
+                            <?php
+                                    }
+                                }
+                            ?>
                         </table>
                     </div>
                 </div>
