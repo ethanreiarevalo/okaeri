@@ -9,6 +9,10 @@ if(empty($_SESSION['userID'])){
         $voucherCode = $_POST['voucher'];
         $voucherName = $_POST['voucher_name'];
         $voucherAmount = $_POST['voucher_amount'];
+        $voucherDiscount = $_POST['voucher_discount'];
+
+        
+
         $addVoucher = mysqli_query($connection, "INSERT INTO vouchers VALUES ('$voucherCode', '$voucherName', '$voucherAmount')");
             
     }
@@ -91,6 +95,8 @@ if(empty($_SESSION['userID'])){
                             </tr>
                             <?php
                                     }
+                                }else{
+                                    echo 'no vouchers yet';
                                 }
                             ?>
                         </table>
