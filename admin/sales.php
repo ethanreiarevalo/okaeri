@@ -223,7 +223,12 @@ if(empty($_SESSION['userID'])){
                                 if($salesStatus == "Delivered"){
                                     echo '<label class="text-success text-center">Delivered</label>';
                                 }else if($salesStatus == "Undelivered"){
-                                    echo '<button class="btn btn-danger">Undelivered</button>';
+                                    echo '<form action="deliveryStatus.php" method="post">
+                                    <input type="hidden" name="dStatus" id="dStatus" value="'.$salesID.'">
+                                    
+                                    <input type="hidden" name="dInvoice" id="dInvoice" value="'.$salesInvoice.'">
+                                    <button class="btn btn-danger">Undelivered</button>
+                                    </form>';
                                 }
                             ?>
                         </td>
