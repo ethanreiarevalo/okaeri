@@ -42,6 +42,7 @@ if(empty($_SESSION['userID'])){
                     <form class="col-xl-4 m-1" action="<?php htmlspecialchars("PHP_SELF"); ?>" method="post">
                         <input type="text" id="voucher_name" class="form-control text-center my-1" name="voucher_name" placeholder="Enter Voucher Name">
                         <input type="text" id="voucher_amount" class="form-control text-center my-1" name="voucher_amount" placeholder="Enter Amount of voucher">
+                        <input type="text" id="voucher_discount" class="form-control text-center my-1" name="voucher_discount" placeholder="Enter Discount of voucher">
                         <input type="text" id="voucher_input" class="form-control text-center" name="voucher" placeholder="Click Generate to get random voucher code.">
                         <div class="container mt-2 text-center">
                             <input type="button" placeholder="generate" onclick = "g()" value="Generate" class="btn btn-primary" name="generate">
