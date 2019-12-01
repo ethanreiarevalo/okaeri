@@ -92,7 +92,13 @@
                     <input type="text" class="form-control mb-1 text-center" id="exampleFormControlInput1" placeholder="Address" name="address" required>
                     <input type="text" class="form-control mb-1 text-center" id="exampleFormControlInput1" placeholder="Contact No." name="contact" required>
                     <input type="email" class="form-control mb-1 text-center" id="exampleFormControlInput1" placeholder="Email" name="email" required>
-                    <input type="username" class="form-control mb-1 text-center" id="exampleFormControlInput1" placeholder="Sex" name="sex" required>
+                    <div class="input-group mb-1">
+                        <select class="custom-select" id="inputGroupSelect02" name="sex">
+                          <option selected>Sex</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                    </div>
                     <input type="password" class="form-control mb-3 text-center" id="exampleFormControlInput1" placeholder="Password" name="password" required>
 
                     <button class="btn btn-warning w-50 text-white font-weight-bold" type="submit">Register</button>
