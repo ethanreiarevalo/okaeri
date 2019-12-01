@@ -304,8 +304,26 @@ if(empty($_SESSION['userID'])){
                 </div>
                 <div class="container">
                     <div class="row align-content-center">
-                        <label for="promo">Delivery Amount:</label>
-                        <input type="text" id="promo" class="form-control col-xl-8" placeholder="Enter promo/voucher code">
+                        <label for="promo">Voucher:</label>
+                        <div class="input-group mb-1">
+                            <select class="custom-select" id="inputGroupSelect02" name="type">
+                            <?php
+                                $vouchersSql = "SELECT * FROM vouchers";
+                                $salesQuery = mysqli_query($connection,$vouchersSql);
+                                if($salesQuery->num_rows > 0 ){
+                                    while($row = $salesQuery->fetch_assoc()){
+                                        $salesID = $row['voucherID'];
+                                        $salesAmount = $row['voucherName'];
+                                        $salesDate = $row['voucherAmount'];
+                                        $voucherDiscount = $row['voucherDiscount'];
+
+                            ?>
+                              <option value="<?php echo $salesID;?>"><?php echo $salesAmount." - ".$voucherDiscount;?></option>
+                            <?php
+                                    }}
+                            ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <hr class="my-2 bg-warning">
