@@ -118,7 +118,7 @@
     <!-- SCRIPT FOR THE INPUT BUTTON -->
     <!-- DO NOT CHANGE -->
     <script>
-        var currentVal = document.getElementById("integer_value").value = "0";
+        var currentVal = document.getElementById("integer_value").value = "1";
 
         function plusValue(){
             var getValue = parseInt(document.getElementById("integer_value").value);
@@ -133,8 +133,8 @@
 
             var checknegative = document.getElementById("integer_value").value;
 
-            if(checknegative < 0){
-                document.getElementById("integer_value").value = 0;
+            if(checknegative < 1){
+                document.getElementById("integer_value").value = 1;
             }
         }
 
